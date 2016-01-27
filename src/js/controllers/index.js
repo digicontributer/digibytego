@@ -139,6 +139,7 @@ angular.module('copayApp.controllers').controller('indexController', function($r
       self.txps = [];
       self.copayers = [];
       self.updateColor();
+      self.updateTheme();
       self.updateAlias();
       self.setAddressbook();
 
@@ -626,6 +627,14 @@ angular.module('copayApp.controllers').controller('indexController', function($r
       StatusBar.backgroundColorByHexString(fc.backgroundColor);
     }
   };
+
+  self.updateTheme = function() {
+    var config = configService.getSync();
+    config.themeFor = config.themeFor || {};
+    self.backgroundTheme = config.themeFor[self.walletId];
+    var fc = profileService.focusedClient;
+    fc.backgroundTheme = self.backgroundTheme;
+  }; 
 
   self.setBalance = function(balance) {
     if (!balance) return;
@@ -1206,6 +1215,13 @@ angular.module('copayApp.controllers').controller('indexController', function($r
       $rootScope.$apply();
     });
   });
+
+  $rootScope.$on('Local/ThemeUpdated', function(event) {
+    self.updateTheme();
+    $timeout(function() {
+      $rootScope.$apply();
+    });
+  }); 
 
   $rootScope.$on('Local/AliasUpdated', function(event) {
     self.updateAlias();

@@ -284,6 +284,17 @@ angular
           },
         }
       })
+      .state('preferencesTheme', {
+        url: '/preferencesTheme',
+        templateUrl: 'views/preferencesTheme.html',
+        walletShouldBeComplete: true,
+        needProfile: true,
+        views: {
+          'main': {
+            templateUrl: 'views/preferencesTheme.html'
+          },
+        }
+      })
       .state('preferencesColor', {
         url: '/preferencesColor',
         templateUrl: 'views/preferencesColor.html',
