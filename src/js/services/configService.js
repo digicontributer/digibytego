@@ -26,7 +26,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
         unitName: 'DGB',
         unitToSatoshi: 100000000,
         unitDecimals: 2,
-        unitCode: 'btc',
+        unitCode: 'dgb',
         alternativeName: 'US Dollar',
         alternativeIsoCode: 'USD',
       }
