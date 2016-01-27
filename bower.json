@@ -8,7 +8,7 @@
   ],
   "dependencies": {
     "angular": "1.4.6",
-    "angular-bitcore-wallet-client": "1.1.7",
+    "angular-bitcore-wallet-client": "git://github.com/digibyte/angular-bitcore-wallet-client.git#1e3299a24b6fdef66e2b40eb726d5aea48c8da3b",
     "angular-foundation": "0.7.0",
     "angular-gettext": "2.1.2",
     "angular-moment": "0.10.1",

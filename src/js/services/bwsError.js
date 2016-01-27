@@ -70,7 +70,7 @@ angular.module('copayApp.services')
             body = gettextCatalog.getString('The spend proposal is not pending');
             break;
           case 'UPGRADE_NEEDED':
-            body = gettextCatalog.getString('Please upgrade Copay to perform this action');
+            body = gettextCatalog.getString('Please upgrade DigiByte Gaming to perform this action');
             break;
           case 'WALLET_ALREADY_EXISTS':
             body = gettextCatalog.getString('Wallet already exists');

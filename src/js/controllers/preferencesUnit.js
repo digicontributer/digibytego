@@ -14,22 +14,7 @@ angular.module('copayApp.controllers').controller('preferencesUnitController',
       //     code: 'sat',
       //   }, 
       {
-        name: 'bits (1,000,000 bits = 1BTC)',
-        shortName: 'bits',
-        value: 100,
-        decimals: 2,
-        code: 'bit',
-      }
-      // TODO : add mBTC to bitcore-wallet-client formatAmount()
-      // ,{
-      //   name: 'mBTC (1,000 mBTC = 1BTC)',
-      //   shortName: 'mBTC',
-      //   value: 100000,
-      //   decimals: 5,
-      //   code: 'mbtc',
-      // }
-      , {
-        name: 'BTC',
+        name: 'DGB',
         shortName: 'BTC',
         value: 100000000,
         decimals: 8,

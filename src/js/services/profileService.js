@@ -373,7 +373,7 @@ angular.module('copayApp.services')
         'walletId': walletId
       });
       if (w) {
-        return cb(gettext('Wallet already in Copay' + ": ") + w.walletName);
+        return cb(gettext('Wallet already in DigiByte Gaming' + ": ") + w.walletName);
       }
 
       var config = configService.getSync();

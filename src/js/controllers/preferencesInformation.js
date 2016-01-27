@@ -74,14 +74,14 @@ angular.module('copayApp.controllers').controller('preferencesInformation',
             return;
           };
 
-          var body = 'Copay Wallet "' + $scope.walletName + '" Addresses\n  Only Main Addresses are  shown.\n\n';
+          var body = 'DigiByte Gaming Wallet "' + $scope.walletName + '" Addresses\n  Only Main Addresses are  shown.\n\n';
           body += "\n";
           body += addrs.map(function(v) {
             return ('* ' + v.address + ' ' + base + v.path.substring(1) + ' ' + formatDate(v.createdOn));
           }).join("\n");
 
           var properties = {
-            subject: 'Copay Addresses',
+            subject: 'DigiByte Gaming Addresses',
             body: body,
             isHtml: false
           };

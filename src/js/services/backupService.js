@@ -88,7 +88,7 @@ angular.module('copayApp.services')
 
       var walletName = (fc.alias || '') + (fc.alias ? '-' : '') + fc.credentials.walletName;
       if (opts.noSign) walletName = walletName + '-noSign'
-      var filename = walletName + '-Copaybackup.aes.json';
+      var filename = walletName + '-DigiBytebackup.aes.json';
       _download(ew, filename, cb)
     };
     return root;

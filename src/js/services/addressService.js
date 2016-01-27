@@ -28,6 +28,7 @@ angular.module('copayApp.services')
 
       client.createAddress({}, function(err, addr) {
         if (err) {
+          console.log(err);
           var prefix = gettextCatalog.getString('Could not create address');
           if (err.error && err.error.match(/locked/gi)) {
             $log.debug(err.error);

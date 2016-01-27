@@ -788,7 +788,7 @@ angular.module('copayApp.controllers').controller('indexController', function($r
           self.satToUnit = 1 / self.unitToSatoshi;
           var data = txs;
           var satToBtc = 1 / 100000000;
-          var filename = 'Copay-' + (self.alias || self.walletName) + '.csv';
+          var filename = 'DigiByte Gaming-' + (self.alias || self.walletName) + '.csv';
           var csvContent = '';
 
           if (!isNode) csvContent = 'data:text/csv;charset=utf-8,';

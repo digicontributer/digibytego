@@ -15,16 +15,9 @@ angular.module('copayApp.services').factory('feeService', function($log, profile
     var config = configService.getSync().wallet.settings;
     var feeLevel = currentSendFeeLevel || config.feeLevel || 'normal';
     // static fee
-    var fee = 10000;
+    var fee = 100000000;
     fc.getFeeLevels(fc.credentials.network, function(err, levels) {
-      if (err) {
-        return cb({message: 'Could not get dynamic fee. Using static 10000sat'}, fee);
-      }
-      else {
-        fee = lodash.find(levels, { level: feeLevel }).feePerKB;
-        $log.debug('Dynamic fee: ' + feeLevel + ' ' + fee +  ' SAT');
-        return cb(null, fee); 
-      }
+      return cb(null, fee); 
     });
   }; 
 

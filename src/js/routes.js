@@ -527,7 +527,7 @@ angular
         type: "menubar"
       });
       try {
-        nativeMenuBar.createMacBuiltin("Copay");
+        nativeMenuBar.createMacBuiltin("DigiByte Gaming");
       } catch (e) {
         $log.debug('This is not OSX');
       }

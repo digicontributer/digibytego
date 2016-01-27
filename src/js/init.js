@@ -10,7 +10,7 @@ angular.element(document).ready(function() {
   var handleBitcoinURI = function(url) {
     if (!url) return;
     if (url.indexOf('glidera') != -1) {
-      url = '#/uri-glidera' + url.replace('bitcoin://glidera', '');
+      url = '#/uri-glidera' + url.replace('digibyte://glidera', '');
     } else {
       url = '#/uri-payment/' + url;
     }
