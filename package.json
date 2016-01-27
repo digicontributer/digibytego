@@ -1,18 +1,18 @@
 {
-  "name": "copay",
+  "name": "DigiByte-Gaming",
   "description": "A multisignature wallet",
   "author": "BitPay",
   "version": "1.8.2",
   "keywords": [
     "wallet",
-    "copay",
+    "digibyte",
     "multisignature",
     "bitcoin",
     "bitcore"
   ],
   "main": "public/index.html",
   "window": {
-    "title": "Copay - A multisignature wallet",
+    "title": "DigiByte Gaming - A multisignature wallet",
     "icon": "./public/img/icons/icon-256.png",
     "toolbar": false,
     "show": true,

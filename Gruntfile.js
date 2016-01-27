@@ -167,7 +167,7 @@ module.exports = function(grunt) {
     },
     nodewebkit: {
       options: {
-        appName: 'Copay',
+        appName: 'DigiByte-Gaming',
         platforms: ['win64', 'osx64', 'linux64'],
         buildDir: './webkitbuilds',
         version: '0.12.2',
@@ -179,12 +179,12 @@ module.exports = function(grunt) {
     compress: {
       linux: {
         options: {
-          archive: './webkitbuilds/Copay-linux.zip'
+          archive: './webkitbuilds/DigiByte-Gaming-linux.zip'
         },
         expand: true,
-        cwd: './webkitbuilds/Copay/linux64/',
+        cwd: './webkitbuilds/DigiByte-Gaming/linux64/',
         src: ['**/*'],
-        dest: 'copay-linux/'
+        dest: 'DigiByte-Gaming-linux/'
       }
     },
     browserify: {
