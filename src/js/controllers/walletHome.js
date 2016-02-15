@@ -130,7 +130,7 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
         $timeout(function() {
           var form = addressbookForm;
           if (data && form) {
-            data = data.replace('bitcoin:', '');
+            data = data.replace('digibyte:', '');
             form.address.$setViewValue(data);
             form.address.$isValid = true;
             form.address.$render();
@@ -490,7 +490,7 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
       if (isMobile.Android() || isMobile.Windows()) {
         window.ignoreMobilePause = true;
       }
-      window.plugins.socialsharing.share('bitcoin:' + addr, null, null, null);
+      window.plugins.socialsharing.share('digibyte:' + addr, null, null, null);
     }
   };
 
