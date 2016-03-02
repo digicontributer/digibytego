@@ -1,19 +1,19 @@
 VERSION=`cut -d '"' -f2 $BUILDDIR/../version.js`
 
 sign:
-	gpg -u 1112CFA1 --output browser-extensions/chrome/copay-chrome-extension.zip.sig --detach-sig browser-extensions/chrome/copay-chrome-extension.zip
+	gpg -u 1112CFA1 --output browser-extensions/chrome/digibyte-gaming-chrome-extension.zip.sig --detach-sig browser-extensions/chrome/digibyte-gaming-chrome-extension.zip
 verify: 
-	gpg --verify browser-extensions/chrome/copay-chrome-extension.zip.sig browser-extensions/chrome/copay-chrome-extension.zip
+	gpg --verify browser-extensions/chrome/digibyte-gaming-chrome-extension.zip.sig browser-extensions/chrome/digibyte-gaming-chrome-extension.zip
 
 sign-desktop:
-	gpg -u 1112CFA1 --output webkitbuilds/Copay-linux.zip.sig --detach-sig webkitbuilds/Copay-linux.zip
-	gpg -u 1112CFA1 --output webkitbuilds/Copay-osx.dmg.sig --detach-sig webkitbuilds/Copay-osx.dmg
-	gpg -u 1112CFA1 --output webkitbuilds/Copay-win.exe.sig --detach-sig webkitbuilds/Copay-win.exe
+	gpg -u 1112CFA1 --output webkitbuilds/DigiByte-Gaming-linux.zip.sig --detach-sig webkitbuilds/DigiByte-Gaming-linux.zip
+	gpg -u 1112CFA1 --output webkitbuilds/DigiByte-Gaming-osx.dmg.sig --detach-sig webkitbuilds/DigiByte-Gaming-osx.dmg
+	gpg -u 1112CFA1 --output webkitbuilds/DigiByte-Gaming-win.exe.sig --detach-sig webkitbuilds/DigiByte-Gaming-win.exe
 
 verify-desktop:
-	gpg --verify webkitbuilds/Copay-linux.zip.sig webkitbuilds/Copay-linux.zip
-	gpg --verify webkitbuilds/Copay-osx.dmg.sig webkitbuilds/Copay-osx.dmg
-	gpg --verify webkitbuilds/Copay-win.exe.sig webkitbuilds/Copay-win.exe
+	gpg --verify webkitbuilds/DigiByte-Gaming-linux.zip.sig webkitbuilds/DigiByte-Gaming-linux.zip
+	gpg --verify webkitbuilds/DigiByte-Gaming-osx.dmg.sig webkitbuilds/DigiByte-Gaming-osx.dmg
+	gpg --verify webkitbuilds/DigiByte-Gaming-win.exe.sig webkitbuilds/DigiByte-Gaming-win.exe
 
 chrome:
 	browser-extensions/chrome/build.sh
@@ -44,12 +44,12 @@ wp8-debug:
 ios-prod:
 	cordova/build.sh IOS --clear
 	cd cordova/project && cordova build ios
-	open cordova/project/platforms/ios/Copay.xcodeproj
+	open cordova/project/platforms/ios/DigiByte Gaming Wallet.xcodeproj
 
 ios-debug:
 	cordova/build.sh IOS --dbgjs
 	cd cordova/project && cordova build ios
-	open cordova/project/platforms/ios/Copay.xcodeproj
+	open cordova/project/platforms/ios/DigiByte Gaming Wallet.xcodeproj
 
 android-prod:
 	cordova/build.sh ANDROID --clear

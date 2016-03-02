@@ -8,7 +8,7 @@ plugins:
 	make -C project plugins
 
 project: 
-	cordova create project com.bitpay.copay Copay
+	cordova create project com.digibytegaming.digibytegaming DigiByteGaming
 	cp config.xml project/config.xml
 	cp ProjectMakefile project/Makefile
 	cp -af ../dist/web/** project/www
@@ -29,14 +29,14 @@ wp8: project plugins
 
 ios: project plugins
 	make -C project ios
-	cp ios/Copay-Info.plist project/platforms/ios/Copay-Info.plist
-	mkdir -p project/platforms/ios/Copay/Resources/icons
-	mkdir -p project/platforms/ios/Copay/Resources/splash
-	cp -R ios/icons/* project/platforms/ios/Copay/Resources/icons
-	cp -R ios/splash/* project/platforms/ios/Copay/Resources/splash
+	cp ios/DigiByteGaming-Info.plist project/platforms/ios/DigiByteGaming-Info.plist
+	mkdir -p project/platforms/ios/DigiByteGaming/Resources/icons
+	mkdir -p project/platforms/ios/DigiByteGaming/Resources/splash
+	cp -R ios/icons/* project/platforms/ios/DigiByteGaming/Resources/icons
+	cp -R ios/splash/* project/platforms/ios/DigiByteGaming/Resources/splash
 
 open-ios: ios
-	open project/platforms/ios/Copay.xcodeproj
+	open project/platforms/ios/DigiByte Gaming Wallet.xcodeproj
 
 run-android: android
 	make -C project run-android
