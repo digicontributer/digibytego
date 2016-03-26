@@ -1102,8 +1102,17 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
       $scope.copayerId = fc.credentials.copayerId;
       $scope.isShared = fc.credentials.n > 1; 
       txFormatService.checkSponser(btx.txid, function(err, link, logo){
-        $scope.op_return_message = link;
-        $scope.sponserLogo = logo;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', logo, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function(e) {
+          var img = document.createElement('img');
+          img.src = window.URL.createObjectURL(this.response);
+          $scope.sponserLogo = img.src;
+          $scope.op_return_message = link;
+          setTimeout(function() {$scope.$apply();});
+        };
+        xhr.send();
       });
 
       $scope.getAlternativeAmount = function() {
