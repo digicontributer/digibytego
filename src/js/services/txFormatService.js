@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('txFormatService', function(profileService, rateService, configService, lodash) {
+angular.module('copayApp.services').factory('txFormatService', function($http, profileService, rateService, configService, lodash) {
   var root = {};
 
   var formatAmountStr = function(amount) {
@@ -20,6 +20,14 @@ angular.module('copayApp.services').factory('txFormatService', function(profileS
     var config = configService.getSync().wallet.settings;
     return profileService.formatAmount(fee) + ' ' + config.unitName;
   };
+
+  var formatOP_RETURN = function(data){
+      var hex = data.toString();//force conversion
+      var str = '';
+      for (var i = 0; i < hex.length; i += 2)
+          str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+      return str.substring(2);    
+  }
 
   root.processTx = function(tx) {
     if (!tx) return; 
@@ -42,6 +50,24 @@ angular.module('copayApp.services').factory('txFormatService', function(profileS
     tx.feeStr = formatFeeStr(tx.fee || tx.fees);
 
     return tx;
+  };
+
+  root.checkSponser = function(txid, cb){
+
+    var op_return_message = null;
+
+    $http.get('http://digiexplorer.info/api/tx/' + txid)
+      .success(function(data){
+        for(var i in data.vout){
+          if(data.vout[i].scriptPubKey.asm.indexOf("OP_RETURN") > -1){
+            op_return_message = formatOP_RETURN(data.vout[i].scriptPubKey.asm)
+          }
+        }
+        return cb(null, op_return_message)
+      })
+      .catch(function(err){
+        return cb(err);
+      });
   };
 
   return root;

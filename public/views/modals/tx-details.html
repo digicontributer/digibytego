@@ -88,6 +88,15 @@
     <span class="right" translate>
       This transaction has become invalid; possibly due to a double spend attempt.
     </span>
+    <li n class="line-b p10 oh" ng-show="op_return_message">
+    <span class="text-gray">Sponser Message</span>
+    <span class="right" >
+      <span class="text-gray">
+        <strong>{{op_return_message}}</strong>
+      </span>
+ 
+    </span>
+    </li>
     <li ng-if="btx.time" class="line-b p10 oh">
     <span class="text-gray" translate>Date</span>
     <span class="right">
