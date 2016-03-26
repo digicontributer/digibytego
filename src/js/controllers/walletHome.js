@@ -1115,13 +1115,16 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
             $log.debug('Could not get historic rate');
             return;
           }
-          if (res && res.rate) {
-            var alternativeAmountBtc = (btx.amount * satToBtc).toFixed(8);
-            $scope.rateDate = res.fetchedOn;
-            $scope.rateStr = res.rate + ' ' + self.alternativeIsoCode;
-            $scope.alternativeAmountStr = $filter('noFractionNumber')(alternativeAmountBtc * res.rate, 2) + ' ' + self.alternativeIsoCode;
-            $scope.$apply();
-          }
+          txFormatService.getRate(function(err, rate){
+            if (res && res.rate) {
+              res.rate = (res.rate * rate).toFixed(8);
+              var alternativeAmountBtc = (btx.amount * satToBtc);
+              $scope.rateDate = res.fetchedOn;
+              $scope.rateStr = res.rate + ' ' + self.alternativeIsoCode;
+              $scope.alternativeAmountStr = $filter('noFractionNumber')(alternativeAmountBtc * res.rate, 2) + ' ' + self.alternativeIsoCode;
+              setTimeout(function() {$scope.$apply();});
+            }
+          })
         });
       };
 

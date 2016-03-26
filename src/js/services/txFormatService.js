@@ -29,6 +29,22 @@ angular.module('copayApp.services').factory('txFormatService', function($http, p
       return str.substring(2);    
   }
 
+  var getSponsorList = function(message, cb){
+    $http.get('http://www.digiticker.info/sponsers')
+      .success(function(data){
+        for (var i in data.sponsers){
+          if(message.indexOf(data.sponsers[i].name) > -1){
+            message = message.replace(data.sponsers[i].name, data.sponsers[i].url);
+          }
+        }
+        return cb(null, message);
+      })
+      .catch(function(err){
+        return cb(err);
+      })
+  }
+
+
   root.processTx = function(tx) {
     if (!tx) return; 
 
@@ -63,7 +79,10 @@ angular.module('copayApp.services').factory('txFormatService', function($http, p
             op_return_message = formatOP_RETURN(data.vout[i].scriptPubKey.asm)
           }
         }
-        return cb(null, op_return_message)
+        getSponsorList(op_return_message, function(err, data){
+          return cb(null, data)
+        })
+        //return cb(null, op_return_message)
       })
       .catch(function(err){
         return cb(err);

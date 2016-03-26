@@ -27,6 +27,12 @@ angular.module('copayApp.filters', [])
     }
   })
 
+.filter('to_trusted', ['$sce', function($sce){
+  return function(text) {
+    return $sce.trustAsHtml(text);
+  };
+}])
+
 .filter('noFractionNumber', ['$filter', '$locale', 'configService',
   function(filter, locale, configService) {
     var numberFilter = filter('number');

@@ -15,7 +15,7 @@
 <div class="modal-content fix-modals-touch"
      ng-swipe-disable-mouse
      ng-swipe-right="cancel()">
-  <div class="header-modal text-center" ng-init="getAlternativeAmount()">
+  <div class="header-modal text-center" >
     <div ng-show="btx.action != 'invalid'">
       <div ng-show="btx.action == 'received'">
         <img src="img/icon-receive-history.svg" alt="sync" width="50">
@@ -88,11 +88,11 @@
     <span class="right" translate>
       This transaction has become invalid; possibly due to a double spend attempt.
     </span>
-    <li n class="line-b p10 oh" ng-show="op_return_message">
+    <li class="line-b p10 oh" ng-show="op_return_message">
     <span class="text-gray">Sponser Message</span>
     <span class="right" >
-      <span class="text-gray">
-        <strong>{{op_return_message}}</strong>
+      <span class="trustedLink" style="font-size: auto;font-weight: auto;border-bottom: auto; color: auto;padding: auto">
+        <strong ng-bind-html="op_return_message | to_trusted" style="font-size: auto;font-weight: auto;border-bottom: auto; color: auto;padding: auto"></strong>
       </span>
  
     </span>
