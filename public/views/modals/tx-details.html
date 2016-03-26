@@ -128,10 +128,10 @@
 
   <div class="text-center" ng-show="op_return_message" >
     <div class="center" style="margin-top: 25px; height: 300px;">
+      <strong ng-bind-html="op_return_message | to_trusted" style="font-size: auto;font-weight: auto;border-bottom: auto; color: auto;padding: auto"></strong>
       <div class="image">
         <img ng-src="{{sponserLogo}}" style="height: 256px;"/>
       </div>
-      <strong ng-bind-html="op_return_message | to_trusted" style="font-size: auto;font-weight: auto;border-bottom: auto; color: auto;padding: auto"></strong>
     </div>
   </div>
 
