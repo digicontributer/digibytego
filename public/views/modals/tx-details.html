@@ -88,15 +88,6 @@
     <span class="right" translate>
       This transaction has become invalid; possibly due to a double spend attempt.
     </span>
-    <li class="line-b p10 oh" ng-show="op_return_message">
-    <span class="text-gray">Sponser Message</span>
-    <span class="right" >
-      <span class="trustedLink" style="font-size: auto;font-weight: auto;border-bottom: auto; color: auto;padding: auto">
-        <strong ng-bind-html="op_return_message | to_trusted" style="font-size: auto;font-weight: auto;border-bottom: auto; color: auto;padding: auto"></strong>
-      </span>
- 
-    </span>
-    </li>
     <li ng-if="btx.time" class="line-b p10 oh">
     <span class="text-gray" translate>Date</span>
     <span class="right">
@@ -134,6 +125,15 @@
     </span>
     </li>
   </ul>
+
+  <div class="text-center" ng-show="op_return_message" >
+    <div class="center" style="margin-top: 25px; height: 300px;">
+      <div class="image">
+        <img ng-src="{{sponserLogo}}" style="height: 256px;"/>
+      </div>
+      <strong ng-bind-html="op_return_message | to_trusted" style="font-size: auto;font-weight: auto;border-bottom: auto; color: auto;padding: auto"></strong>
+    </div>
+  </div>
 
   <div ng-if="btx.actions[0] && isShared">
     <h4 class="title m0" translate>Participants</h4>

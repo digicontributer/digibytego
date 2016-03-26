@@ -1101,8 +1101,9 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
       $scope.color = fc.backgroundColor;
       $scope.copayerId = fc.credentials.copayerId;
       $scope.isShared = fc.credentials.n > 1; 
-      txFormatService.checkSponser(btx.txid, function(err, message){
-        $scope.op_return_message = message;
+      txFormatService.checkSponser(btx.txid, function(err, link, logo){
+        $scope.op_return_message = link;
+        $scope.sponserLogo = logo;
       });
 
       $scope.getAlternativeAmount = function() {

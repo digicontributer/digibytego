@@ -30,14 +30,16 @@ angular.module('copayApp.services').factory('txFormatService', function($http, p
   }
 
   var getSponsorList = function(message, cb){
+    var logoUrl = null;
     $http.get('http://www.digiticker.info/sponsers')
       .success(function(data){
         for (var i in data.sponsers){
           if(message.indexOf(data.sponsers[i].name) > -1){
             message = message.replace(data.sponsers[i].name, data.sponsers[i].url);
+            logoUrl = data.sponsers[i].logo;
           }
         }
-        return cb(null, message);
+        return cb(null, message, logoUrl);
       })
       .catch(function(err){
         return cb(err);
@@ -79,8 +81,8 @@ angular.module('copayApp.services').factory('txFormatService', function($http, p
             op_return_message = formatOP_RETURN(data.vout[i].scriptPubKey.asm)
           }
         }
-        getSponsorList(op_return_message, function(err, data){
-          return cb(null, data)
+        getSponsorList(op_return_message, function(err, link, logo){
+          return cb(null, link, logo)
         })
         //return cb(null, op_return_message)
       })
