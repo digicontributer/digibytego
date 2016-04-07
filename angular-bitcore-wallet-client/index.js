@@ -7,7 +7,7 @@ bwcModule.provider("bwcService", function() {
   var provider = {};
 
   var config = {
-    baseUrl: 'https://dgbwallet.com:3234/bws/api',
+    baseUrl: 'https://wallet1.digibytegaming.com:3234/bws/api',
     verbose: null,
     transports: null
   };
