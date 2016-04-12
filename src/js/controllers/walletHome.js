@@ -1113,6 +1113,16 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
       addService.getTx(btx.txid).then(function(data){
         if(data.tx){
           $scope.sponsorInfo = data.tx.message;
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', data.tx.message.imgurl, true);
+          xhr.responseType = 'blob';
+          xhr.onload = function(e) {
+            var img = document.createElement('img');
+            img.src = window.URL.createObjectURL(this.response);
+            $scope.sponserLogo = img.src;
+            setTimeout(function() {$scope.$apply();});
+          };
+          xhr.send();
         }
       })
 
