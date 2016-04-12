@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletHomeController', function($scope, $rootScope, $timeout, $filter, $modal, $log, notification, txStatus, isCordova, isMobile, profileService, lodash, configService, rateService, storageService, bitcore, isChromeApp, gettext, gettextCatalog, nodeWebkit, addressService, ledger, bwsError, confirmDialog, txFormatService, animationService, addressbookService, go, feeService, txSignService) {
+angular.module('copayApp.controllers').controller('walletHomeController', function($scope, $rootScope, $timeout, $filter, $modal, $log, notification, txStatus, isCordova, isMobile, profileService, lodash, configService, rateService, storageService, bitcore, isChromeApp, gettext, gettextCatalog, nodeWebkit, addressService, ledger, bwsError, confirmDialog, txFormatService, animationService, addressbookService, go, feeService, txSignService, addService) {
 
   var self = this;
   window.ignoreMobilePause = false;
@@ -27,6 +27,14 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
   this.showScanner = false;
   this.addr = {};
   this.lockedCurrentFeePerKb = null;
+
+  $scope.getNews = function(){
+    addService.getNews().then(function(news){
+      $scope.news = news;
+    }).catch(function(err){
+      console.log(err);
+    });
+  }
 
   var disableScannerListener = $rootScope.$on('dataScanned', function(event, data) {
     self.setForm(data);
@@ -1100,20 +1108,13 @@ angular.module('copayApp.controllers').controller('walletHomeController', functi
       $scope.settings = walletSettings;
       $scope.color = fc.backgroundColor;
       $scope.copayerId = fc.credentials.copayerId;
-      $scope.isShared = fc.credentials.n > 1; 
-      txFormatService.checkSponser(btx.txid, function(err, link, logo){
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', logo, true);
-        xhr.responseType = 'blob';
-        xhr.onload = function(e) {
-          var img = document.createElement('img');
-          img.src = window.URL.createObjectURL(this.response);
-          $scope.sponserLogo = img.src;
-          $scope.op_return_message = link;
-          setTimeout(function() {$scope.$apply();});
-        };
-        xhr.send();
-      });
+      $scope.isShared = fc.credentials.n > 1;
+
+      addService.getTx(btx.txid).then(function(data){
+        if(data.tx){
+          $scope.sponsorInfo = data.tx.message;
+        }
+      })
 
       $scope.getAlternativeAmount = function() {
         var satToBtc = 1 / 100000000;
