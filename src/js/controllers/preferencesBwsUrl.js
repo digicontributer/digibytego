@@ -22,11 +22,11 @@ angular.module('copayApp.controllers').controller('preferencesBwsUrlController',
       switch (this.bwsurl) {
         case 'prod':
         case 'production':
-          bws = 'https://wallet1.digibytegaming.com:3234/bws/api'
+          bws = 'https://wallet1.digibytegaming.com:3232/bws/api'
           break;
         case 'sta':
         case 'staging':
-          bws = 'https://wallet1.digibytegaming.com:3234/bws/api'
+          bws = 'https://wallet1.digibytegaming.com:3232/bws/api'
           break;
         case 'loc':
         case 'local':

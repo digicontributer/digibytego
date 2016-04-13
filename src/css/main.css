@@ -1520,3 +1520,7 @@ input.ng-invalid-match, input.ng-invalid-match:focus {
     0%   { text-indent: 27.5em }
     100% { text-indent: -105em }
 }
+
+.h_iframe        {position:relative;}
+.h_iframe .ratio {display:block;width:100%;height:auto;}
+.h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:100%;}

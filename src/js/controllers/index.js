@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('indexController', function($rootScope, $scope, $log, $filter, $timeout, pushNotificationsService, lodash, go, profileService, configService, isCordova, rateService, storageService, addressService, gettext, gettextCatalog, amMoment, nodeWebkit, addonManager, feeService, isChromeApp, bwsError, txFormatService, uxLanguage, $state, glideraService, isMobile, addressbookService) {
+angular.module('copayApp.controllers').controller('indexController', function($rootScope, $scope, $log, $filter, $timeout, $sce, pushNotificationsService, lodash, go, profileService, configService, isCordova, rateService, storageService, addressService, gettext, gettextCatalog, amMoment, nodeWebkit, addonManager, feeService, isChromeApp, bwsError, txFormatService, uxLanguage, $state, glideraService, isMobile, addressbookService) {
   var self = this;
   var SOFT_CONFIRMATION_LIMIT = 12;
   self.isCordova = isCordova;
@@ -621,6 +621,7 @@ angular.module('copayApp.controllers').controller('indexController', function($r
     var config = configService.getSync();
     config.colorFor = config.colorFor || {};
     self.backgroundColor = config.colorFor[self.walletId] || '#4A90E2';
+    self.homepageUrl = $sce.trustAsResourceUrl("http://dgbwallet-cms.herokuapp.com/pages/dgbwallet?bgcolor=" + self.backgroundColor.replace("#",''));
     var fc = profileService.focusedClient;
     fc.backgroundColor = self.backgroundColor;
     if (isCordova && StatusBar.isVisible) {

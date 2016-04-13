@@ -72,14 +72,8 @@
     -->
 
     <div id="walletHome" class="walletHome tab-view tab-in" >
-      <div class="text-center" ng-init="getNews()" style="background-color: #fff; min-height:50px; border-bottom: 1px solid #E9E9EC;">
-        <p>Sponsored by <a href="https://www.bluejeansonline.nl/">The House of Blue Jeans</a>
-        <div class="sponsorImage">
-          <img src="img/sponsor-dd3d91b76e9fbf8ff810e140ece4cc8f80fa10f372485fa335e347c18fa97b85.png">
-        </div>
-        <p><strong class="text-center"><a href="http://digibytetip.com">#DigiByteTip</a></strong>
-        Tip on Twitch, Twitter & Reddit!</p>
-
+      <div class="h_iframe" style="height:220px">
+          <iframe ng-src="{{index.homepageUrl}}" frameborder="0" allowfullscreen></iframe>
       </div>
       <div class="oh pr">
         <div class="amount" ng-style="{'background-image':index.backgroundTheme.url || 'url(./img/digibyteother.jpg)'}" style="background-size:100% 100%">
