@@ -174,7 +174,7 @@ msgid "All of your digibyte wallet balance may not be available for immediate sp
 msgstr "所有您的比特币的钱包余额可能无法用于直接支出。"
 
 #: www/views/tab-receive.html:25
-msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
+msgid "All signing devices must be added to this multisig wallet before digibyte addresses can be created."
 msgstr "比特币地址可以创建之前，签名的所有设备都必须都添加到这个对数钱包。"
 
 #: www/views/tab-scan.html:21
@@ -218,11 +218,11 @@ msgid "An update to this app is available. For your security, please update to t
 msgstr "本程序有一个可用的更新。为了您的安全，请更新到最新版本。"
 
 #: www/views/backupWarning.html:14
-msgid "Anyone with your backup phrase can access or spend your bitcoin."
+msgid "Anyone with your backup phrase can access or spend your digibyte."
 msgstr "任何人只要持有你的备份短语，就可以访问或者花掉你的比特币。"
 
 #: www/views/addresses.html:94
-msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
+msgid "Approximate DigiByte network fee to transfer wallet's balance (with normal priority)"
 msgstr ""
 
 #: www/views/backupWarning.html:10
@@ -230,7 +230,7 @@ msgid "Are you being watched?"
 msgstr "你正在被监视吗？"
 
 #: src/js/controllers/preferencesExternal.js:15
-msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
+msgid "Are you being watched? Anyone with your recovery phrase can access or spend your digibyte."
 msgstr ""
 
 #: src/js/controllers/copayers.js:56
@@ -337,7 +337,7 @@ msgid "DigiByte Foundation Visa&reg; Cards"
 msgstr "DigiByte Foundation Visa&reg; 牌"
 
 #: www/views/addressbook.add.html:38
-msgid "Bitcoin Address"
+msgid "DigiByte Address"
 msgstr "比特币地址"
 
 #: www/views/modals/chooseFeeLevel.html:4
@@ -347,15 +347,15 @@ msgid "DigiByte Network Fee Policy"
 msgstr "比特币网络手续费策略"
 
 #: www/views/paymentUri.html:10
-msgid "Bitcoin URI is NOT valid!"
+msgid "DigiByte URI is NOT valid!"
 msgstr "比特币 URI 无效！"
 
 #: www/views/tab-settings.html:63
-msgid "Bitcoin Unit"
+msgid "DigiByte Unit"
 msgstr "比特币单位"
 
 #: www/views/onboarding/tour.html:31
-msgid "Bitcoin is a currency."
+msgid "DigiByte is a currency."
 msgstr "比特币是一种货币。"
 
 #: www/views/onboarding/disclaimer.html:15
@@ -367,7 +367,7 @@ msgid "DigiByte is secure,<br>digital money."
 msgstr "比特币是安全的 <br>数字货币。"
 
 #: www/views/preferencesFee.html:11
-msgid "Bitcoin transactions include a fee collected by miners on the network."
+msgid "DigiByte transactions include a fee collected by miners on the network."
 msgstr "比特币交易包括在网络上被矿工所收取的费用。"
 
 #: www/views/modals/txp-details.html:36
@@ -388,15 +388,15 @@ msgid "Browser unsupported"
 msgstr "不受支持的浏览器"
 
 #: www/views/includes/buyAndSellCard.html:4
-msgid "Buy &amp; Sell Bitcoin"
+msgid "Buy &amp; Sell DigiByte"
 msgstr "购买或出售比特币"
 
 #: www/views/tab-send.html:35
-msgid "Buy Bitcoin"
+msgid "Buy DigiByte"
 msgstr "购买比特币"
 
 #: src/js/services/onGoingProcess.js:40
-msgid "Buying Bitcoin..."
+msgid "Buying DigiByte..."
 msgstr "正在发送 比特币..."
 
 #: src/js/services/onGoingProcess.js:12
@@ -816,7 +816,7 @@ msgid "Download"
 msgstr "下载"
 
 #: www/views/addresses.html:19
-msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
+msgid "Each digibyte wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
 msgstr "每个比特币钱包可以从您的 12 字备份生成亿万个地址。一个新的地址是自动生成和显示每个时间你收到付款。"
 
 #: src/js/services/feeService.js:13
@@ -1271,7 +1271,7 @@ msgid "I understand"
 msgstr "我知道了"
 
 #: www/views/onboarding/disclaimer.html:21
-msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
+msgid "I understand that if this app is moved to another device or deleted, my digibyte can only be recovered with the backup phrase."
 msgstr "我明白是否这个应用程序是搬到另一个设备或删除，我比特币可以只能进行恢复与备份的短语。"
 
 #: www/views/onboarding/disclaimer.html:18
@@ -1687,7 +1687,7 @@ msgid "Note"
 msgstr "备注"
 
 #: www/views/modals/wallets.html:25
-msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
+msgid "Notice: only 1-1 (single signature) wallets can be used for sell digibyte"
 msgstr "注意︰ 只有 1-1 （单签名） 钱包可以用于卖比特币"
 
 #: www/views/preferencesNotifications.html:3
@@ -1802,7 +1802,7 @@ msgid "Paste the backup plain text code"
 msgstr "粘贴备份的纯文本代码"
 
 #: www/views/DigiByte FoundationCardIntro.html:28
-msgid "Pay 0% fees to turn bitcoin into dollars."
+msgid "Pay 0% fees to turn digibyte into dollars."
 msgstr "0%付费以比特币变成美元。"
 
 #: www/views/modals/paypro.html:18
@@ -2202,7 +2202,7 @@ msgid "Self-signed Certificate"
 msgstr "自签名证书"
 
 #: src/js/services/onGoingProcess.js:41
-msgid "Selling Bitcoin..."
+msgid "Selling DigiByte..."
 msgstr "出售比特币......"
 
 #: www/views/feedback/send.html:13
@@ -2342,7 +2342,7 @@ msgid "Show advanced options"
 msgstr "显示高级选项"
 
 #: www/views/tab-send.html:37
-msgid "Show bitcoin address"
+msgid "Show digibyte address"
 msgstr "显示比特币地址"
 
 #: www/views/tab-send.html:59
@@ -2393,11 +2393,11 @@ msgid "Spending Password needed"
 msgstr "需要支付密码"
 
 #: www/views/walletDetails.html:162
-msgid "Spending this balance will need significant Bitcoin network fees"
+msgid "Spending this balance will need significant DigiByte network fees"
 msgstr ""
 
 #: www/views/tab-send.html:28
-msgid "Start sending bitcoin"
+msgid "Start sending digibyte"
 msgstr "开始发送比特币"
 
 #: src/js/routes.js:118
@@ -2482,15 +2482,15 @@ msgid "The Ledger Chrome application is not installed"
 msgstr "Ledger Chrome 应用程序未安装"
 
 #: www/views/modals/wallet-balance.html:55
-msgid "The amount of bitcoin immediately spendable from this wallet."
+msgid "The amount of digibyte immediately spendable from this wallet."
 msgstr "比特币立即可从这个钱包的金额。"
 
 #: www/views/modals/wallet-balance.html:93
-msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
+msgid "The amount of digibyte stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
 msgstr "比特币存储在分配作为你挂起的事务建议的输入这个钱包中的金额。量确定使用未用余额交易记录输出与这个钱包关联，可能会与您挂起的事务建议相关联的实际数额超过。"
 
 #: www/views/modals/wallet-balance.html:74
-msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
+msgid "The amount of digibyte stored in this wallet with less than 1 blockchain confirmation."
 msgstr "比特币存储在与小于 1 blockchain 确认这个钱包中的金额。"
 
 #: www/views/tab-import-phrase.html:5
@@ -2545,7 +2545,7 @@ msgid "The spend proposal is not pending"
 msgstr "花费提议不是未决"
 
 #: www/views/modals/wallet-balance.html:36
-msgid "The total amount of bitcoin stored in this wallet."
+msgid "The total amount of digibyte stored in this wallet."
 msgstr "比特币存储在这个钱包的总量。"
 
 #: www/views/preferencesHistory.html:27
@@ -2584,7 +2584,7 @@ msgid "This app stores your digibyte with cutting-edge security."
 msgstr "此应用程序商店你比特币与尖端的安全。"
 
 #: src/js/controllers/confirm.js:464
-msgid "This bitcoin payment request has expired."
+msgid "This digibyte payment request has expired."
 msgstr "这比特币付款请求已过期。"
 
 #: www/views/join.html:130
@@ -2598,7 +2598,7 @@ msgid "This recovery phrase was created with a password. To recover this wallet 
 msgstr "此恢复短语是用密码创建。为了恢复此钱包，需要恢复短语和密码。"
 
 #: www/views/tx-details.html:93
-msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
+msgid "This transaction amount is too small compared to current DigiByte network fees. Spending these funds will need a DigiByte network fee cost comparable to the funds itself."
 msgstr ""
 
 #: www/views/tx-details.html:89
@@ -2625,11 +2625,11 @@ msgid "To"
 msgstr "发送到"
 
 #: www/views/tab-send.html:32
-msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
+msgid "To get started, buy digibyte or share your address. You can receive digibyte from any wallet or service."
 msgstr "若要开始，请买比特币或共享您的地址。你可以从任何钱包或服务接收比特币。"
 
 #: www/views/tab-send.html:33
-msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgid "To get started, you'll need to create a digibyte wallet and get some digibyte."
 msgstr "若要开始，您将需要创建一个比特币的钱包，并获得一些比特币。"
 
 #: src/js/services/DigiByte FoundationAccountService.js:73
@@ -2713,7 +2713,7 @@ msgid "Try again in {{expires}}"
 msgstr ""
 
 #: www/views/DigiByte FoundationCardIntro.html:18
-msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
+msgid "Turn digibyte into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
 msgstr "比特币变成美元，刷在接受 Visa<sup>®</sup> 的任何地方。"
 
 #: www/views/tab-import-phrase.html:17
@@ -3070,7 +3070,7 @@ msgid "You can make contributions by signing up on our Crowdin community transla
 msgstr "您可以通过签约我们 Crowdin 社区翻译网站作出贡献。我们期待你的听力 ！"
 
 #: www/views/tab-scan.html:16
-msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
+msgid "You can scan digibyte addresses, payment requests, paper wallets, and more."
 msgstr "您可以扫描比特币地址、 付款申请、 纸钱包和更多。"
 
 #: src/js/controllers/preferencesAbout.js:14
@@ -3186,7 +3186,7 @@ msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain inform
 msgstr "{{appName}} 中的区块链信息依赖于 Bitcore Wallet Service (BWS)、网络和 Copayer synchronization。默认配置指向 https://bws.DigiByte Foundation.com (DigiByte Foundation 的公共 BWS 实例)。"
 
 #: src/js/controllers/confirm.js:354
-msgid "{{fee}} will be deducted for bitcoin networking fees."
+msgid "{{fee}} will be deducted for digibyte networking fees."
 msgstr "{{fee}} 将比特币网络费用中扣除。"
 
 #: www/views/confirm.html:87

@@ -23,8 +23,8 @@ msgid "(Trusted)"
 msgstr "(Trusted)"
 
 #: src/js/controllers/walletHome.js
-msgid "{{fee}} will be deducted for bitcoin networking fees"
-msgstr "{{fee}} will be deducted for bitcoin networking fees"
+msgid "{{fee}} will be deducted for digibyte networking fees"
+msgstr "{{fee}} will be deducted for digibyte networking fees"
 
 #: public/views/copayers.html
 #: public/views/walletHome.html
@@ -60,8 +60,8 @@ msgid "<b>OR</b> the wallet seeds of <b>all</b> copayers in the wallet"
 msgstr "<b>OR</b> the wallet seeds of <b>all</b> copayers in the wallet"
 
 #: public/views/splash.html
-msgid "A multisignature bitcoin wallet"
-msgstr "A multisignature bitcoin wallet"
+msgid "A multisignature digibyte wallet"
+msgstr "A multisignature digibyte wallet"
 
 #: public/views/preferences.html
 msgid "About DigiByteGo"
@@ -201,20 +201,20 @@ msgid "Before receiving funds, it is highly recommended you backup your wallet k
 msgstr "Before receiving funds, it is highly recommended you backup your wallet keys."
 
 #: public/views/walletHome.html
-msgid "Bitcoin address"
-msgstr "Bitcoin address"
+msgid "DigiByte address"
+msgstr "DigiByte address"
 
 #: public/views/preferences.html
-msgid "Bitcoin Network Fee Policy"
-msgstr "Bitcoin Network Fee Policy"
+msgid "DigiByte Network Fee Policy"
+msgstr "DigiByte Network Fee Policy"
 
 #: public/views/preferencesFee.html
-msgid "Bitcoin transactions may include a fee collected by miners on the network. The higher the fee, the greater the incentive a miner has to include that transaction in a block. Actual fees are determined based on network load and the selected policy."
-msgstr "Bitcoin transactions may include a fee collected by miners on the network. The higher the fee, the greater the incentive a miner has to include that transaction in a block. Actual fees are determined based on network load and the selected policy."
+msgid "DigiByte transactions may include a fee collected by miners on the network. The higher the fee, the greater the incentive a miner has to include that transaction in a block. Actual fees are determined based on network load and the selected policy."
+msgstr "DigiByte transactions may include a fee collected by miners on the network. The higher the fee, the greater the incentive a miner has to include that transaction in a block. Actual fees are determined based on network load and the selected policy."
 
 #: public/views/paymentUri.html
-msgid "Bitcoin URI is NOT valid!"
-msgstr "Bitcoin URI is NOT valid!"
+msgid "DigiByte URI is NOT valid!"
+msgstr "DigiByte URI is NOT valid!"
 
 #: public/views/modals/txp-details.html
 msgid "Broadcast Payment"
@@ -402,8 +402,8 @@ msgid "Could not join wallet"
 msgstr "Could not join wallet"
 
 #: src/js/controllers/walletHome.js
-msgid "Could not recognize a valid Bitcoin QR Code"
-msgstr "Could not recognize a valid Bitcoin QR Code"
+msgid "Could not recognize a valid DigiByte QR Code"
+msgstr "Could not recognize a valid DigiByte QR Code"
 
 #: src/js/controllers/walletHome.js
 msgid "Could not reject payment"
@@ -876,8 +876,8 @@ msgid "Multisignature wallet"
 msgstr "Multisignature wallet"
 
 #: public/views/walletHome.html
-msgid "My Bitcoin address"
-msgstr "My Bitcoin address"
+msgid "My DigiByte address"
+msgstr "My DigiByte address"
 
 #: public/views/paymentUri.html
 msgid "Network"
@@ -1399,8 +1399,8 @@ msgid "Testnet"
 msgstr "Testnet"
 
 #: public/views/disclaimer.html
-msgid "The authors of the software, employees and affiliates of Bitpay, copyright holders, and DigiByte Foundation, Inc. cannot retrieve your private keys or passwords if you lose or forget them and cannot guarantee transaction confirmation as they do not have control over the Bitcoin network."
-msgstr "The authors of the software, employees and affiliates of Bitpay, copyright holders, and DigiByte Foundation, Inc. cannot retrieve your private keys or passwords if you lose or forget them and cannot guarantee transaction confirmation as they do not have control over the Bitcoin network."
+msgid "The authors of the software, employees and affiliates of Bitpay, copyright holders, and DigiByte Foundation, Inc. cannot retrieve your private keys or passwords if you lose or forget them and cannot guarantee transaction confirmation as they do not have control over the DigiByte network."
+msgstr "The authors of the software, employees and affiliates of Bitpay, copyright holders, and DigiByte Foundation, Inc. cannot retrieve your private keys or passwords if you lose or forget them and cannot guarantee transaction confirmation as they do not have control over the DigiByte network."
 
 #: src/js/services/ledger.js
 msgid "The Ledger Chrome application is not installed"
@@ -1432,8 +1432,8 @@ msgid "The seed could require a passphrase to be imported"
 msgstr "The seed could require a passphrase to be imported"
 
 #: public/views/disclaimer.html
-msgid "The software does not constitute an account where DigiByte Foundation or other third parties serve as financial intermediaries or custodians of your bitcoin."
-msgstr "The software does not constitute an account where DigiByte Foundation or other third parties serve as financial intermediaries or custodians of your bitcoin."
+msgid "The software does not constitute an account where DigiByte Foundation or other third parties serve as financial intermediaries or custodians of your digibyte."
+msgstr "The software does not constitute an account where DigiByte Foundation or other third parties serve as financial intermediaries or custodians of your digibyte."
 
 #: public/views/disclaimer.html
 msgid "The software you are about to use functions as a free, open source, and multi-signature digital wallet."
