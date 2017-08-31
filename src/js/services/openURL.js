@@ -84,7 +84,7 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
       if (navigator.registerProtocolHandler) {
         $log.debug('Registering Browser handlers base:' + base);
         navigator.registerProtocolHandler('digibyte', url, 'DigiByteGo DigiByte Handler');
-        navigator.registerProtocolHandler('web+copay', url, 'DigiByteGo Wallet Handler');
+        navigator.registerProtocolHandler('web+digibytego', url, 'DigiByteGo Wallet Handler');
         navigator.registerProtocolHandler('web+bitpay', url, 'DigiByte Foundation Wallet Handler');
       }
     }

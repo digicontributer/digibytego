@@ -1,13 +1,13 @@
-<img src="https://raw.githubusercontent.com/bitpay/copay/master/resources/copay/android/icon/drawable-xxxhdpi-icon.png" alt="DigiByteGo" width="79">
+<img src="https://raw.githubusercontent.com/bitpay/digibytego/master/resources/digibytego/android/icon/drawable-xxxhdpi-icon.png" alt="DigiByteGo" width="79">
 
-[![Build Status](https://secure.travis-ci.org/bitpay/copay.svg)](http://travis-ci.org/bitpay/copay)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/copay/localized.png)](https://crowdin.com/project/copay)
+[![Build Status](https://secure.travis-ci.org/bitpay/digibytego.svg)](http://travis-ci.org/bitpay/digibytego)
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/digibytego/localized.png)](https://crowdin.com/project/digibytego)
 
 DigiByteGo is a secure digibyte wallet platform for both desktop and mobile devices. DigiByteGo uses [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service) (BWS) for peer synchronization and network interfacing.
 
-Binary versions of DigiByteGo are available for download at [DigiByteGo.io](https://copay.io/#download). DigiByteGo Binaries are signed with the key `copay@bitpay.com` – See the section [`How to Verify DigiByteGo Signatures`](https://github.com/bitpay/copay#how-to-verify-copay-signatures) for details.
+Binary versions of DigiByteGo are available for download at [DigiByteGo.io](https://digibytego.io/#download). DigiByteGo Binaries are signed with the key `digibytego@bitpay.com` – See the section [`How to Verify DigiByteGo Signatures`](https://github.com/bitpay/digibytego#how-to-verify-digibytego-signatures) for details.
 
-For a list of frequently asked questions please visit the [DigiByteGo FAQ](https://github.com/bitpay/copay/wiki/COPAY---FAQ).
+For a list of frequently asked questions please visit the [DigiByteGo FAQ](https://github.com/bitpay/digibytego/wiki/COPAY---FAQ).
 
 ## Main Features
 
@@ -27,23 +27,23 @@ For a list of frequently asked questions please visit the [DigiByteGo FAQ](https
 - Push notifications (only available for ios and android versions)
 - Customizable wallet naming and background colors
 - Multiple languages supported
-- Available for [iOS](https://itunes.apple.com/us/app/copay/id951330296), [Android](https://play.google.com/store/apps/details?id=com.bitpay.copay&hl=en), [Windows Phone](http://www.windowsphone.com/en-us/store/app/copay-wallet/4372479b-a064-4d18-8bd3-74a3bdb81c3a), [Chrome App](https://chrome.google.com/webstore/detail/copay/cnidaodnidkbaplmghlelgikaiejfhja?hl=en), [Linux](https://github.com/bitpay/copay/releases/latest), [Windows](https://github.com/bitpay/copay/releases/latest) and [OS X](https://github.com/bitpay/copay/releases/latest) devices
+- Available for [iOS](https://itunes.apple.com/us/app/digibytego/id951330296), [Android](https://play.google.com/store/apps/details?id=com.bitpay.digibytego&hl=en), [Windows Phone](http://www.windowsphone.com/en-us/store/app/digibytego-wallet/4372479b-a064-4d18-8bd3-74a3bdb81c3a), [Chrome App](https://chrome.google.com/webstore/detail/digibytego/cnidaodnidkbaplmghlelgikaiejfhja?hl=en), [Linux](https://github.com/bitpay/digibytego/releases/latest), [Windows](https://github.com/bitpay/digibytego/releases/latest) and [OS X](https://github.com/bitpay/digibytego/releases/latest) devices
 
 ## Testing in a Browser
 
-> **Note:** This method should only be used for development purposes. When running DigiByteGo in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys. For production use, see the latest official [releases](https://github.com/bitpay/copay/releases/).
+> **Note:** This method should only be used for development purposes. When running DigiByteGo in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys. For production use, see the latest official [releases](https://github.com/bitpay/digibytego/releases/).
 
 Clone the repo and open the directory:
 
 ```sh
-git clone https://github.com/bitpay/copay.git
-cd copay
+git clone https://github.com/bitpay/digibytego.git
+cd digibytego
 ```
 
 Ensure you have [Node](https://nodejs.org/) installed, then install and start DigiByteGo:
 
 ```sh
-npm run apply:copay
+npm run apply:digibytego
 npm start
 ```
 
@@ -66,7 +66,7 @@ Follow the [Cordova Android Platform Guide](https://cordova.apache.org/docs/en/l
 When your developement enviroment is ready, run the `start:android` npm package script.
 
 ```sh
-npm run apply:copay
+npm run apply:digibytego
 npm run start:android
 ```
 
@@ -77,7 +77,7 @@ Follow the [Cordova iOS Platform Guide](https://cordova.apache.org/docs/en/lates
 When your developement enviroment is ready, run the `start:ios` npm package script.
 
 ```sh
-npm run apply:copay
+npm run apply:digibytego
 npm run start:ios
 ```
 
@@ -88,7 +88,7 @@ The desktop version of DigiByteGo currently uses NW.js, an app runtime based on 
 When NW.js is installed, run the `start:desktop` npm package script.
 
 ```sh
-npm run apply:copay
+npm run apply:digibytego
 npm run start:desktop
 ```
 
@@ -102,7 +102,7 @@ The `final` commands build the production version of the app, and bundle it with
 
 ```sh
 npm run clean-all
-npm run apply:copay
+npm run apply:digibytego
 npm run final:android
 ```
 
@@ -110,7 +110,7 @@ npm run final:android
 
 ```sh
 npm run clean-all
-npm run apply:copay
+npm run apply:digibytego
 npm run final:ios
 ```
 
@@ -123,7 +123,7 @@ npm run final:ios
 
 ```sh
 npm run clean-all
-npm run apply:copay
+npm run apply:digibytego
 npm run final:desktop
 ```
 
@@ -132,12 +132,12 @@ npm run final:desktop
 > cd chrome-app/
 
 ```sh
-npm run apply:copay
+npm run apply:digibytego
 grunt
 make
 ```
 
-On success, the Chrome extension will be located at: `browser-extensions/chrome/copay-chrome-extension`.  To install it go to `chrome://extensions/` in your browser and ensure you have the 'developer mode' option enabled in the settings.  Then click on "Load unpacked chrome extension" and choose the directory mentioned above.
+On success, the Chrome extension will be located at: `browser-extensions/chrome/digibytego-chrome-extension`.  To install it go to `chrome://extensions/` in your browser and ensure you have the 'developer mode' option enabled in the settings.  Then click on "Load unpacked chrome extension" and choose the directory mentioned above.
 
 ## Configuration
 
@@ -146,7 +146,7 @@ On success, the Chrome extension will be located at: `browser-extensions/chrome/
 To enable external services, set the `COPAY_EXTERNAL_SERVICES_CONFIG_LOCATION` or `BITPAY_EXTERNAL_SERVICES_CONFIG_LOCATION` environment variable to the location of your configuration before running the `apply` task.
 
 ```sh
-COPAY_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.copay/externalServices.json" npm run apply:copay
+COPAY_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.digibytego/externalServices.json" npm run apply:digibytego
 # or
 BITPAY_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.bitpay/externalServices.json" npm run apply:bitpay
 ```
@@ -167,11 +167,11 @@ For more information regarding how addresses are generated using this procedure,
 
 Since v1.2 DigiByteGo uses BIP39 mnemonics for backing up wallets.  The BIP44 standard is used for wallet address derivation. Multisig wallets use P2SH addresses, while non-multisig wallets use P2PKH.
 
-Information about backup and recovery procedures is available at: https://github.com/bitpay/copay/blob/master/backupRecovery.md
+Information about backup and recovery procedures is available at: https://github.com/bitpay/digibytego/blob/master/backupRecovery.md
 
 Previous versions of DigiByteGo used files as backups. See the following section.
 
-It is possible to recover funds from a DigiByteGo Wallet without using DigiByteGo or the Wallet Service, check the [DigiByteGo Recovery Tool](https://github.com/bitpay/copay-recovery).
+It is possible to recover funds from a DigiByteGo Wallet without using DigiByteGo or the Wallet Service, check the [DigiByteGo Recovery Tool](https://github.com/bitpay/digibytego-recovery).
 
 
 ## Wallet Export Format
@@ -225,11 +225,11 @@ When creating or joining a wallet, DigiByteGo will ask for two public keys for t
 
 Every time you need to sign a transaction, the device will be needed to perform the signature. Follow the on screen instructions after clicking the `send` or `accept` buttons.
 
-Finally, in case you lose the device and you have the 24 word seed for the device, you can recover access to your funds using DigiByteGo, see: https://github.com/bitpay/copay/blob/master/backupRecovery.md#hardware-wallets
+Finally, in case you lose the device and you have the 24 word seed for the device, you can recover access to your funds using DigiByteGo, see: https://github.com/bitpay/digibytego/blob/master/backupRecovery.md#hardware-wallets
 
 
 ## Translations
-DigiByteGo uses standard gettext PO files for translations and [Crowdin](https://crowdin.com/project/copay) as the front-end tool for translators.  To join our team of translators, please create an account at [Crowdin](https://crowdin.com) and translate the DigiByteGo documentation and application text into your native language.
+DigiByteGo uses standard gettext PO files for translations and [Crowdin](https://crowdin.com/project/digibytego) as the front-end tool for translators.  To join our team of translators, please create an account at [Crowdin](https://crowdin.com) and translate the DigiByteGo documentation and application text into your native language.
 
 To download and build using the latest translations from Crowdin, please use the following commands:
 
@@ -265,7 +265,7 @@ We release bug fixes as soon as possible for all platforms.  Usually around a we
 
 ## How to Verify DigiByteGo Signatures
 
- 1. Download the `copay@bitpay.com` public key (`gpg --recv-keys 1112CFA1`)
+ 1. Download the `digibytego@bitpay.com` public key (`gpg --recv-keys 1112CFA1`)
  2. Download DigiByteGo binary (`$FILENAME`) and signature file (`$FILENAME.sig`)
  3. Verify the signature by running:
 
@@ -275,7 +275,7 @@ $ gpg --verify \
  $FILENAME
 
 # It should return:
-Good signature from "DigiByteGo (visit copay.io) <copay@bitpay.com>"
+Good signature from "DigiByteGo (visit digibytego.io) <digibytego@bitpay.com>"
 ```
 
 ### Public Key for DigiByteGo Binaries
@@ -332,4 +332,4 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 
 ## License
 
-DigiByteGo is released under the MIT License.  Please refer to the [LICENSE](https://github.com/bitpay/copay/blob/master/LICENSE) file that accompanies this project for more information including complete terms and conditions.
+DigiByteGo is released under the MIT License.  Please refer to the [LICENSE](https://github.com/bitpay/digibytego/blob/master/LICENSE) file that accompanies this project for more information including complete terms and conditions.

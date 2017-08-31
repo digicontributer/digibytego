@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: copay\n"
+"Project-Id-Version: digibytego\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
-"X-Crowdin-Project: copay\n"
+"X-Crowdin-Project: digibytego\n"
 "X-Crowdin-Language: nl\n"
 "X-Crowdin-File: template.pot\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -789,8 +789,8 @@ msgid "Join"
 msgstr "Join"
 
 #: src/js/controllers/copayers.js
-msgid "Join my DigiByteGo wallet. Here is the invitation code: {{secret}} You can download DigiByteGo for your phone or desktop at https://copay.io"
-msgstr "Join my DigiByteGo wallet. Here is the invitation code: {{secret}} You can download DigiByteGo for your phone or desktop at https://copay.io"
+msgid "Join my DigiByteGo wallet. Here is the invitation code: {{secret}} You can download DigiByteGo for your phone or desktop at https://digibytego.io"
+msgstr "Join my DigiByteGo wallet. Here is the invitation code: {{secret}} You can download DigiByteGo for your phone or desktop at https://digibytego.io"
 
 #: public/views/add.html
 msgid "Join shared wallet"

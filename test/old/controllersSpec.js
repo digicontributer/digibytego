@@ -219,13 +219,13 @@ describe("Unit: Controllers", function() {
         var c = JSON.parse(JSON.stringify(conf || walletConfig));
         if (!N) N = c.totalCopayers;
 
-        var mainPrivateKey = new copay.PrivateKey({
+        var mainPrivateKey = new digibytego.PrivateKey({
           networkName: walletConfig.networkName
         });
         var mainCopayerEPK = mainPrivateKey.deriveBIP45Branch().extendedPublicKeyString();
         c.privateKey = mainPrivateKey;
 
-        c.publicKeyRing = new copay.PublicKeyRing({
+        c.publicKeyRing = new digibytego.PublicKeyRing({
           networkName: c.networkName,
           requiredCopayers: Math.min(N, c.requiredCopayers),
           totalCopayers: N,
@@ -234,7 +234,7 @@ describe("Unit: Controllers", function() {
 
         c.publicKeyRing.getAddressesOrdered = sinon.stub().returns(null);
 
-        c.txProposals = new copay.TxProposals({
+        c.txProposals = new digibytego.TxProposals({
           networkName: c.networkName,
         });
 
@@ -611,17 +611,17 @@ describe("Unit: Controllers", function() {
 
   describe("Unit: Version Controller", function() {
     var scope, $httpBackendOut;
-    var GH = 'https://api.github.com/repos/bitpay/copay/tags';
+    var GH = 'https://api.github.com/repos/bitpay/digibytego/tags';
     beforeEach(inject(function($controller, $injector) {
       $httpBackend = $injector.get('$httpBackend');
       $httpBackend.when('GET', GH)
         .respond([{
           name: "v100.1.6",
-          zipball_url: "https://api.github.com/repos/bitpay/copay/zipball/v0.0.6",
-          tarball_url: "https://api.github.com/repos/bitpay/copay/tarball/v0.0.6",
+          zipball_url: "https://api.github.com/repos/bitpay/digibytego/zipball/v0.0.6",
+          tarball_url: "https://api.github.com/repos/bitpay/digibytego/tarball/v0.0.6",
           commit: {
             sha: "ead7352bf2eca705de58d8b2f46650691f2bc2c7",
-            url: "https://api.github.com/repos/bitpay/copay/commits/ead7352bf2eca705de58d8b2f46650691f2bc2c7"
+            url: "https://api.github.com/repos/bitpay/digibytego/commits/ead7352bf2eca705de58d8b2f46650691f2bc2c7"
           }
         }]);
     }));
