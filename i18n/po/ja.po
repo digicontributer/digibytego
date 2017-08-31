@@ -1909,7 +1909,7 @@ msgid "Please tap each word in the correct order."
 msgstr "正しい順序で各単語をタップしてください。"
 
 #: src/js/services/bwcError.js:101
-msgid "Please upgrade Copay to perform this action"
+msgid "Please upgrade DigiByteGo to perform this action"
 msgstr "この操作を実行するにはCopayを最新バージョンに更新してください"
 
 #: src/js/controllers/import.js:222
@@ -2925,7 +2925,7 @@ msgid "Wallet already exists"
 msgstr "既存のウォレットです"
 
 #: src/js/services/profileService.js:498
-msgid "Wallet already in Copay"
+msgid "Wallet already in DigiByteGo"
 msgstr "Copay内の既存のウォレットです"
 
 #: www/views/includes/walletActivity.html:6

@@ -1568,7 +1568,7 @@ msgstr "Plusieurs destinataires"
 
 #: www/views/tab-import-phrase.html:8
 msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
-msgstr "Remarque : Pour importer un portefeuille d’un autre logiciel que Copay, veuillez aller dans « Ajouter portefeuille » &gt; « Créer » et spécifier la phrase de récupération."
+msgstr "Remarque : Pour importer un portefeuille d’un autre logiciel que DigiByteGo, veuillez aller dans « Ajouter portefeuille » &gt; « Créer » et spécifier la phrase de récupération."
 
 #: www/views/addressbook.add.html:21
 #: www/views/addressbook.view.html:18
@@ -1907,8 +1907,8 @@ msgid "Please tap each word in the correct order."
 msgstr "Veuillez sélectionner chaque mot dans le bon ordre."
 
 #: src/js/services/bwcError.js:101
-msgid "Please upgrade Copay to perform this action"
-msgstr "Veuillez mettre à jour Copay pour effectuer cette action"
+msgid "Please upgrade DigiByteGo to perform this action"
+msgstr "Veuillez mettre à jour DigiByteGo pour effectuer cette action"
 
 #: src/js/controllers/import.js:222
 msgid "Please, select your backup file"
@@ -2919,8 +2919,8 @@ msgid "Wallet already exists"
 msgstr "Le portefeuille existe déjà"
 
 #: src/js/services/profileService.js:498
-msgid "Wallet already in Copay"
-msgstr "Le portefeuille existe déjà dans Copay"
+msgid "Wallet already in DigiByteGo"
+msgstr "Le portefeuille existe déjà dans DigiByteGo"
 
 #: www/views/includes/walletActivity.html:6
 msgid "Wallet created"

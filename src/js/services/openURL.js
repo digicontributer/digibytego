@@ -55,7 +55,7 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
     } else if (platformInfo.isNW) {
       var gui = require('nw.gui');
 
-      // This event is sent to an existent instance of Copay (only for standalone apps)
+      // This event is sent to an existent instance of DigiByteGo (only for standalone apps)
       gui.App.on('open', function(pathData) {
         if (pathData.indexOf('bitcoin:') != -1) {
           $log.debug('Bitcoin URL found');
@@ -70,7 +70,7 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
         }
       });
 
-      // Used at the startup of Copay
+      // Used at the startup of DigiByteGo
       var argv = gui.App.argv;
       if (argv && argv[0]) {
         handleOpenURL({
@@ -83,8 +83,8 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
 
       if (navigator.registerProtocolHandler) {
         $log.debug('Registering Browser handlers base:' + base);
-        navigator.registerProtocolHandler('bitcoin', url, 'Copay Bitcoin Handler');
-        navigator.registerProtocolHandler('web+copay', url, 'Copay Wallet Handler');
+        navigator.registerProtocolHandler('bitcoin', url, 'DigiByteGo Bitcoin Handler');
+        navigator.registerProtocolHandler('web+copay', url, 'DigiByteGo Wallet Handler');
         navigator.registerProtocolHandler('web+bitpay', url, 'DigiByte Foundation Wallet Handler');
       }
     }

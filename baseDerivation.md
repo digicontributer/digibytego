@@ -1,5 +1,5 @@
 
-Copay accepts three base derivation paths:
+DigiByteGo accepts three base derivation paths:
 
   * m/44' 
   * m/48' (only used for MULTISIGNATURE, HARDWARE Wallets)

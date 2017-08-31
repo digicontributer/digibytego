@@ -64,7 +64,7 @@ msgid "A multisignature bitcoin wallet"
 msgstr "다중서명 비트코인 지갑"
 
 #: public/views/preferences.html
-msgid "About Copay"
+msgid "About DigiByteGo"
 msgstr "Copay에 대하여"
 
 #: public/views/modals/txp-details.html
@@ -116,8 +116,8 @@ msgid "Alias for <i>{{index.walletName}}</i>"
 msgstr "<i>{{index.walletName}}</i>의 별명"
 
 #: public/views/translators.html
-msgid "All contributions to Copay's translation are welcome. Sign up at crowdin.com and join the Copay project at"
-msgstr "All contributions to Copay's translation are welcome. Sign up at crowdin.com and join the Copay project at"
+msgid "All contributions to DigiByteGo's translation are welcome. Sign up at crowdin.com and join the DigiByteGo project at"
+msgstr "All contributions to DigiByteGo's translation are welcome. Sign up at crowdin.com and join the DigiByteGo project at"
 
 #: public/views/disclaimer.html
 msgid "All transaction requests are irreversible."
@@ -679,8 +679,8 @@ msgid "Hardware Wallet"
 msgstr "Hardware Wallet"
 
 #: public/views/import.html
-msgid "Have a Backup from Copay v0.9?"
-msgstr "Copay v0.9용 백업을 가지고 계신가요?"
+msgid "Have a Backup from DigiByteGo v0.9?"
+msgstr "DigiByteGo v0.9용 백업을 가지고 계신가요?"
 
 #: public/views/create.html
 #: public/views/import.html
@@ -768,8 +768,8 @@ msgid "Invalid address"
 msgstr "Invalid address"
 
 #: src/js/controllers/copayers.js
-msgid "Invitation to share a Copay Wallet"
-msgstr "Invitation to share a Copay Wallet"
+msgid "Invitation to share a DigiByteGo Wallet"
+msgstr "Invitation to share a DigiByteGo Wallet"
 
 #: public/views/translators.html
 msgid "Italian"
@@ -789,8 +789,8 @@ msgid "Join"
 msgstr "참가"
 
 #: src/js/controllers/copayers.js
-msgid "Join my Copay wallet. Here is the invitation code: {{secret}} You can download Copay for your phone or desktop at https://copay.io"
-msgstr "Join my Copay wallet. Here is the invitation code: {{secret}} You can download Copay for your phone or desktop at https://copay.io"
+msgid "Join my DigiByteGo wallet. Here is the invitation code: {{secret}} You can download DigiByteGo for your phone or desktop at https://copay.io"
+msgstr "Join my DigiByteGo wallet. Here is the invitation code: {{secret}} You can download DigiByteGo for your phone or desktop at https://copay.io"
 
 #: public/views/add.html
 msgid "Join shared wallet"
@@ -813,8 +813,8 @@ msgid "Last Wallet Addresses"
 msgstr "Last Wallet Addresses"
 
 #: public/views/backup.html
-msgid "Learn more about Copay backups"
-msgstr "Learn more about Copay backups"
+msgid "Learn more about DigiByteGo backups"
+msgstr "Learn more about DigiByteGo backups"
 
 #: public/views/importLegacy.html
 msgid "Learn more about Wallet Migration"
@@ -1083,8 +1083,8 @@ msgid "Please enter the wallet seed"
 msgstr "Please enter the wallet seed"
 
 #: src/js/services/bwsError.js
-msgid "Please upgrade Copay to perform this action"
-msgstr "Please upgrade Copay to perform this action"
+msgid "Please upgrade DigiByteGo to perform this action"
+msgstr "Please upgrade DigiByteGo to perform this action"
 
 #: src/js/controllers/import.js
 msgid "Please, select your backup file"
@@ -1593,8 +1593,8 @@ msgid "Wallet Already Imported:"
 msgstr "이미 가져온 지갑:"
 
 #: src/js/services/profileService.js
-msgid "Wallet already in Copay:"
-msgstr "Wallet already in Copay:"
+msgid "Wallet already in DigiByteGo:"
+msgstr "Wallet already in DigiByteGo:"
 
 #: public/views/preferencesInformation.html
 msgid "Wallet Configuration (m-n)"

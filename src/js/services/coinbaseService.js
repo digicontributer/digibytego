@@ -111,7 +111,7 @@ angular.module('copayApp.services').factory('coinbaseService', function($http, $
     _getNetAmount(amount, function(err, reducedAmount) {
       if (err) return cb(err);
 
-      // Check if transaction has enough funds to transfer bitcoin from Coinbase to Copay
+      // Check if transaction has enough funds to transfer bitcoin from Coinbase to DigiByteGo
       if (reducedAmount < 0) {
         return cb('Not enough funds for fee');
       }

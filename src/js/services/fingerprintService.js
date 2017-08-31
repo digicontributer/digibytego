@@ -26,7 +26,7 @@ angular.module('copayApp.services').factory('fingerprintService', function($log,
   var requestFinger = function(cb) {
     try {
       FingerprintAuth.show({
-          clientId: 'Copay',
+          clientId: 'DigiByteGo',
           clientSecret: 'hVu1NvCZOyUuGgr46bFL',
         },
         function(result) {

@@ -1907,8 +1907,8 @@ msgid "Please tap each word in the correct order."
 msgstr "Bitte tippen Sie jedes Wort in der richtigen Reihenfolge."
 
 #: src/js/services/bwcError.js:101
-msgid "Please upgrade Copay to perform this action"
-msgstr "Bitte Copay aktualisieren, um diese Aktion auszuführen"
+msgid "Please upgrade DigiByteGo to perform this action"
+msgstr "Bitte DigiByteGo aktualisieren, um diese Aktion auszuführen"
 
 #: src/js/controllers/import.js:222
 msgid "Please, select your backup file"
@@ -2919,8 +2919,8 @@ msgid "Wallet already exists"
 msgstr "Wallet exstiert bereits"
 
 #: src/js/services/profileService.js:498
-msgid "Wallet already in Copay"
-msgstr "Wallet ist bereits in Copay"
+msgid "Wallet already in DigiByteGo"
+msgstr "Wallet ist bereits in DigiByteGo"
 
 #: www/views/includes/walletActivity.html:6
 msgid "Wallet created"
