@@ -1,4 +1,4 @@
-Metti al sicuro i tuoi bitcoins, alle tue condizioni, con un portafoglio open source e multifirma realizzato da BitPay. 
+Metti al sicuro i tuoi bitcoins, alle tue condizioni, con un portafoglio open source e multifirma realizzato da DigiByte Foundation. 
 Gli utenti Copay possono gestire i propri fondi individualmente, o condividerli in maniera sicura con altri utenti grazie ai portafogli multifirma, che prevengono pagamenti non autorizzati richiedendo più approvazioni. Ecco alcuni modi per utilizzare Copay con altre persone:
 
 Per rismarmiare soldi per le vacanze o per acquisti congiunti con gli amici 
@@ -15,9 +15,9 @@ Sicurezza integrata nel dispositivo: tutte le chiave private sono memorizzate lo
 Supporto per portafogli della testnet Bitcoin
 Accesso sincrono in tutte le piattaforme mobile e desktop
 Supporto per il protocollo di pagamento (BIP70-BIP73): richieste di pagamento facilmente identificabili e pagamenti bitcoin sicuri e verificabili
-Supporto per 150+ valute e denominazione in BTC o bits
+Supporto per 150+ valute e denominazione in DGB o bits
 Notifiche email per pagamenti o trasferimenti
 Colori di sfondo e nomi dei portafogli personalizzabli
-10 lingue supportate (EN, JP, FR, ES, IT, DE, PT, RU, EL, TR)
+9 lingue supportate (EN, CS, FR, DE, IT, ES, JA, PL, RU)
 
-Copay è un software gratuito e open source che non dipende da server proprietari, pertanto il supporto del software non dipende da nessuna azienda. Chiunque può rivedere o contribuire al codice sorgente di Copay su GitHub (https://github.com/bitpay/copay). 
+Copay è un software gratuito e open source che non dipende da server proprietari, pertanto il supporto del software non dipende da nessuna azienda. Chiunque può rivedere o contribuire al codice sorgente di Copay su GitHub (https://github.com/DigiByte Foundation/copay). 

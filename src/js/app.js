@@ -1,14 +1,18 @@
 'use strict';
 
 var modules = [
-  'ui.router',
   'angularMoment',
-  'mm.foundation',
   'monospaced.qrcode',
   'gettext',
+  'ionic',
+  'ionic-toast',
+  'angular-clipboard',
+  'ngTouch',
   'ngLodash',
-  'uiSwitch',
+  'ngCsv',
+  'angular-md5',
   'bwcModule',
+  'bitauthModule',
   'copayApp.filters',
   'copayApp.services',
   'copayApp.controllers',
@@ -23,4 +27,3 @@ angular.module('copayApp.services', []);
 angular.module('copayApp.controllers', []);
 angular.module('copayApp.directives', []);
 angular.module('copayApp.addons', []);
-

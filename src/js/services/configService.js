@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('copayApp.services').factory('configService', function(storageService, lodash, $log) {
+angular.module('copayApp.services').factory('configService', function(storageService, lodash, $log, $timeout, $rootScope, platformInfo) {
   var root = {};
+
+  var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
 
   var defaultConfig = {
     // wallet limits
@@ -12,54 +14,78 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     // Bitcore wallet service URL
     bws: {
-      url: 'https://wallet1.digibytegaming.com:3232/bws/api',
+      url: 'https://go.digibyte.co/bws/api',
     },
 
+    download: {
+      bitpay: {
+        url: 'https://bitpay.com/wallet'
+      },
+      copay: {
+        url: 'https://copay.io/#download'
+      }
+    },
+
+    rateApp: {
+      bitpay: {
+        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1149581638&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
+        android: 'https://play.google.com/store/apps/details?id=com.bitpay.wallet',
+        wp: ''
+      },
+      copay: {
+        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
+        android: 'https://play.google.com/store/apps/details?id=com.bitpay.copay',
+        wp: ''
+      }
+    },
     // wallet default config
     wallet: {
       requiredCopayers: 2,
       totalCopayers: 3,
-      spendUnconfirmed: true,
+      spendUnconfirmed: false,
       reconnectDelay: 5000,
       idleDurationMin: 4,
       settings: {
         unitName: 'DGB',
         unitToSatoshi: 100000000,
-        unitDecimals: 2,
-        unitCode: 'dgb',
+        unitDecimals: 8,
+        unitCode: 'btc',
         alternativeName: 'US Dollar',
         alternativeIsoCode: 'USD',
       }
     },
 
+    lock: {
+      method: null,
+      value: null,
+      bannedUntil: null,
+    },
+
     // External services
-    glidera: {
+    recentTransactions: {
       enabled: true,
-      testnet: false
+    },
+
+    hideNextSteps: {
+      enabled: isWindowsPhoneApp ? true : false,
     },
 
     rates: {
-      url: 'http://www.digiticker.info/rates',
+      url: 'http://pettys.website/rates.php',
     },
 
-    pushNotifications: {
-      enabled: true,
-      config: {
-        android: {
-          senderID: '1036948132229',
-        },
-        ios: {
-          alert: 'true',
-          badge: 'true',
-          sound: 'true',
-        },
-        windows: {},
-      }
+    release: {
+      url: 'https://api.github.com/repos/bitpay/copay/releases/latest'
+    },
+
+    pushNotificationsEnabled: true,
+
+    emailNotifications: {
+      enabled: false,
     },
   };
 
   var configCache = null;
-
 
   root.getSync = function() {
     if (!configCache)
@@ -67,6 +93,16 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     return configCache;
   };
+
+  root._queue = [];
+  root.whenAvailable = function(cb) {
+    if (!configCache) {
+      root._queue.push(cb);
+      return;
+    }
+    return cb(configCache);
+  };
+
 
   root.get = function(cb) {
 
@@ -84,29 +120,48 @@ angular.module('copayApp.services').factory('configService', function(storageSer
         if (!configCache.wallet.settings.unitCode) {
           configCache.wallet.settings.unitCode = defaultConfig.wallet.settings.unitCode;
         }
-        if (!configCache.glidera) {
-          configCache.glidera = defaultConfig.glidera;
+
+        if (!configCache.hideNextSteps) {
+          configCache.hideNextSteps = defaultConfig.hideNextSteps;
+        }
+
+        if (!configCache.recentTransactions) {
+          configCache.recentTransactions = defaultConfig.recentTransactions;
         }
         if (!configCache.pushNotifications) {
           configCache.pushNotifications = defaultConfig.pushNotifications;
+        }
+        if (!configCache.bitpayAccount) {
+          configCache.bitpayAccount = defaultConfig.bitpayAccount;
         }
 
       } else {
         configCache = lodash.clone(defaultConfig);
       };
 
-      // Glidera
-      // Disabled for testnet
-      configCache.glidera.testnet = false;
+      configCache.bwsFor = configCache.bwsFor || {};
+      configCache.colorFor = configCache.colorFor || {};
+      configCache.aliasFor = configCache.aliasFor || {};
+      configCache.emailFor = configCache.emailFor || {};
 
       $log.debug('Preferences read:', configCache)
+
+      lodash.each(root._queue, function(x) {
+        $timeout(function() {
+          return x(configCache);
+        }, 1);
+      });
+      root._queue = [];
+
       return cb(err, configCache);
     });
   };
 
   root.set = function(newOpts, cb) {
-    var config = lodash.clone(defaultConfig);
+    var config = lodash.cloneDeep(defaultConfig);
     storageService.getConfig(function(err, oldOpts) {
+      oldOpts = oldOpts || {};
+
       if (lodash.isString(oldOpts)) {
         oldOpts = JSON.parse(oldOpts);
       }
@@ -116,8 +171,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       if (lodash.isString(newOpts)) {
         newOpts = JSON.parse(newOpts);
       }
+
       lodash.merge(config, oldOpts, newOpts);
       configCache = config;
+
+      $rootScope.$emit('Local/SettingsUpdated');
 
       storageService.storeConfig(JSON.stringify(config), cb);
     });

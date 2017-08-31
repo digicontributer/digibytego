@@ -1,48 +1,84 @@
 'use strict';
 
-angular.module('copayApp.services').factory('feeService', function($log, profileService, configService, gettextCatalog, lodash) {
+angular.module('copayApp.services').factory('feeService', function($log, $timeout, $stateParams, bwcService, walletService, configService, gettext, lodash, txFormatService, gettextCatalog) {
   var root = {};
+
+  var CACHE_TIME_TS = 60; // 1 min
 
   // Constant fee options to translate
   root.feeOpts = {
-    priority: gettextCatalog.getString('Priority'),
-    normal: gettextCatalog.getString('Normal'),
-    economy: gettextCatalog.getString('Economy')
+    urgent: gettext('Urgent'),
+    priority: gettext('Priority'),
+    normal: gettext('Normal'),
+    economy: gettext('Economy'),
+    superEconomy: gettext('Super Economy')
   };
 
-  root.getCurrentFeeValue = function(currentSendFeeLevel, cb) { 
-    var fc = profileService.focusedClient;
-    var config = configService.getSync().wallet.settings;
-    var feeLevel = currentSendFeeLevel || config.feeLevel || 'normal';
-    // static fee
-    var fee = 100000000;
-    fc.getFeeLevels(fc.credentials.network, function(err, levels) {
-      return cb(null, fee); 
+  var cache = {
+    updateTs: 0,
+  };
+
+  root.getCurrentFeeLevel = function() {
+    return configService.getSync().wallet.settings.feeLevel || 'normal';
+  };
+
+
+  root.getFeeRate = function(network, feeLevel, cb) {
+    network = network || 'livenet';
+
+    root.getFeeLevels(function(err, levels, fromCache) {
+      if (err) return cb(err);
+
+      var feeLevelRate = lodash.find(levels[network], {
+        level: feeLevel
+      });
+
+      if (!feeLevelRate || !feeLevelRate.feePerKB) {
+        return cb({
+          message: gettextCatalog.getString("Could not get dynamic fee for level: {{feeLevel}}", {
+            feeLevel: feeLevel
+          })
+        });
+      }
+
+      var feeRate = feeLevelRate.feePerKB;
+
+      if (!fromCache) $log.debug('Dynamic fee: ' + feeLevel + '/' + network + ' ' + (feeLevelRate.feePerKB / 1000).toFixed() + ' SAT/B');
+
+      return cb(null, feeRate);
     });
-  }; 
+  };
 
-  root.getFeeLevels = function(cb) { 
-    var fc = profileService.focusedClient;
-    var config = configService.getSync().wallet.settings;
-    var unitName = config.unitName;
+  root.getCurrentFeeRate = function(network, cb) {
+    return root.getFeeRate(network, root.getCurrentFeeLevel(), cb);
+  };
 
-    fc.getFeeLevels('livenet', function(errLivenet, levelsLivenet) {
-      fc.getFeeLevels('testnet', function(errTestnet, levelsTestnet) {
-        if (errLivenet || errTestnet) $log.debug('Could not get dynamic fee');
-        else {
-          for (var i = 0; i < 3; i++) {
-            levelsLivenet[i]['feePerKBUnit'] = profileService.formatAmount(levelsLivenet[i].feePerKB) + ' ' + unitName;
-            levelsTestnet[i]['feePerKBUnit'] = profileService.formatAmount(levelsTestnet[i].feePerKB) + ' ' + unitName;
-          }
+  root.getFeeLevels = function(cb) {
+
+    if (cache.updateTs > Date.now() - CACHE_TIME_TS * 1000) {
+      return cb(null, cache.data, true);
+    }
+
+    var walletClient = bwcService.getClient();
+    var unitName = configService.getSync().wallet.settings.unitName;
+
+    walletClient.getFeeLevels('livenet', function(errLivenet, levelsLivenet) {
+      walletClient.getFeeLevels('testnet', function(errTestnet, levelsTestnet) {
+        if (errLivenet || errTestnet) {
+          return cb(gettextCatalog.getString('Could not get dynamic fee'));
         }
 
-        return cb({
+        cache.updateTs = Date.now();
+        cache.data = {
           'livenet': levelsLivenet,
           'testnet': levelsTestnet
-        });
+        };
+
+        return cb(null, cache.data);
       });
     });
   };
+
 
   return root;
 });

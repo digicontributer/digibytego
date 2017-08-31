@@ -1,138 +1,212 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('joinController',
-  function($scope, $rootScope, $timeout, go, notification, profileService, configService, isCordova, storageService, applicationService, $modal, gettext, lodash, ledger, trezor, isChromeApp, isDevel,derivationPathHelper) {
+  function($scope, $rootScope, $timeout, $state, $ionicHistory, $ionicScrollDelegate, profileService, configService, storageService, applicationService, gettextCatalog, lodash, ledger, trezor, intelTEE, derivationPathHelper, ongoingProcess, walletService, $log, $stateParams, popupService, appConfigService) {
 
-    var self = this;
-    var defaults = configService.getDefaults();
-    $scope.bwsurl = defaults.bws.url;
-    $scope.derivationPath = derivationPathHelper.default;
-    $scope.account = 1;
+    $scope.$on("$ionicView.beforeEnter", function(event, data) {
+      var defaults = configService.getDefaults();
+      $scope.formData = {};
+      $scope.formData.bwsurl = defaults.bws.url;
+      $scope.formData.derivationPath = derivationPathHelper.default;
+      $scope.formData.account = 1;
+      $scope.formData.secret = null;
+      resetPasswordFields();
+      updateSeedSourceSelect();
+    });
 
-    this.onQrCodeScanned = function(data) {
-      $scope.secret = data;
-      $scope.joinForm.secret.$setViewValue(data);
-      $scope.joinForm.secret.$render();
+    $scope.showAdvChange = function() {
+      $scope.showAdv = !$scope.showAdv;
+      $scope.encrypt = null;
+      $scope.resizeView();
     };
 
-
-    var updateSeedSourceSelect = function() {
-      self.seedOptions = [{
-        id: 'new',
-        label: gettext('New Random Seed'),
-      }, {
-        id: 'set',
-        label: gettext('Specify Seed...'),
-      }];
-      $scope.seedSource = self.seedOptions[0];
-
-
-      if (isChromeApp) {
-        self.seedOptions.push({
-          id: 'ledger',
-          label: 'Ledger Hardware Wallet',
-        });
-      }
-
-      if (isChromeApp || isDevel) {
-        self.seedOptions.push({
-          id: 'trezor',
-          label: 'Trezor Hardware Wallet',
-        });
-      }
+    $scope.checkPassword = function(pw1, pw2) {
+      if (pw1 && pw1.length > 0) {
+        if (pw2 && pw2.length > 0) {
+          if (pw1 == pw2) $scope.result = 'correct';
+          else {
+            $scope.formData.passwordSaved = null;
+            $scope.result = 'incorrect';
+          }
+        } else
+          $scope.result = null;
+      } else
+        $scope.result = null;
     };
 
-    this.setSeedSource = function(src) {
-      self.seedSourceId = $scope.seedSource.id;
-
+    $scope.resizeView = function() {
       $timeout(function() {
-        $rootScope.$apply();
+        $ionicScrollDelegate.resize();
+      }, 10);
+      resetPasswordFields();
+    };
+
+    function resetPasswordFields() {
+      $scope.formData.passphrase = $scope.formData.createPassphrase = $scope.formData.passwordSaved = $scope.formData.repeatPassword = $scope.result = null;
+      $timeout(function() {
+        $scope.$apply();
       });
     };
 
-    this.join = function(form) {
-      if (form && form.$invalid) {
-        self.error = gettext('Please enter the required fields');
-        return;
+    $scope.onQrCodeScannedJoin = function(data) {
+      $scope.formData.secret = data;
+      $scope.$apply();
+    };
+
+    if ($stateParams.url) {
+      var data = $stateParams.url;
+      data = data.replace('copay:', '');
+      $scope.onQrCodeScannedJoin(data);
+    }
+
+    function updateSeedSourceSelect() {
+      $scope.seedOptions = [{
+        id: 'new',
+        label: gettextCatalog.getString('Random'),
+      }, {
+        id: 'set',
+        label: gettextCatalog.getString('Specify Recovery Phrase...'),
+      }];
+      $scope.formData.seedSource = $scope.seedOptions[0];
+      /*
+
+      Disable Hardware Wallets
+
+      */
+
+      if (appConfigService.name == 'copay') {
+        if (walletService.externalSource.ledger.supported) {
+          $scope.seedOptions.push({
+            id: walletService.externalSource.ledger.id,
+            label: walletService.externalSource.ledger.longName
+          });
+        }
+
+        if (walletService.externalSource.trezor.supported) {
+          $scope.seedOptions.push({
+            id: walletService.externalSource.trezor.id,
+            label: walletService.externalSource.trezor.longName
+          });
+        }
+
+        if (walletService.externalSource.intelTEE.supported) {
+          $scope.seedOptions.push({
+            id: walletService.externalSource.intelTEE.id,
+            label: walletService.externalSource.intelTEE.longName
+          });
+        }
       }
+    };
+
+    $scope.join = function() {
 
       var opts = {
-        secret: form.secret.$modelValue,
-        myName: form.myName.$modelValue,
-        bwsurl: $scope.bwsurl,
+        secret: $scope.formData.secret,
+        myName: $scope.formData.myName,
+        bwsurl: $scope.formData.bwsurl
       }
 
-      var setSeed = self.seedSourceId =='set';
+      var setSeed = $scope.formData.seedSource.id == 'set';
       if (setSeed) {
-        var words = form.privateKey.$modelValue;
+        var words = $scope.formData.privateKey;
         if (words.indexOf(' ') == -1 && words.indexOf('prv') == 1 && words.length > 108) {
           opts.extendedPrivateKey = words;
         } else {
           opts.mnemonic = words;
         }
-        opts.passphrase = form.passphrase.$modelValue;
+        opts.passphrase = $scope.formData.passphrase;
 
-        var pathData = derivationPathHelper.parse($scope.derivationPath);
+        var pathData = derivationPathHelper.parse($scope.formData.derivationPath);
         if (!pathData) {
-          this.error = gettext('Invalid derivation path');
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid derivation path'));
           return;
         }
         opts.account = pathData.account;
         opts.networkName = pathData.networkName;
         opts.derivationStrategy = pathData.derivationStrategy;
       } else {
-        opts.passphrase = form.createPassphrase.$modelValue;
+        opts.passphrase = $scope.formData.createPassphrase;
       }
 
+      opts.walletPrivKey = $scope._walletPrivKey; // Only for testing
+
+
       if (setSeed && !opts.mnemonic && !opts.extendedPrivateKey) {
-        this.error = gettext('Please enter the wallet seed');
+        popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Please enter the wallet recovery phrase'));
         return;
       }
 
-      if (self.seedSourceId == 'ledger' || self.seedSourceId == 'trezor') {
-        var account = $scope.account;
+      if ($scope.formData.seedSource.id == walletService.externalSource.ledger.id || $scope.formData.seedSource.id == walletService.externalSource.trezor.id || $scope.formData.seedSource.id == walletService.externalSource.intelTEE.id) {
+        var account = $scope.formData.account;
         if (!account || account < 1) {
-          this.error = gettext('Invalid account number');
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid account number'));
           return;
         }
 
-        if ( self.seedSourceId == 'trezor')
+        if ($scope.formData.seedSource.id == walletService.externalSource.trezor.id || $scope.formData.seedSource.id == walletService.externalSource.intelTEE.id)
           account = account - 1;
 
-        opts.account =  account;
-        self.hwWallet = self.seedSourceId == 'ledger' ? 'Ledger' : 'Trezor';
-        var src = self.seedSourceId == 'ledger' ? ledger : trezor;
+        opts.account = account;
+        opts.isMultisig = true;
+        ongoingProcess.set('connecting' + $scope.formData.seedSource.id, true);
 
-        src.getInfoForNewWallet(true, account, function(err, lopts) {
-          self.hwWallet = false;
+        var src;
+        switch ($scope.formData.seedSource.id) {
+          case walletService.externalSource.ledger.id:
+            src = ledger;
+            break;
+          case walletService.externalSource.trezor.id:
+            src = trezor;
+            break;
+          case walletService.externalSource.intelTEE.id:
+            src = intelTEE;
+            break;
+          default:
+            popupService.showAlert(gettextCatalog.getString('Error'), 'Invalid seed source id');
+            return;
+        }
+
+        // TODO: cannot currently join an intelTEE testnet wallet (need to detect from the secret)
+        src.getInfoForNewWallet(true, account, 'livenet', function(err, lopts) {
+          ongoingProcess.set('connecting' + $scope.formData.seedSource.id, false);
           if (err) {
-            self.error = err;
-            $scope.$apply();
+            popupService.showAlert(gettextCatalog.getString('Error'), err);
             return;
           }
           opts = lodash.assign(lopts, opts);
-          self._join(opts);
+          _join(opts);
         });
       } else {
-        self._join(opts);
+
+        _join(opts);
       }
     };
 
-    this._join = function(opts) {
-      self.loading = true;
+    function _join(opts) {
+      ongoingProcess.set('joiningWallet', true);
       $timeout(function() {
-        profileService.joinWallet(opts, function(err) {
+        profileService.joinWallet(opts, function(err, client) {
+          ongoingProcess.set('joiningWallet', false);
           if (err) {
-            self.loading = false;
-            self.error = err;
-            $rootScope.$apply();
+            popupService.showAlert(gettextCatalog.getString('Error'), err);
             return;
           }
 
-        });
-      }, 100);
-    };
+          walletService.updateRemotePreferences(client);
+          $ionicHistory.removeBackView();
 
-    updateSeedSourceSelect();
-    self.setSeedSource('new');
+          if (!client.isComplete()) {
+            $ionicHistory.nextViewOptions({
+              disableAnimate: true
+            });
+            $state.go('tabs.home');
+            $timeout(function() {
+              $state.transitionTo('tabs.copayers', {
+                walletId: client.credentials.walletId
+              });
+            });
+          } else $state.go('tabs.home');
+        });
+      });
+    };
   });

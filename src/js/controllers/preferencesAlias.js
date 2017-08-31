@@ -1,32 +1,27 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesAliasController',
-  function($scope, $timeout, configService, profileService, go) {
+  function($scope, $timeout, $stateParams, $ionicHistory, configService, profileService, walletService) {
+    var wallet = profileService.getWallet($stateParams.walletId);
+    var walletId = wallet.credentials.walletId;
     var config = configService.getSync();
-    var fc = profileService.focusedClient;
-    var walletId = fc.credentials.walletId;
 
-    var config = configService.getSync();
-    config.aliasFor = config.aliasFor || {};
-    this.alias = config.aliasFor[walletId] || fc.credentials.walletName;
+    $scope.walletName = wallet.credentials.walletName;
+    $scope.walletAlias = config.aliasFor && config.aliasFor[walletId] ? config.aliasFor[walletId] : wallet.credentials.walletName;
+    $scope.alias = {
+      value: $scope.walletAlias
+    };
 
-    this.save = function() {
-      var self = this;
+    $scope.save = function() {
       var opts = {
         aliasFor: {}
       };
-      opts.aliasFor[walletId] = self.alias;
+
+      opts.aliasFor[walletId] = $scope.alias.value;
 
       configService.set(opts, function(err) {
-        if (err) {
-          $scope.$emit('Local/DeviceError', err);
-          return;
-        }
-        $scope.$emit('Local/AliasUpdated');
-        $timeout(function(){
-          go.path('preferences');
-        }, 50);
+        if (err) $log.warn(err);
+        $ionicHistory.goBack();
       });
-
     };
   });

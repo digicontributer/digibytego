@@ -1,28 +1,14 @@
 angular.module('copayApp.controllers').controller('paperWalletController',
-  function($scope, $http, $timeout, $log, configService, profileService, go, addressService, txStatus, bitcore) {
-    var self = this;
-    var fc = profileService.focusedClient;
-    var rawTx;
+  function($scope, $timeout, $log, $ionicModal, $ionicHistory, feeService, popupService, gettextCatalog, platformInfo, configService, profileService, $state, bitcore, ongoingProcess, txFormatService, $stateParams, walletService) {
 
-    self.onQrCodeScanned = function(data) {
-      $scope.inputData = data;
-      self.onData(data);
-    }
-
-    self.onData = function(data) {
-      self.error = '';
-      self.scannedKey = data;
-      self.isPkEncrypted = (data.charAt(0) == '6');
-    }
-
-    self._scanFunds = function(cb) {
+    function _scanFunds(cb) {
       function getPrivateKey(scannedKey, isPkEncrypted, passphrase, cb) {
         if (!isPkEncrypted) return cb(null, scannedKey);
-        fc.decryptBIP38PrivateKey(scannedKey, passphrase, null, cb);
+        $scope.wallet.decryptBIP38PrivateKey(scannedKey, passphrase, null, cb);
       };
 
       function getBalance(privateKey, cb) {
-        fc.getBalanceFromPrivateKey(privateKey, cb);
+        $scope.wallet.getBalanceFromPrivateKey(privateKey, cb);
       };
 
       function checkPrivateKey(privateKey) {
@@ -32,9 +18,9 @@ angular.module('copayApp.controllers').controller('paperWalletController',
           return false;
         }
         return true;
-      }
+      };
 
-      getPrivateKey(self.scannedKey, self.isPkEncrypted, $scope.passphrase, function(err, privateKey) {
+      getPrivateKey($scope.scannedKey, $scope.isPkEncrypted, $scope.passphrase, function(err, privateKey) {
         if (err) return cb(err);
         if (!checkPrivateKey(privateKey)) return cb(new Error('Invalid private key'));
 
@@ -43,71 +29,117 @@ angular.module('copayApp.controllers').controller('paperWalletController',
           return cb(null, privateKey, balance);
         });
       });
-    }
+    };
 
-    self.scanFunds = function() {
-      self.scanning = true;
-      self.privateKey = '';
-      self.balanceSat = 0;
-      self.error = '';
-
+    $scope.scanFunds = function() {
+      ongoingProcess.set('scanning', true);
       $timeout(function() {
-        self._scanFunds(function(err, privateKey, balance) {
-          self.scanning = false;
+        _scanFunds(function(err, privateKey, balance) {
+          ongoingProcess.set('scanning', false);
           if (err) {
             $log.error(err);
-            self.error = err.message || err.toString();
+            popupService.showAlert(gettextCatalog.getString('Error scanning funds:'), err || err.toString());
+            $state.go('tabs.home');
           } else {
-            self.privateKey = privateKey;
-            self.balanceSat = balance;
+            $scope.privateKey = privateKey;
+            $scope.balanceSat = balance;
+            if ($scope.balanceSat <= 0)
+              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not funds found'));
             var config = configService.getSync().wallet.settings;
-            self.balance = profileService.formatAmount(balance) + ' ' + config.unitName;
+            $scope.balance = txFormatService.formatAmount(balance) + ' ' + config.unitName;
           }
-
           $scope.$apply();
         });
       }, 100);
-    }
+    };
 
-    self._sweepWallet = function(cb) {
-      addressService.getAddress(fc.credentials.walletId, true, function(err, destinationAddress) {
+    function _sweepWallet(cb) {
+      walletService.getAddress($scope.wallet, true, function(err, destinationAddress) {
         if (err) return cb(err);
 
-        fc.buildTxFromPrivateKey(self.privateKey, destinationAddress, null, function(err, tx) {
+        $scope.wallet.buildTxFromPrivateKey($scope.privateKey, destinationAddress, null, function(err, testTx) {
           if (err) return cb(err);
-
-          fc.broadcastRawTx({
-            rawTx: tx.serialize(),
-            network: 'livenet'
-          }, function(err, txid) {
-            if (err) return cb(err);
-            return cb(null, destinationAddress, txid);
+          var rawTxLength = testTx.serialize().length;
+          feeService.getCurrentFeeRate('livenet', function(err, feePerKB) {
+            var opts = {};
+            opts.fee = Math.round((feePerKB * rawTxLength) / 2000);
+            $scope.wallet.buildTxFromPrivateKey($scope.privateKey, destinationAddress, opts, function(err, tx) {
+              if (err) return cb(err);
+              $scope.wallet.broadcastRawTx({
+                rawTx: tx.serialize(),
+                network: 'livenet'
+              }, function(err, txid) {
+                if (err) return cb(err);
+                return cb(null, destinationAddress, txid);
+              });
+            });
           });
         });
       });
     };
 
-    self.sweepWallet = function() {
-      self.sending = true;
-      self.error = '';
+    $scope.sweepWallet = function() {
+      ongoingProcess.set('sweepingWallet', true);
+      $scope.sending = true;
 
       $timeout(function() {
-        self._sweepWallet(function(err, destinationAddress, txid) {
-          self.sending = false;
-
+        _sweepWallet(function(err, destinationAddress, txid) {
+          ongoingProcess.set('sweepingWallet', false);
+          $scope.sending = false;
           if (err) {
-            self.error = err.message || err.toString();
             $log.error(err);
+            popupService.showAlert(gettextCatalog.getString('Error sweeping wallet:'), err || err.toString());
           } else {
-            txStatus.notify({
-              status: 'broadcasted'
-            }, function() {
-              go.walletHome();
-            });
+            $scope.sendStatus = 'success';
           }
-
           $scope.$apply();
         });
       }, 100);
-    }
+    };
+
+    $scope.onSuccessConfirm = function() {
+      $state.go('tabs.home');
+    };
+
+    $scope.onWalletSelect = function(wallet) {
+      $scope.wallet = wallet;
+    };
+
+    $scope.showWalletSelector = function() {
+      if ($scope.singleWallet) return;
+      $scope.walletSelectorTitle = gettextCatalog.getString('Transfer to');
+      $scope.showWallets = true;
+    };
+
+    $scope.$on("$ionicView.beforeEnter", function(event, data) {
+      $scope.scannedKey = (data.stateParams && data.stateParams.privateKey) ? data.stateParams.privateKey : null;
+      $scope.isPkEncrypted = $scope.scannedKey ? ($scope.scannedKey.substring(0, 2) == '6P') : null;
+      $scope.sendStatus = null;
+      $scope.error = false;
+
+      $scope.wallets = profileService.getWallets({
+        onlyComplete: true,
+        network: 'livenet',
+      });
+      $scope.singleWallet = $scope.wallets.length == 1;
+
+      if (!$scope.wallets || !$scope.wallets.length) {
+        $scope.noMatchingWallet = true;
+        return;
+      }
+    });
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $scope.wallet = $scope.wallets[0];
+      if (!$scope.wallet) return;
+      if (!$scope.isPkEncrypted) $scope.scanFunds();
+      else {
+        var message = gettextCatalog.getString('Private key encrypted. Enter password');
+        popupService.showPrompt(null, message, null, function(res) {
+          $scope.passphrase = res;
+          $scope.scanFunds();
+        });
+      }
+    });
+
   });

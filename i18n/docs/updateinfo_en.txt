@@ -1,4 +1,1 @@
-* Improves some icons
-* Minor UX changes on receive
-* Update translations
-* Bug fixes
+

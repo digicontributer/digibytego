@@ -1,48 +1,43 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('preferencesUnitController',
-  function($scope, $timeout, $log, configService, go) {
-    var config = configService.getSync();
-    this.unitName = config.wallet.settings.unitName;
-    this.unitOpts = [
-      // TODO : add Satoshis to bitcore-wallet-client formatAmount()
-      // {
-      //     name: 'Satoshis (100,000,000 satoshis = 1BTC)',
-      //     shortName: 'SAT',
-      //     value: 1,
-      //     decimals: 0,
-      //     code: 'sat',
-      //   }, 
-      {
-        name: 'DGB',
-        shortName: 'BTC',
-        value: 100000000,
-        decimals: 8,
-        code: 'btc',
-      }
-    ];
+angular.module('copayApp.controllers').controller('preferencesUnitController', function($scope, $log, configService, $ionicHistory, gettextCatalog, walletService, profileService) {
 
-    this.save = function(newUnit) {
-      var opts = {
-        wallet: {
-          settings: {
-            unitName: newUnit.shortName,
-            unitToSatoshi: newUnit.value,
-            unitDecimals: newUnit.decimals,
-            unitCode: newUnit.code,
-          }
+  var config = configService.getSync();
+  $scope.unitList = [{
+    name: 'bits (1,000,000 bits = 1DGB)',
+    shortName: 'bits',
+    value: 100,
+    decimals: 2,
+    code: 'bit',
+  }, {
+    name: 'DGB',
+    shortName: 'DGB',
+    value: 100000000,
+    decimals: 8,
+    code: 'btc',
+  }];
+
+  $scope.save = function(newUnit) {
+    var opts = {
+      wallet: {
+        settings: {
+          unitName: newUnit.shortName,
+          unitToSatoshi: newUnit.value,
+          unitDecimals: newUnit.decimals,
+          unitCode: newUnit.code,
         }
-      };
-      this.unitName = newUnit.shortName;
-
-      configService.set(opts, function(err) {
-        if (err) $log.warn(err);
-        go.preferencesGlobal();
-        $scope.$emit('Local/UnitSettingUpdated');
-        $timeout(function() {
-          $scope.$apply();
-        }, 100);
-      });
-
+      }
     };
+
+    configService.set(opts, function(err) {
+      if (err) $log.warn(err);
+
+      $ionicHistory.goBack();
+      walletService.updateRemotePreferences(profileService.getWallets())
+    });
+  };
+
+  $scope.$on("$ionicView.enter", function(event, data){
+    $scope.currentUnit = config.wallet.settings.unitCode;
   });
+});

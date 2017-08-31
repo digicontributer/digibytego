@@ -1,39 +1,57 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesAltCurrencyController',
-  function($scope, $timeout, $log, configService, rateService, lodash, go) {
-    this.hideAdv = true;
-    this.hidePriv = true;
-    this.hideSecret = true;
-    this.error = null;
-    this.success = null;
+  function($scope, $log, $timeout, $ionicHistory, configService, rateService, lodash, profileService, walletService, storageService) {
 
-    var config = configService.getSync();
+    var next = 10;
+    var completeAlternativeList = [];
 
-    this.selectedAlternative = {
-      name: config.wallet.settings.alternativeName,
-      isoCode: config.wallet.settings.alternativeIsoCode
+    function init() {
+      var unusedCurrencyList = [{
+        isoCode: 'LTL'
+      }, {
+        isoCode: 'DGB'
+      }];
+      rateService.whenAvailable(function() {
+
+        $scope.listComplete = false;
+
+        var idx = lodash.indexBy(unusedCurrencyList, 'isoCode');
+        var idx2 = lodash.indexBy($scope.lastUsedAltCurrencyList, 'isoCode');
+
+        completeAlternativeList = lodash.reject(rateService.listAlternatives(true), function(c) {
+          return idx[c.isoCode] || idx2[c.isoCode];
+        });
+
+        $scope.altCurrencyList = completeAlternativeList.slice(0, 10);
+
+        $timeout(function() {
+          $scope.$apply();
+        });
+      });
+    }
+
+    $scope.loadMore = function() {
+      $timeout(function() {
+        $scope.altCurrencyList = completeAlternativeList.slice(0, next);
+        next += 10;
+        $scope.listComplete = $scope.altCurrencyList.length >= completeAlternativeList.length;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }, 100);
     };
 
-    this.alternativeOpts = [this.selectedAlternative]; //default value
-
-    var self = this;
-    rateService.whenAvailable(function() {
-      self.alternativeOpts = rateService.listAlternatives();
-      lodash.remove(self.alternativeOpts, function(n) {
-        return n.isoCode == 'BTC';
+    $scope.findCurrency = function(search) {
+      if (!search) init();
+      $scope.altCurrencyList = lodash.filter(completeAlternativeList, function(item) {
+        var val = item.name;
+        return lodash.includes(val.toLowerCase(), search.toLowerCase());
       });
+      $timeout(function() {
+        $scope.$apply();
+      });
+    };
 
-      for (var ii in self.alternativeOpts) {
-        if (config.wallet.settings.alternativeIsoCode === self.alternativeOpts[ii].isoCode) {
-          self.selectedAlternative = self.alternativeOpts[ii];
-        }
-      }
-      $scope.$digest();
-    });
-
-
-    this.save = function(newAltCurrency) {
+    $scope.save = function(newAltCurrency) {
       var opts = {
         wallet: {
           settings: {
@@ -42,20 +60,30 @@ angular.module('copayApp.controllers').controller('preferencesAltCurrencyControl
           }
         }
       };
-      this.selectedAlternative = {
-        name: newAltCurrency.name,
-        isoCode: newAltCurrency.isoCode,
-      };
 
       configService.set(opts, function(err) {
         if (err) $log.warn(err);
-        go.preferencesGlobal();
-        $scope.$emit('Local/UnitSettingUpdated');
-        $timeout(function() {
-          $scope.$apply();
-        }, 100);
+
+        $ionicHistory.goBack();
+        saveLastUsed(newAltCurrency);
+        walletService.updateRemotePreferences(profileService.getWallets());
       });
     };
 
+    function saveLastUsed(newAltCurrency) {
+      $scope.lastUsedAltCurrencyList.unshift(newAltCurrency);
+      $scope.lastUsedAltCurrencyList = lodash.uniq($scope.lastUsedAltCurrencyList, 'isoCode');
+      $scope.lastUsedAltCurrencyList = $scope.lastUsedAltCurrencyList.slice(0, 3);
+      storageService.setLastCurrencyUsed(JSON.stringify($scope.lastUsedAltCurrencyList), function() {});
+    };
 
+    $scope.$on("$ionicView.beforeEnter", function(event, data) {
+      var config = configService.getSync();
+      $scope.currentCurrency = config.wallet.settings.alternativeIsoCode;
+
+      storageService.getLastCurrencyUsed(function(err, lastUsedAltCurrency) {
+        $scope.lastUsedAltCurrencyList = lastUsedAltCurrency ? JSON.parse(lastUsedAltCurrency) : [];
+        init();
+      });
+    });
   });

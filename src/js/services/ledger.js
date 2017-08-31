@@ -1,9 +1,18 @@
 'use strict';
 
 angular.module('copayApp.services')
-  .factory('ledger', function($log, bwcService, gettext, hwWallet) {
+  .factory('ledger', function($log, bwcService, gettext, hwWallet, platformInfo) {
     var root = {};
     var LEDGER_CHROME_ID = "kkdpmhnladdopljabkgpacgpliggeeaf";
+
+    root.description = {
+      supported: platformInfo.supportsLedger,
+      id: 'ledger',
+      name: 'Ledger',
+      longName: 'Ledger Hardware Wallet',
+      isEmbeddedHardware: false,
+      supportsTestnet: false
+    };
 
     root.callbacks = {};
     root.hasSession = function() {
@@ -13,11 +22,11 @@ angular.module('copayApp.services')
     }
 
     root.getEntropySource = function(isMultisig, account, callback) {
-      root.getXPubKey(hwWallet.getEntropyPath('ledger', isMultisig, account), function(data) {
-        if (!data.success) 
+      root.getXPubKey(hwWallet.getEntropyPath(root.description.id, isMultisig, account), function(data) {
+        if (!data.success)
           return callback(hwWallet._err(data));
-        
-        return callback(null,  hwWallet.pubKeyToEntropySource(data.xpubkey));
+
+        return callback(null, hwWallet.pubKeyToEntropySource(data.xpubkey));
       });
     };
 
@@ -27,27 +36,31 @@ angular.module('copayApp.services')
       root._messageAfterSession({
         command: "get_xpubkey",
         path: path
-      })
+      });
     };
 
+    root.initSource = function(opts, callback) {
+      // No initialization for this hardware source.
+      return callback(opts);
+    };
 
-    root.getInfoForNewWallet = function(isMultisig, account, callback) {
-      var opts = {};
+    root.getInfoForNewWallet = function(isMultisig, account, networkName, callback) {
+      // networkName not used for this hardware (always livenet)
       root.getEntropySource(isMultisig, account, function(err, entropySource) {
         if (err) return callback(err);
 
+        var opts = {};
         opts.entropySource = entropySource;
-        root.getXPubKey(hwWallet.getAddressPath('ledger', isMultisig, account), function(data) {
+        root.getXPubKey(hwWallet.getAddressPath(root.description.id, isMultisig, account), function(data) {
           if (!data.success) {
             $log.warn(data.message);
             return callback(data);
           }
           opts.extendedPublicKey = data.xpubkey;
-          opts.externalSource = 'ledger';
-          opts.account = account;
+          opts.externalSource = root.description.id;
 
           // Old ledger compat
-          opts.derivationStrategy = account ? 'BIP48' : 'BIP44';
+          opts.derivationStrategy = opts.account ? 'BIP48' : 'BIP44';
           return callback(null, opts);
         });
       });
@@ -57,10 +70,10 @@ angular.module('copayApp.services')
       root.callbacks["sign_p2sh"] = callback;
       var redeemScripts = [];
       var paths = [];
-      var tx = bwcService.buildTx(txp);
+      var tx = bwcService.getUtils().buildTx(txp);
       for (var i = 0; i < tx.inputs.length; i++) {
         redeemScripts.push(new ByteString(tx.inputs[i].redeemScript.toBuffer().toString('hex'), GP.HEX).toString());
-        paths.push(hwWallet.getAddressPath('ledger', isMultisig, account) + txp.inputs[i].path.substring(1));
+        paths.push(hwWallet.getAddressPath(root.description.id, isMultisig, account) + txp.inputs[i].path.substring(1));
       }
       var splitTransaction = root._splitTransaction(new ByteString(tx.toString(), GP.HEX));
       var inputs = [];
@@ -130,7 +143,7 @@ angular.module('copayApp.services')
           root._should_poll_session = false;
         } else if (typeof root.callbacks[data.command] == "function") {
           root.callbacks[data.command](data);
-        }
+        } else {}
       } else {
         root._should_poll_session = false;
         Object.keys(root.callbacks).forEach(function(key) {

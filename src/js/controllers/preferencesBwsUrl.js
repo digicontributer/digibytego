@@ -1,50 +1,53 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesBwsUrlController',
-  function($scope, $log, configService, go, applicationService, profileService, storageService) {
-    this.error = null;
-    this.success = null;
+  function($scope, $log, $stateParams, configService, applicationService, profileService, storageService, appConfigService) {
+    $scope.success = null;
 
-    var fc = profileService.focusedClient;
-    var walletId = fc.credentials.walletId;
+    var wallet = profileService.getWallet($stateParams.walletId);
+    $scope.wallet = wallet;
+
+    var walletId = wallet.credentials.walletId;
     var defaults = configService.getDefaults();
     var config = configService.getSync();
-
-    this.bwsurl = (config.bwsFor && config.bwsFor[walletId]) || defaults.bws.url;
-
-    this.resetDefaultUrl = function() {
-      this.bwsurl = defaults.bws.url;
+    $scope.appName = appConfigService.nameCase;
+    $scope.bwsurl = {
+      value: (config.bwsFor && config.bwsFor[walletId]) || defaults.bws.url
     };
 
-    this.save = function() {
+    $scope.resetDefaultUrl = function() {
+      $scope.bwsurl.value = defaults.bws.url;
+    };
+
+    $scope.save = function() {
 
       var bws;
-      switch (this.bwsurl) {
+      switch ($scope.bwsurl.value) {
         case 'prod':
         case 'production':
-          bws = 'https://wallet1.digibytegaming.com:3232/bws/api'
+          bws = 'https://52.179.177.19/bws/api'
           break;
         case 'sta':
         case 'staging':
-          bws = 'https://wallet1.digibytegaming.com:3232/bws/api'
+          bws = 'https://bws-staging.b-pay.net/bws/api'
           break;
         case 'loc':
         case 'local':
-          bws = 'http://localhost:3232/bws/api'
+          bws = 'https://go.digibyte.co/bws/api'
           break;
       };
       if (bws) {
         $log.info('Using BWS URL Alias to ' + bws);
-        this.bwsurl = bws;
+        $scope.bwsurl.value = bws;
       }
 
       var opts = {
         bwsFor: {}
       };
-      opts.bwsFor[walletId] = this.bwsurl;
+      opts.bwsFor[walletId] = $scope.bwsurl.value;
 
       configService.set(opts, function(err) {
-        if (err) console.log(err);
+        if (err) $log.debug(err);
         storageService.setCleanAndScanAddresses(walletId, function() {
           applicationService.restart();
         });

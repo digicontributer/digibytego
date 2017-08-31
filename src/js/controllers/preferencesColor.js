@@ -1,45 +1,74 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('preferencesColorController',
-  function($scope, $timeout, $log, configService, profileService, go) {
-    var config = configService.getSync();
-    this.colorOpts = [
-      '#DD4B39',
-      '#F38F12',
-      '#FAA77F',
-      '#D0B136',
-      '#9EDD72',
-      '#77DADA',
-      '#4A90E2',
-      '#484ED3',
-      '#9B59B6',
-      '#E856EF',
-      '#FF599E',
-      '#7A8C9E',
-    ];
+angular.module('copayApp.controllers').controller('preferencesColorController', function($scope, $timeout, $log, $stateParams, $ionicHistory, configService, profileService) {
+  var wallet = profileService.getWallet($stateParams.walletId);
+  $scope.wallet = wallet;
+  var walletId = wallet.credentials.walletId;
+  var config = configService.getSync();
+  config.colorFor = config.colorFor || {};
 
-    var fc = profileService.focusedClient;
-    var walletId = fc.credentials.walletId;
+  var retries = 3;
+  $scope.colorCount = getColorCount();
+  setCurrentColorIndex();
 
-    var config = configService.getSync();
-    config.colorFor = config.colorFor || {};
-    this.color = config.colorFor[walletId] || '#4A90E2';
+  $scope.save = function(i) {
+    var color = indexToColor(i);
+    if (!color) return;
 
-    this.save = function(color) {
-      var self = this;
-      var opts = {
-        colorFor: {}
-      };
-      opts.colorFor[walletId] = color;
-
-      configService.set(opts, function(err) {
-        if (err) $log.warn(err);
-        go.preferences();
-        $scope.$emit('Local/ColorUpdated');
-        $timeout(function() {
-          $scope.$apply();
-        }, 100);
-      });
-
+    var opts = {
+      colorFor: {}
     };
-  });
+    opts.colorFor[walletId] = color;
+
+    configService.set(opts, function(err) {
+      if (err) $log.warn(err);
+      $ionicHistory.goBack();
+    });
+  };
+
+  function getColorDefault() {
+    return rgb2hex(window.getComputedStyle(document.getElementsByClassName('wallet-color-default')[0]).color);
+  };
+
+  function getColorCount() {
+    var count = window.getComputedStyle(document.getElementsByClassName('wallet-color-count')[0]).content;
+    return parseInt(count.replace(/[^0-9]/g, ''));
+  };
+
+  function setCurrentColorIndex() {
+    try {
+      $scope.currentColorIndex = colorToIndex(config.colorFor[walletId] || getColorDefault());
+    } catch(e) {
+      // Wait for DOM to render and try again.
+      $timeout(function() {
+        if (retries > 0) {
+          retries -= 1;
+          setCurrentColorIndex();
+        }
+      }, 100);
+    }
+  };
+
+  function colorToIndex(color) {
+    for (var i = 0; i < $scope.colorCount; i++) {
+      if (indexToColor(i) == color.toLowerCase()) {
+        return i;
+      }
+    }
+    return undefined;
+  };
+
+  function indexToColor(i) {
+    // Expect an exception to be thrown if can't getComputedStyle().
+    return rgb2hex(window.getComputedStyle(document.getElementsByClassName('wallet-color-' + i)[0]).backgroundColor);
+  };
+
+  function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+    return (rgb && rgb.length === 4) ? "#" +
+      ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+      ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+      ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
+  };
+
+});

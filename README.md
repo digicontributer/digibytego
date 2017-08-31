@@ -1,11 +1,13 @@
-<img src="https://raw.githubusercontent.com/bitpay/copay/master/public/img/logo.png" alt="Copay" width="300">
+<img src="https://raw.githubusercontent.com/bitpay/copay/master/resources/copay/android/icon/drawable-xxxhdpi-icon.png" alt="Copay" width="79">
 
 [![Build Status](https://secure.travis-ci.org/bitpay/copay.svg)](http://travis-ci.org/bitpay/copay)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/copay/localized.png)](https://crowdin.com/project/copay)
 
-Copay is an easy-to-use, open-source, multiplatform, multisignature, secure bitcoin wallet platform for both individuals and companies.  Copay uses [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service) (BWS) for peer synchronization and network interfacing.
+Copay is a secure bitcoin wallet platform for both desktop and mobile devices. Copay uses [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service) (BWS) for peer synchronization and network interfacing.
 
-Binary versions of Copay are available for download at [Copay.io](https://copay.io/#download). Copay Binaries are signed with the key copay@bitpay.com [See here for details](https://github.com/bitpay/copay#how-to-verify-copay-signatures)
+Binary versions of Copay are available for download at [Copay.io](https://copay.io/#download). Copay Binaries are signed with the key `copay@bitpay.com` – See the section [`How to Verify Copay Signatures`](https://github.com/bitpay/copay#how-to-verify-copay-signatures) for details.
+
+For a list of frequently asked questions please visit the [Copay FAQ](https://github.com/bitpay/copay/wiki/COPAY---FAQ).
 
 ## Main Features
 
@@ -17,114 +19,137 @@ Binary versions of Copay are available for download at [Copay.io](https://copay.
 - Support for Bitcoin testnet wallets
 - Synchronous access across all major mobile and desktop platforms
 - Payment protocol (BIP70-BIP73) support: easily-identifiable payment requests and verifiable, secure bitcoin payments
-- Support for over 150 currency pricing options and unit denomination in BTC or bits
+- Support for over 150 currency pricing options and unit denomination in DGB or bits
 - Mnemonic (BIP39) support for wallet backups
 - Paper wallet sweep support (BIP38)
 - Hardware wallet support (Trezor and Ledger) (only in Chrome App version)
 - Email notifications for payments and transfers
+- Push notifications (only available for ios and android versions)
 - Customizable wallet naming and background colors
 - Multiple languages supported
 - Available for [iOS](https://itunes.apple.com/us/app/copay/id951330296), [Android](https://play.google.com/store/apps/details?id=com.bitpay.copay&hl=en), [Windows Phone](http://www.windowsphone.com/en-us/store/app/copay-wallet/4372479b-a064-4d18-8bd3-74a3bdb81c3a), [Chrome App](https://chrome.google.com/webstore/detail/copay/cnidaodnidkbaplmghlelgikaiejfhja?hl=en), [Linux](https://github.com/bitpay/copay/releases/latest), [Windows](https://github.com/bitpay/copay/releases/latest) and [OS X](https://github.com/bitpay/copay/releases/latest) devices
 
-## Installation
+## Testing in a Browser
 
-Clone the source:
+> **Note:** This method should only be used for development purposes. When running Copay in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys. For production use, see the latest official [releases](https://github.com/bitpay/copay/releases/).
+
+Clone the repo and open the directory:
 
 ```sh
 git clone https://github.com/bitpay/copay.git
 cd copay
 ```
 
-Install [bower](http://bower.io/) and [grunt](http://gruntjs.com/getting-started) if you haven't already:
+Ensure you have [Node](https://nodejs.org/) installed, then install and start Copay:
 
 ```sh
-npm install -g bower
-npm install -g grunt-cli
-```
-
-Build Copay:
-
-```sh
-bower install
-npm install
-grunt
+npm run apply:copay
 npm start
 ```
 
-Then visit `localhost:3000` in your browser.
+Visit [`localhost:8100`](http://localhost:8100/) to view the app.
 
-> **Note:** Other browser extensions could have access to Copay internal data and compromise the user's private key when running Copay as a web page.  For optimal security, you should disable all third-party browser extensions when using Copay in this manner.
+A watch task is also available to rebuild components of the app as changes are made. This task can be run in a separate process – while the server started by `npm start` is running – to quickly test changes.
 
-## Build Copay App Bundles
+```
+npm run watch
+```
+
+## Testing on Real Devices
+
+It's recommended that all final testing be done on a real device – both to assess performance and to enable features that are unavailable to the emulator (e.g. a device camera).
 
 ### Android
 
-- Install Android SDK
-- Run `make android`
+Follow the [Cordova Android Platform Guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/) to set up your development environment.
+
+When your developement enviroment is ready, run the `start:android` npm package script.
+
+```sh
+npm run apply:copay
+npm run start:android
+```
 
 ### iOS
 
-- Install Xcode 6.1 (or newer)
-- Run `make ios-prod`
+Follow the [Cordova iOS Platform Guide](https://cordova.apache.org/docs/en/latest/guide/platforms/android/) to set up your development environment.
 
-##### Notes for Xcode 7.0
+When your developement enviroment is ready, run the `start:ios` npm package script.
 
-###### ATS support 
-
-Before starting Copay from Xcode, add these lines to "Custom iOS Target Properties":
-
-```
-<key>NSAppTransportSecurity</key>
- <dict>
-  <key>NSAllowsArbitraryLoads</key>
-  <true/>
- </dict>
+```sh
+npm run apply:copay
+npm run start:ios
 ```
 
-![Example](http://i.stack.imgur.com/nGw3j.png)
+### Desktop (Linux, macOS, and Windows)
 
+The desktop version of Copay currently uses NW.js, an app runtime based on Chromium. To get started, first install NW.js on your system from [the NW.js website](https://nwjs.io/).
 
-App Transport Security (ATS) enforces best practices in the secure connections between an app and its back end. [Read complete documentation](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html).
+When NW.js is installed, run the `start:desktop` npm package script.
 
-###### Invalid Bundle while submitting application
-
-`iPad Multitasking support requires launch story board in bundle`
-
-To fix this problem, add the following:
-
+```sh
+npm run apply:copay
+npm run start:desktop
 ```
-<key>UIRequiresFullScreen</key>
-<string>YES</string>
+
+## Build Copay App Bundles
+
+Before building the release version for a platform, run the `clean-all` command to delete any untracked files in your current working directory. (Be sure to stash any uncommited changes you've made.) This guarantees consistency across builds for the current state of this repository.
+
+The `final` commands build the production version of the app, and bundle it with the release version of the platform being built.
+
+### Android
+
+```sh
+npm run clean-all
+npm run apply:copay
+npm run final:android
 ```
-###### Build settings, headers search path
 
-Add this line to your Build Settings -> Header Search Paths -> Release
+### iOS
 
-"$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include"
-
-
+```sh
+npm run clean-all
+npm run apply:copay
+npm run final:ios
+```
 
 ### Windows Phone
 
 - Install Visual Studio 2013 (or newer)
 - Run `make wp8-prod`
 
-### Desktop versions (Windows, OS X, Linux)
+### Desktop (Linux, macOS, and Windows)
 
-Copay uses NW.js (also know as node-webkit) for its desktop version. NW.js is an app runtime based on `Chromium` and `node.js`.
-
-- Install NW.js on your system from [nwjs.io](http://nwjs.io/)
-- Run `grunt desktop`
+```sh
+npm run clean-all
+npm run apply:copay
+npm run final:desktop
+```
 
 ### Google Chrome App
 
-- Run `npm run-script chrome`
+> cd chrome-app/
+
+```sh
+npm run apply:copay
+grunt
+make
+```
 
 On success, the Chrome extension will be located at: `browser-extensions/chrome/copay-chrome-extension`.  To install it go to `chrome://extensions/` in your browser and ensure you have the 'developer mode' option enabled in the settings.  Then click on "Load unpacked chrome extension" and choose the directory mentioned above.
 
-### Firefox Add-on
+## Configuration
 
-The Copay Firefox Extension has been deprecated and is no longer supported.
+### Enable External Services
+
+To enable external services, set the `COPAY_EXTERNAL_SERVICES_CONFIG_LOCATION` or `BITPAY_EXTERNAL_SERVICES_CONFIG_LOCATION` environment variable to the location of your configuration before running the `apply` task.
+
+```sh
+COPAY_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.copay/externalServices.json" npm run apply:copay
+# or
+BITPAY_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.bitpay/externalServices.json" npm run apply:bitpay
+```
 
 ## About Copay
 
@@ -140,7 +165,7 @@ For more information regarding how addresses are generated using this procedure,
 
 ## Copay Backups and Recovery
 
-Since v1.2 Copay uses BIP39 mnemonics for backing up wallets.  The BIP44 standard is used for wallet address derivation. Multisig wallets use P2SH addresses, while non-multisig wallets use P2PKH. 
+Since v1.2 Copay uses BIP39 mnemonics for backing up wallets.  The BIP44 standard is used for wallet address derivation. Multisig wallets use P2SH addresses, while non-multisig wallets use P2PKH.
 
 Information about backup and recovery procedures is available at: https://github.com/bitpay/copay/blob/master/backupRecovery.md
 
@@ -149,12 +174,12 @@ Previous versions of Copay used files as backups. See the following section.
 It is possible to recover funds from a Copay Wallet without using Copay or the Wallet Service, check the [Copay Recovery Tool](https://github.com/bitpay/copay-recovery).
 
 
-## Wallet Export format
+## Wallet Export Format
 
 Copay encrypts the backup with the [Stanford JS Crypto Library](http://bitwiseshiftleft.github.io/sjcl/).  To extract the private key of your wallet you can use https://bitwiseshiftleft.github.io/sjcl/demo/, copy the backup to 'ciphertext' and enter your password.  The resulting JSON will have a key named: `xPrivKey`, that is the extended private key of your wallet.  That information is enough to sign any transaction from your wallet, so be careful when handling it!
 
 The backup also contains the key `publicKeyRing` that holds the extended public keys of the Copayers.
-Depending on the key `derivationStrategy`, addresses are derived using 
+Depending on the key `derivationStrategy`, addresses are derived using
 [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) or [BIP45](https://github.com/bitcoin/bips/blob/master/bip-0045.mediawiki). Wallets created in Copay v1.2 and forward always use BIP44, all previous wallets use BIP45. Also note that since Copay version v1.2, non-multisig wallets use address types Pay-to-PublicKeyHash (P2PKH) while multisig wallets still use Pay-to-ScriptHash (P2SH) (key `addressType` at the backup):
 
 | Copay Version  | Wallet Type   | Derivation Strategy   | Address Type  |
@@ -188,12 +213,12 @@ https://chrome.google.com/webstore/detail/trezor-chrome-extension/jcjjhjgimijdko
 To create or join a wallet using Ledger or Trezor go to:
 
   Add Wallet -> Create or Join -> Advanced options -> Wallet Seed -> select Trezor or Ledger
-  
+
 Both devices support multiple accounts, so you can use them for multiple wallets. Select the account and then click on create or join.
 
 It is also possible to import a wallet from a device using:
   Add Wallet -> Import -> Hardware wallet
- 
+
 Here it is also necesary to select the account number.
 
 When creating or joining a wallet, Copay will ask for two public keys for the device. One public keys is used for the wallet itself and the other is used as an entropy source to create a private / public key pair for signing requests to the Wallet Service.
@@ -202,7 +227,7 @@ Every time you need to sign a transaction, the device will be needed to perform 
 
 Finally, in case you lose the device and you have the 24 word seed for the device, you can recover access to your funds using Copay, see: https://github.com/bitpay/copay/blob/master/backupRecovery.md#hardware-wallets
 
- 
+
 ## Translations
 Copay uses standard gettext PO files for translations and [Crowdin](https://crowdin.com/project/copay) as the front-end tool for translators.  To join our team of translators, please create an account at [Crowdin](https://crowdin.com) and translate the Copay documentation and application text into your native language.
 
@@ -225,34 +250,35 @@ This will download all partial and complete language translations while also cle
 
 *Gracias totales!*
 
-## Release schedules
+## Release Schedules
 Copay uses the `MAJOR.MINOR.BATCH` convention for versioning.  Any release that adds features should modify the MINOR or MAJOR number.
 
 ### Bug Fixing Releases
 
 We release bug fixes as soon as possible for all platforms.  Usually around a week after patches, a new release is made with language translation updates (like 1.1.4 and then 1.1.5).  There is no coordination so all platforms are updated at the same time.
 
-### Minor and Major releases
+### Minor and Major Releases
 - t+0: tag the release 1.2 and "text lock" (meaning only non-text related bug fixes. Though this rule is sometimes broken, it's good to make a rule.)
 - t+7: testing for 1.2 is finished, translation is also finished, and 1.2.1 is tagged with all translations along with bug fixes made in the last week.
 - t+7: iOS is submitted for 1.2.1. All other platforms are submitted with auto-release off.
 - t + (~17): All platforms 1.2.1 are released when Apple approves the iOS application update.
 
-## How to verify Copay signatures
+## How to Verify Copay Signatures
 
- 1. Download copay@bitpay.com public key (`gpg --recv-keys 1112CFA1`)
- 1. Download Copay binary ($FILENAME) and signature file ($FILENAME.sig)
- 1. Check it by running:
+ 1. Download the `copay@bitpay.com` public key (`gpg --recv-keys 1112CFA1`)
+ 2. Download Copay binary (`$FILENAME`) and signature file (`$FILENAME.sig`)
+ 3. Verify the signature by running:
+
 ``` bash
 $ gpg --verify \
  $FILENAME.sig \
  $FILENAME
 
-# It should say:
- "Good signature from "Copay (visit copay.io) <copay@bitpay.com>"
-``` 
+# It should return:
+Good signature from "Copay (visit copay.io) <copay@bitpay.com>"
+```
 
-### Public Key for Copay binaries
+### Public Key for Copay Binaries
 Instead of importing the public key from a public server (like gnu's) you can grab it from here:
 
 ```
@@ -289,14 +315,20 @@ gpg --import /tmp/key
 (Thanks @pzkpfwVI and @mika-mitzahlen for this section, taken from [Gist](https://gist.github.com/matiu/61c9f529efeeba66c0e2).
 
 
+
+## Contributing to this project
+
+Anyone and everyone is welcome to contribute. Please take a moment to
+review the [guidelines for contributing](CONTRIBUTING.md).
+
+* [Bug reports](CONTRIBUTING.md#bugs)
+* [Feature requests](CONTRIBUTING.md#features)
+* [Pull requests](CONTRIBUTING.md#pull-requests)
+
 ## Support
 
-* [BitPay Labs](https://labs.bitpay.com/c/copay)
-  * Post a question in our discussion forums
-* [GitHub Issues](https://github.com/bitpay/copay/issues)
-  * Open an issue if you are having problems with this project
-* [Email Support](mailto:support@bitpay.com)
-  * Our dedicated support team is always ready to help
+ Please see [Support requests](CONTRIBUTING.md#support)
+
 
 ## License
 

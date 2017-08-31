@@ -1,18 +1,74 @@
+'use strict';
+
 module.exports = function(grunt) {
+
+  require('load-grunt-tasks')(grunt);
 
   // Project Configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     exec: {
-      version: {
-        command: 'node ./util/version.js'
+      appConfig: {
+        command: 'node ./util/buildAppConfig.js'
       },
-      clear: {
+      externalServices: {
+        command: 'node ./util/buildExternalServices.js'
+      },
+      clean: {
         command: 'rm -Rf bower_components node_modules'
       },
-      osx: {
-        command: 'webkitbuilds/build-osx.sh'
-      }
+      cordovaclean: {
+        command: 'make -C cordova clean'
+      },
+      macos: {
+        command: 'sh webkitbuilds/build-macos.sh sign'
+      },
+      coveralls: {
+        command: 'cat  coverage/report-lcov/lcov.info |./node_modules/coveralls/bin/coveralls.js'
+      },
+      chrome: {
+        command: 'make -C chrome-app '
+      },
+      wpinit: {
+        command: 'make -C cordova wp-init',
+      },
+      wpcopy: {
+        command: 'make -C cordova wp-copy',
+      },
+      iosdebug: {
+        command: 'npm run build:ios',
+      },
+      ios: {
+        command: 'npm run build:ios-release',
+      },
+      xcode: {
+        command: 'npm run open:ios',
+      },
+      androiddebug: {
+        command: 'npm run build:android',
+      },
+      android: {
+        command: 'npm run build:android-release',
+      },
+      androidrun: {
+        command: 'npm run run:android && npm run log:android',
+      },
+      androidbuild: {
+        command: 'cd cordova/project && cordova build android --release',
+      },
+      androidsign: {
+        command: 'rm -f cordova/project/platforms/android/build/outputs/apk/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../copay.keystore -signedjar cordova/project/platforms/android/build/outputs/apk/android-release-signed.apk  cordova/project/platforms/android/build/outputs/apk/android-release-unsigned.apk copay_play && ../android-sdk-macosx/build-tools/21.1.1/zipalign -v 4 cordova/project/platforms/android/build/outputs/apk/android-release-signed.apk cordova/project/platforms/android/build/outputs/apk/android-release-signed-aligned.apk ',
+        stdin: true,
+      },
+      desktopsign: {
+        cmd: 'gpg -u 1112CFA1 --output webkitbuilds/<%= pkg.title %>-linux.zip.sig --detach-sig webkitbuilds/<%= pkg.title %>-linux.zip ; gpg -u 1112CFA1 --output webkitbuilds/<%= pkg.title %>.exe.sig --detach-sig webkitbuilds/<%= pkg.title %>.exe'
+      },
+      desktopverify: {
+        cmd: 'gpg --verify webkitbuilds/<%= pkg.title %>-linux.zip.sig webkitbuilds/<%= pkg.title %>-linux.zip; gpg --verify webkitbuilds/<%= pkg.title %>.exe.sig webkitbuilds/<%= pkg.title %>.exe'
+      },
+      osxsign: {
+        cmd: 'gpg -u 1112CFA1 --output webkitbuilds/<%= pkg.title %>.dmg.sig --detach-sig webkitbuilds/<%= pkg.title %>.dmg'
+      },
     },
     watch: {
       options: {
@@ -21,9 +77,9 @@ module.exports = function(grunt) {
           grunt.log.writeln('Waiting for more changes...');
         },
       },
-      css: {
-        files: ['src/css/*.css'],
-        tasks: ['concat:css']
+      sass: {
+        files: ['src/sass/**/**/*.scss'],
+        tasks: ['sass']
       },
       main: {
         files: [
@@ -34,9 +90,31 @@ module.exports = function(grunt) {
           'src/js/routes.js',
           'src/js/services/*.js',
           'src/js/models/*.js',
-          'src/js/controllers/*.js'
+          'src/js/controllers/**/*.js'
         ],
         tasks: ['concat:js']
+      },
+      gettext: {
+        files: [
+          'i18n/po/*.po',
+          'i18n/po/*.pot'
+        ],
+        tasks: ['nggettext_compile','concat']
+      },
+    },
+    sass: {
+      dist: {
+        options: {
+          style: 'compact',
+          sourcemap: 'none'
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['src/sass/main.scss'],
+          dest: 'www/css/',
+          ext: '.css'
+        }]
       }
     },
     concat: {
@@ -46,22 +124,23 @@ module.exports = function(grunt) {
       },
       angular: {
         src: [
-          'bower_components/fastclick/lib/fastclick.js',
           'bower_components/qrcode-generator/js/qrcode.js',
-          'bower_components/qrcode-decoder-js/lib/qrcode-decoder.js',
+          'bower_components/qrcode-generator/js/qrcode_UTF8.js',
           'bower_components/moment/min/moment-with-locales.js',
-          'bower_components/angular/angular.js',
-          'bower_components/angular-ui-router/release/angular-ui-router.js',
-          'bower_components/angular-foundation/mm-foundation-tpls.js',
           'bower_components/angular-moment/angular-moment.js',
           'bower_components/ng-lodash/build/ng-lodash.js',
           'bower_components/angular-qrcode/angular-qrcode.js',
           'bower_components/angular-gettext/dist/angular-gettext.js',
-          'bower_components/angular-touch/angular-touch.js',
-          'bower_components/angular-ui-switch/angular-ui-switch.js',
+          'bower_components/ng-csv/build/ng-csv.js',
+          'bower_components/ionic-toast/dist/ionic-toast.bundle.min.js',
+          'bower_components/angular-clipboard/angular-clipboard.js',
+          'bower_components/angular-md5/angular-md5.js',
+          'bower_components/angular-mocks/angular-mocks.js',
+          'bower_components/ngtouch/src/ngTouch.js',
+          'angular-bitauth/angular-bitauth.js',
           'angular-bitcore-wallet-client/angular-bitcore-wallet-client.js'
         ],
-        dest: 'public/lib/angular.js'
+        dest: 'www/lib/angular-components.js'
       },
       js: {
         src: [
@@ -71,27 +150,17 @@ module.exports = function(grunt) {
           'src/js/filters/*.js',
           'src/js/models/*.js',
           'src/js/services/*.js',
-          'src/js/controllers/*.js',
+          'src/js/controllers/**/*.js',
           'src/js/translations.js',
-          'src/js/version.js',
+          'src/js/appConfig.js',
+          'src/js/externalServices.js',
           'src/js/init.js',
           'src/js/trezor-url.js',
-          'bower_components/trezor-connect/login.js'
+          'bower_components/trezor-connect/connect.js',
+          'node_modules/bezier-easing/dist/bezier-easing.min.js',
+          'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js'
         ],
-        dest: 'public/js/copay.js'
-      },
-      css: {
-        src: ['src/css/*.css'],
-        dest: 'public/css/copay.css'
-      },
-      foundation: {
-        src: [
-          'bower_components/angular/angular-csp.css',
-          'bower_components/foundation/css/foundation.css',
-          'bower_components/animate.css/animate.css',
-          'bower_components/angular-ui-switch/angular-ui-switch.css'
-        ],
-        dest: 'public/css/foundation.css',
+        dest: 'www/js/app.js'
       }
     },
     uglify: {
@@ -100,8 +169,8 @@ module.exports = function(grunt) {
       },
       prod: {
         files: {
-          'public/js/copay.js': ['public/js/copay.js'],
-          'public/lib/angular.js': ['public/lib/angular.js']
+          'www/js/app.js': ['www/js/app.js'],
+          'www/lib/angular-components.js': ['www/lib/angular-components.js']
         }
       }
     },
@@ -109,12 +178,11 @@ module.exports = function(grunt) {
       pot: {
         files: {
           'i18n/po/template.pot': [
-            'public/index.html',
-            'public/views/*.html',
-            'public/views/**/*.html',
+            'www/index.html',
+            'www/views/**/*.html',
             'src/js/routes.js',
             'src/js/services/*.js',
-            'src/js/controllers/*.js'
+            'src/js/controllers/**/*.js'
           ]
         }
       },
@@ -130,88 +198,86 @@ module.exports = function(grunt) {
       },
     },
     copy: {
-      icons: {
+      ionic_fonts: {
         expand: true,
         flatten: true,
-        src: 'bower_components/foundation-icon-fonts/foundation-icons.*',
-        dest: 'public/icons/'
+        src: 'bower_components/ionic/release/fonts/ionicons.*',
+        dest: 'www/fonts/'
+      },
+      ionic_js: {
+        expand: true,
+        flatten: true,
+        src: 'bower_components/ionic/release/js/ionic.bundle.min.js',
+        dest: 'www/lib/'
       },
       linux: {
         files: [{
           expand: true,
           cwd: 'webkitbuilds/',
-          src: ['.desktop', '../public/img/icons/favicon.ico', '../public/img/icons/icon-256.png'],
-          dest: 'webkitbuilds/Copay/linux64/',
+          src: ['.desktop', '../www/img/app/favicon.ico', '../resources/<%= pkg.name %>/linux/512x512.png'],
+          dest: 'webkitbuilds/<%= pkg.title %>/linux64/',
           flatten: true,
           filter: 'isFile'
         }],
       }
     },
-    karma: {
-      unit: {
-        configFile: 'test/karma.conf.js'
-      },
-      prod: {
-        configFile: 'test/karma.conf.js',
-        singleRun: true
-      }
-    },
-    coveralls: {
+    nwjs: {
       options: {
-        debug: false,
-        coverageDir: 'coverage/report-lcov',
-        dryRun: true,
-        force: true,
-        recursive: false
-      }
-    },
-    nodewebkit: {
-      options: {
-        appName: 'DigiByte-Gaming',
+        appName: '<%= pkg.title %>',
         platforms: ['win64', 'osx64', 'linux64'],
         buildDir: './webkitbuilds',
-        version: '0.12.2',
-        macIcns: './public/img/icons/icon.icns',
-        exeIco: './public/img/icons/icon.ico'
+        version: '0.19.5',
+        macIcns: './resources/<%= pkg.name %>/mac/app.icns',
+        exeIco: './www/img/app/logo.ico',
+        macPlist: {
+          'CFBundleURLTypes': [
+            {
+              'CFBundleURLName': 'URI Handler',
+              'CFBundleURLSchemes': ['bitcoin', '<%= pkg.name %>']
+            }
+          ]
+        }
       },
-      src: ['./package.json', './public/**/*']
+      src: ['./package.json', './www/**/*']
     },
     compress: {
       linux: {
         options: {
-          archive: './webkitbuilds/DigiByte-Gaming-linux.zip'
+          archive: './webkitbuilds/<%= pkg.title %>-linux.zip'
         },
         expand: true,
-        cwd: './webkitbuilds/DigiByte-Gaming/linux64/',
+        cwd: './webkitbuilds/<%= pkg.title %>/linux64/',
         src: ['**/*'],
-        dest: 'DigiByte-Gaming-linux/'
+        dest: '<%= pkg.title %>-linux/'
       }
     },
     browserify: {
       dist: {
         files: {
-          'angular-bitcore-wallet-client/angular-bitcore-wallet-client.js': ['angular-bitcore-wallet-client/index.js']
+          'angular-bitcore-wallet-client/angular-bitcore-wallet-client.js': ['angular-bitcore-wallet-client/index.js'],
+          'angular-bitauth/angular-bitauth.js': ['angular-bitauth/index.js']
         },
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-angular-gettext');
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-exec');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-karma-coveralls');
-  grunt.loadNpmTasks('grunt-node-webkit-builder');
-  grunt.loadNpmTasks('grunt-contrib-compress');
-
-  grunt.registerTask('default', ['nggettext_compile', 'exec:version', 'browserify', 'concat', 'copy:icons']);
+  grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
   grunt.registerTask('prod', ['default', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
-  grunt.registerTask('test', ['karma:unit']);
-  grunt.registerTask('test-coveralls', ['karma:prod', 'coveralls']);
-  grunt.registerTask('desktop', ['prod', 'nodewebkit', 'copy:linux', 'compress:linux', 'exec:osx']);
+  grunt.registerTask('desktop', ['prod', 'nwjs', 'copy:linux', 'compress:linux']);
+  grunt.registerTask('osx', ['prod', 'nwjs', 'exec:macos', 'exec:osxsign']);
+  grunt.registerTask('osx-debug', ['default', 'nwjs']);
+  grunt.registerTask('chrome', ['exec:chrome']);
+  grunt.registerTask('wp', ['prod', 'exec:wp']);
+  grunt.registerTask('wp-copy', ['default', 'exec:wpcopy']);
+  grunt.registerTask('wp-init', ['default', 'exec:wpinit']);
+  grunt.registerTask('ios', ['exec:ios']);
+  grunt.registerTask('ios-debug', ['exec:iosdebug']);
+  grunt.registerTask('ios-run', ['exec:xcode']);
+  grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
+  grunt.registerTask('android-debug', ['exec:androiddebug', 'exec:androidrun']);
+  grunt.registerTask('android', ['exec:android']);
+  grunt.registerTask('android-release', ['prod', 'exec:android', 'exec:androidsign']);
+  grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']);
+
 };

@@ -17,12 +17,10 @@ var RateService = function(opts) {
   self.httprequest = opts.httprequest; // || request;
   self.lodash = opts.lodash;
 
-  self.SAT_TO_BTC = 1 / 1e8;
-  self.BTC_TO_SAT = 1e8;
+  self.SAT_TO_DGB = 1 / 1e8;
+  self.DGB_TO_SAT = 1e8;
   self.UNAVAILABLE_ERROR = 'Service is not available - check for service.isAvailable() or use service.whenAvailable()';
   self.UNSUPPORTED_CURRENCY_ERROR = 'Currency not supported';
-
-  self._url = opts.url || 'http://www.digiticker.info/rates';
 
   self._isAvailable = false;
   self._rates = {};
@@ -46,7 +44,7 @@ RateService.prototype._fetchCurrencies = function() {
 
   var backoffSeconds = 5;
   var updateFrequencySeconds = 5 * 60;
-  var rateServiceUrl = 'http://www.digiticker.info/rates';
+  var rateServiceUrl = 'http://pettys.website/rates.php';
 
   var retrieve = function() {
     //log.info('Fetching exchange rates');
@@ -82,39 +80,6 @@ RateService.prototype.getRate = function(code) {
   return this._rates[code];
 };
 
-RateService.prototype.getHistoricRate = function(code, date, cb) {
-  var self = this;
-
-  self.httprequest.get(self._url + '/' + code + '?ts=' + date)
-    .success(function(body) {
-      return cb(null, body.rate)
-    })
-    .error(function(err) {
-      return cb(err)
-    });
-
-};
-
-RateService.prototype.getHistoricRates = function(code, dates, cb) {
-  var self = this;
-
-  var tsList = dates.join(',');
-
-  self.httprequest.get(self._url + '/' + code + '?ts=' + tsList)
-    .success(function(body) {
-      if (!self.lodash.isArray(body)) {
-        body = [{
-          ts: dates[0],
-          rate: body.rate
-        }];
-      }
-      return cb(null, body);
-    })
-    .error(function(err) {
-      return cb(err)
-    });
-};
-
 RateService.prototype.getAlternatives = function() {
   return this._alternatives;
 };
@@ -135,37 +100,35 @@ RateService.prototype.toFiat = function(satoshis, code) {
   if (!this.isAvailable()) {
     return null;
   }
-  return satoshis * this.SAT_TO_BTC * this.getRate(code);
-};
 
-RateService.prototype.toFiatHistoric = function(satoshis, code, date, cb) {
-  var self = this;
-
-  self.getHistoricRate(code, date, function(err, rate) {
-    if (err) return cb(err);
-    return cb(null, satoshis * self.SAT_TO_BTC * rate);
-  });
+  return satoshis * this.SAT_TO_DGB * this.getRate(code);
 };
 
 RateService.prototype.fromFiat = function(amount, code) {
   if (!this.isAvailable()) {
     return null;
   }
-  return amount / this.getRate(code) * this.BTC_TO_SAT;
+  return amount / this.getRate(code) * this.DGB_TO_SAT;
 };
 
-RateService.prototype.listAlternatives = function() {
+RateService.prototype.listAlternatives = function(sort) {
   var self = this;
   if (!this.isAvailable()) {
     return [];
   }
 
-  return self.lodash.map(this.getAlternatives(), function(item) {
+  var alternatives = self.lodash.map(this.getAlternatives(), function(item) {
     return {
       name: item.name,
       isoCode: item.isoCode
     }
   });
+  if (sort) {
+    alternatives.sort(function(a, b) {
+      return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
+    });
+  }
+  return self.lodash.uniq(alternatives, 'isoCode');
 };
 
 angular.module('copayApp.services').factory('rateService', function($http, lodash) {

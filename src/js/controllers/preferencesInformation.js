@@ -1,14 +1,40 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesInformation',
-  function($scope, $log, $timeout, isMobile, gettextCatalog, lodash, profileService, storageService, go) {
-    var base = 'xpub';
-    var fc = profileService.focusedClient;
-    var c = fc.credentials;
+  function($scope, $log, $ionicHistory, platformInfo, lodash, profileService, configService, $stateParams, $state, walletService) {
+    var wallet = profileService.getWallet($stateParams.walletId);
+    $scope.wallet = wallet;
 
-    this.init = function() {
+    var walletId = wallet.id;
+    var config = configService.getSync();
+    var colorCounter = 1;
+    var BLACK_WALLET_COLOR = '#202020';
+    $scope.isCordova = platformInfo.isCordova;
+    config.colorFor = config.colorFor || {};
+
+    $scope.saveBlack = function() {
+      function save(color) {
+        var opts = {
+          colorFor: {}
+        };
+        opts.colorFor[walletId] = color;
+
+        configService.set(opts, function(err) {
+          $ionicHistory.removeBackView();
+          $state.go('tabs.home');
+          if (err) $log.warn(err);
+        });
+      };
+
+      if (colorCounter != 5) return colorCounter++;
+      save(BLACK_WALLET_COLOR);
+    };
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      var c = wallet.credentials;
       var basePath = c.getBaseAddressDerivationPath();
 
+      $scope.wallet = wallet;
       $scope.walletName = c.walletName;
       $scope.walletId = c.walletId;
       $scope.network = c.network;
@@ -18,80 +44,13 @@ angular.module('copayApp.controllers').controller('preferencesInformation',
       $scope.M = c.m;
       $scope.N = c.n;
       $scope.pubKeys = lodash.pluck(c.publicKeyRing, 'xPubKey');
-      $scope.addrs = null;
+      $scope.externalSource = null;
 
-      fc.getMainAddresses({
-        doNotVerify: true
-      }, function(err, addrs) {
-        if (err) {
-          $log.warn(err);
-          return;
-        };
-        var last10 = [],
-          i = 0,
-          e = addrs.pop();
-        while (i++ < 10 && e) {
-          e.path = base + e.path.substring(1);
-          last10.push(e);
-          e = addrs.pop();
-        }
-        $scope.addrs = last10;
-        $timeout(function() {
-          $scope.$apply();
-        });
-
-      });
-    };
-
-    this.sendAddrs = function() {
-      var self = this;
-
-      if (isMobile.Android() || isMobile.Windows()) {
-        window.ignoreMobilePause = true;
+      if (wallet.isPrivKeyExternal()) {
+        $scope.externalSource = lodash.find(walletService.externalSource, function(source) {
+          return source.id == wallet.getPrivKeyExternalSourceName();
+        }).name;
       }
-
-      self.loading = true;
-
-      function formatDate(ts) {
-        var dateObj = new Date(ts * 1000);
-        if (!dateObj) {
-          $log.debug('Error formating a date');
-          return 'DateError';
-        }
-        if (!dateObj.toJSON()) {
-          return '';
-        }
-        return dateObj.toJSON();
-      };
-
-      $timeout(function() {
-        fc.getMainAddresses({
-          doNotVerify: true
-        }, function(err, addrs) {
-          self.loading = false;
-          if (err) {
-            $log.warn(err);
-            return;
-          };
-
-          var body = 'DigiByte Gaming Wallet "' + $scope.walletName + '" Addresses\n  Only Main Addresses are  shown.\n\n';
-          body += "\n";
-          body += addrs.map(function(v) {
-            return ('* ' + v.address + ' ' + base + v.path.substring(1) + ' ' + formatDate(v.createdOn));
-          }).join("\n");
-
-          var properties = {
-            subject: 'DigiByte Gaming Addresses',
-            body: body,
-            isHtml: false
-          };
-          window.plugin.email.open(properties);
-
-          $timeout(function() {
-            $scope.$apply();
-          }, 1000);
-        });
-      }, 100);
-    };
+    });
 
   });

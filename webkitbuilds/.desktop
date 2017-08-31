@@ -1,12 +1,11 @@
 [Desktop Entry]
 Type=Application
-Version=1.8.2
-Name=Copay
-Comment=A multisignature wallet
-Exec=copay
+Version=3.6.3
+Name=DigiByte Go
+Comment=DigiByte Mobile Wallet
+Exec=digibyte-go
 Icon=icon-256.png
 Terminal=false
 Categories=Finance
 X-Ubuntu-Touch=true
 X-Ubuntu-StageHint=SideStage
-
