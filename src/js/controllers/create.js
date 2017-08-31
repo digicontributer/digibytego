@@ -88,7 +88,7 @@ angular.module('copayApp.controllers').controller('createController',
 
       /*
 
-      Disable Hardware Wallets for BitPay distribution
+      Disable Hardware Wallets for DigiByte Foundation distribution
 
       */
 

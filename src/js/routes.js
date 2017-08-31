@@ -1078,7 +1078,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /*
        *
-       * BitPay Card
+       * DigiByte Foundation Card
        *
        */
 

@@ -116,7 +116,7 @@ angular.module('copayApp.controllers').controller('bitpayCardController', functi
         if ($scope.dateRange.value == 'last30Days') {
 
           // TODO?
-          // $log.debug('BitPay Card: storing cache history');
+          // $log.debug('DigiByte Foundation Card: storing cache history');
           // var cacheHistory = {
           //   balance: history.currentCardBalance,
           //   transactions: history.txs

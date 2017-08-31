@@ -166,7 +166,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       // BitPayCard Authentication
     } else if (data && data.indexOf(appConfigService.name + '://') === 0) {
 
-      // Disable BitPay Card
+      // Disable DigiByte Foundation Card
       if (!appConfigService._enabledExtensions.debitcard) return false;
 
       var secret = getParameterByName('secret', data);
@@ -181,7 +181,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         switch (reason) {
           default:
             case '0':
-            /* For BitPay card binding */
+            /* For DigiByte Foundation card binding */
             $state.transitionTo('tabs.bitpayCardIntro', {
               secret: secret,
               email: email,

@@ -4,7 +4,7 @@
 
   "name": "digibyte-go",
   "description": "DigiByte Mobile Wallet",
-  "author": "BitPay",
+  "author": "DigiByte Foundation",
   "version": "3.6.3",
   "keywords": [
     "bitcoin",
