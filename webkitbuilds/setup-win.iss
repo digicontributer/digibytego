@@ -3,8 +3,8 @@
 
 #define MyAppName "DigiByte Go"
 #define MyAppVersion "3.6.3"
-#define MyAppPublisher "BitPay"
-#define MyAppURL "https://copay.io"
+#define MyAppPublisher "DigiByte Foundation"
+#define MyAppURL "https://digibytego.io"
 #define MyAppExeName "DigiByte Go.exe"
 #define AppId "804636ee-b017-4cad-8719-e58ac97ffa5c"
 
@@ -46,10 +46,10 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFil
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Registry]
-Root: HKCR; Subkey: "bitcoin"; ValueType: "string"; ValueData: "URL:Bitcoin Custom Protocol"; Flags: uninsdeletekey
-Root: HKCR; Subkey: "bitcoin"; ValueType: "string"; ValueName: "URL Protocol"; ValueData: ""
-Root: HKCR; Subkey: "bitcoin\DefaultIcon"; ValueType: "string"; ValueData: "{app}\{#MyAppExeName},0"
-Root: HKCR; Subkey: "bitcoin\shell\open\command"; ValueType: "string"; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
+Root: HKCR; Subkey: "digibyte"; ValueType: "string"; ValueData: "URL:DigiByte Custom Protocol"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "digibyte"; ValueType: "string"; ValueName: "URL Protocol"; ValueData: ""
+Root: HKCR; Subkey: "digibyte\DefaultIcon"; ValueType: "string"; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKCR; Subkey: "digibyte\shell\open\command"; ValueType: "string"; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
 
 Root: HKCR; Subkey: "digibytego"; ValueType: "string"; ValueData: "URL:DigiByte Go Custom Protocol"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "digibytego"; ValueType: "string"; ValueName: "URL Protocol"; ValueData: ""

@@ -48,7 +48,7 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
     // Get Debit Cards
     bitpayService.post('/api/v2/' + apiContext.token, json, function(data) {
       if (data && data.data.error) return cb(data.data.error);
-      $log.info('BitPay Get Debit Cards: SUCCESS');
+      $log.info('DigiByte Foundation Get Debit Cards: SUCCESS');
 
       var cards = [];
 
@@ -56,7 +56,7 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
         var n = {};
 
         if (!x.eid || !x.id || !x.lastFourDigits || !x.token) {
-          $log.warn('BAD data from BitPay card' + JSON.stringify(x));
+          $log.warn('BAD data from DigiByte Foundation card' + JSON.stringify(x));
           return;
         }
 
@@ -74,7 +74,7 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
         return cb(err, cards);
       });
     }, function(data) {
-      return cb(_setError('BitPay Card Error: Get Debit Cards', data));
+      return cb(_setError('DigiByte Foundation Card Error: Get Debit Cards', data));
     });
   };
 
@@ -113,7 +113,7 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
 
         // Get invoices
         bitpayService.post('/api/v2/' + card.token, json, function(data) {
-          $log.info('BitPay Get Invoices: SUCCESS');
+          $log.info('DigiByte Foundation Get Invoices: SUCCESS');
           invoices = data.data.data || [];
 
           if (lodash.isEmpty(invoices))
@@ -125,7 +125,7 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
           };
           // Get transactions list
           bitpayService.post('/api/v2/' + card.token, json, function(data) {
-            $log.info('BitPay Get Transactions: SUCCESS');
+            $log.info('DigiByte Foundation Get Transactions: SUCCESS');
             transactions = data.data.data || {};
             transactions['txs'] = _processTransactions(invoices, transactions.transactionList);
 
@@ -133,10 +133,10 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
 
             return cb(data.data.error, transactions);
           }, function(data) {
-            return cb(_setError('BitPay Card Error: Get Transactions', data));
+            return cb(_setError('DigiByte Foundation Card Error: Get Transactions', data));
           });
         }, function(data) {
-          return cb(_setError('BitPay Card Error: Get Invoices', data));
+          return cb(_setError('DigiByte Foundation Card Error: Get Invoices', data));
         });
       });
     });
@@ -162,14 +162,14 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
           return cb(_setError('Card not found'));
 
         bitpayService.post('/api/v2/' + card.token, json, function(data) {
-          $log.info('BitPay TopUp: SUCCESS');
+          $log.info('DigiByte Foundation TopUp: SUCCESS');
           if (data.data.error) {
             return cb(data.data.error);
           } else {
             return cb(null, data.data.data.invoice);
           }
         }, function(data) {
-          return cb(_setError('BitPay Card Error: TopUp', data));
+          return cb(_setError('DigiByte Foundation Card Error: TopUp', data));
         });
       });
     });
@@ -177,10 +177,10 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
 
   root.getInvoice = function(id, cb) {
     bitpayService.get('/invoices/' + id, function(data) {
-      $log.info('BitPay Get Invoice: SUCCESS');
+      $log.info('DigiByte Foundation Get Invoice: SUCCESS');
       return cb(data.data.error, data.data.data);
     }, function(data) {
-      return cb(_setError('BitPay Card Error: Get Invoice', data));
+      return cb(_setError('DigiByte Foundation Card Error: Get Invoice', data));
     });
   };
 
@@ -218,7 +218,7 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
   root.remove = function(cardId, cb) {
     storageService.removeBitpayDebitCard(bitpayService.getEnvironment().network, cardId, function(err) {
       if (err) {
-        $log.error('Error removing BitPay debit card: ' + err);
+        $log.error('Error removing DigiByte Foundation debit card: ' + err);
         return cb(err);
       }
       root.registerNextStep();
@@ -228,10 +228,10 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
 
   root.getRates = function(currency, cb) {
     bitpayService.get('/rates/' + currency, function(data) {
-      $log.info('BitPay Get Rates: SUCCESS');
+      $log.info('DigiByte Foundation Get Rates: SUCCESS');
       return cb(data.data.error, data.data.data);
     }, function(data) {
-      return cb(_setError('BitPay Error: Get Rates', data));
+      return cb(_setError('DigiByte Foundation Error: Get Rates', data));
     });
   };
 
@@ -282,7 +282,7 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
   root.bpTranCodes = {
     '00611': {
       merchant: {
-        name: 'BitPay',
+        name: 'DigiByte Foundation',
         city: 'Atlanta',
         state: 'GA'
       },
@@ -1329,20 +1329,20 @@ angular.module('copayApp.services').factory('bitpayCardService', function($log, 
     9701: 'default',
     9702: 'default',
     9950: 'default',
-    'bp001': 'bitcoin-topup',
+    'bp001': 'digibyte-topup',
     'bp002': 'default'
   };
 
   var nextStepItem = {
     name: 'bitpaycard',
-    title: 'Add BitPay Visa® Card',
+    title: 'Add DigiByte Foundation Visa® Card',
     icon: 'icon-bitpay-card',
     sref: 'tabs.bitpayCardIntro',
   };
 
 
   root.registerNextStep = function() {
-    // Disable BitPay Card
+    // Disable DigiByte Foundation Card
     if (!appConfigService._enabledExtensions.debitcard) return;
     root.getCards(function(err, cards) {
       if (lodash.isEmpty(cards)) {

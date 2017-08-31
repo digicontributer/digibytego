@@ -17,7 +17,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     // Go to...
-    _id = data.stateParams.id; // Optional (BitPay Card ID or Wallet ID)
+    _id = data.stateParams.id; // Optional (DigiByte Foundation Card ID or Wallet ID)
     $scope.nextStep = data.stateParams.nextStep;
     $scope.currency = data.stateParams.currency;
     $scope.forceCurrency = data.stateParams.forceCurrency;

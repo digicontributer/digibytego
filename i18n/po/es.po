@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: copay\n"
+"Project-Id-Version: digibytego\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.com\n"
-"X-Crowdin-Project: copay\n"
+"X-Crowdin-Project: digibytego\n"
 "X-Crowdin-Language: es-ES\n"
 "X-Crowdin-File: template.pot\n"
 "Last-Translator: cmgustavo83\n"
@@ -174,8 +174,8 @@ msgid "All of your digibyte wallet balance may not be available for immediate sp
 msgstr "Todo el balance de tu billetera puede que no esté disponible para su uso inmediato."
 
 #: www/views/tab-receive.html:25
-msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
-msgstr "Todos los dispositivos de los firmantes deben ser agregados a esta billetera compartido antes de que se puedan crear direcciones bitcoin."
+msgid "All signing devices must be added to this multisig wallet before digibyte addresses can be created."
+msgstr "Todos los dispositivos de los firmantes deben ser agregados a esta billetera compartido antes de que se puedan crear direcciones digibyte."
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
@@ -218,19 +218,19 @@ msgid "An update to this app is available. For your security, please update to t
 msgstr "Actualización disponible. Por seguridad, actualiza a la versión más reciente."
 
 #: www/views/backupWarning.html:14
-msgid "Anyone with your backup phrase can access or spend your bitcoin."
+msgid "Anyone with your backup phrase can access or spend your digibyte."
 msgstr "Cualquier persona con tu copia de seguridad puede gastar tus bitcoins."
 
 #: www/views/addresses.html:94
-msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
-msgstr "Comisión aproximada de la red Bitcoin para transferir el saldo de esta billetera (con prioridad normal)"
+msgid "Approximate DigiByte network fee to transfer wallet's balance (with normal priority)"
+msgstr "Comisión aproximada de la red DigiByte para transferir el saldo de esta billetera (con prioridad normal)"
 
 #: www/views/backupWarning.html:10
 msgid "Are you being watched?"
 msgstr "¿Estás siendo observado?"
 
 #: src/js/controllers/preferencesExternal.js:15
-msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
+msgid "Are you being watched? Anyone with your recovery phrase can access or spend your digibyte."
 msgstr "¿Estás siendo observado? Cualquier persona con tu copia de seguridad puede gastar tus bitcoins."
 
 #: src/js/controllers/copayers.js:56
@@ -337,37 +337,37 @@ msgid "DigiByte Foundation Visa&reg; Cards"
 msgstr "Tarjetas DigiByte Foundation Visa&reg;"
 
 #: www/views/addressbook.add.html:38
-msgid "Bitcoin Address"
-msgstr "Dirección Bitcoin"
+msgid "DigiByte Address"
+msgstr "Dirección DigiByte"
 
 #: www/views/modals/chooseFeeLevel.html:4
 #: www/views/preferencesFee.html:4
 #: www/views/tab-settings.html:85
 msgid "DigiByte Network Fee Policy"
-msgstr "Política de Comisión de la Red Bitcoin"
+msgstr "Política de Comisión de la Red DigiByte"
 
 #: www/views/paymentUri.html:10
-msgid "Bitcoin URI is NOT valid!"
+msgid "DigiByte URI is NOT valid!"
 msgstr "¡Bitcoin URI no es válida!"
 
 #: www/views/tab-settings.html:63
-msgid "Bitcoin Unit"
-msgstr "Unidad de Bitcoin"
+msgid "DigiByte Unit"
+msgstr "Unidad de DigiByte"
 
 #: www/views/onboarding/tour.html:31
-msgid "Bitcoin is a currency."
-msgstr "Bitcoin es una moneda."
+msgid "DigiByte is a currency."
+msgstr "DigiByte es una moneda."
 
 #: www/views/onboarding/disclaimer.html:15
 msgid "DigiByte is different &ndash; it cannot be safely held with a bank or web service."
-msgstr "Bitcoin es diferente &ndash; no se puede resguardar con ningún servicio web o banco."
+msgstr "DigiByte es diferente &ndash; no se puede resguardar con ningún servicio web o banco."
 
 #: www/views/onboarding/tour.html:18
 msgid "DigiByte is secure,<br>digital money."
-msgstr "Bitcoin es seguro,<br> dinero digital."
+msgstr "DigiByte es seguro,<br> dinero digital."
 
 #: www/views/preferencesFee.html:11
-msgid "Bitcoin transactions include a fee collected by miners on the network."
+msgid "DigiByte transactions include a fee collected by miners on the network."
 msgstr "Las transacciones de bitcoins incluyen una comisión recogida por los mineros de la red."
 
 #: www/views/modals/txp-details.html:36
@@ -388,15 +388,15 @@ msgid "Browser unsupported"
 msgstr "Navegador no soportado"
 
 #: www/views/includes/buyAndSellCard.html:4
-msgid "Buy &amp; Sell Bitcoin"
-msgstr "Comprar &amp; Vender Bitcoin"
+msgid "Buy &amp; Sell DigiByte"
+msgstr "Comprar &amp; Vender DigiByte"
 
 #: www/views/tab-send.html:35
-msgid "Buy Bitcoin"
-msgstr "Comprar Bitcoin"
+msgid "Buy DigiByte"
+msgstr "Comprar DigiByte"
 
 #: src/js/services/onGoingProcess.js:40
-msgid "Buying Bitcoin..."
+msgid "Buying DigiByte..."
 msgstr "Comprando Bitcoins..."
 
 #: src/js/services/onGoingProcess.js:12
@@ -816,7 +816,7 @@ msgid "Download"
 msgstr "Descargar"
 
 #: www/views/addresses.html:19
-msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
+msgid "Each digibyte wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
 msgstr "Cada billetera puede generar billones de direcciones desde sus 12 palabras. Se genera una nueva dirección automáticamente cada vez que se recibe un pago."
 
 #: src/js/services/feeService.js:13
@@ -1271,7 +1271,7 @@ msgid "I understand"
 msgstr "Entiendo"
 
 #: www/views/onboarding/disclaimer.html:21
-msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
+msgid "I understand that if this app is moved to another device or deleted, my digibyte can only be recovered with the backup phrase."
 msgstr "Entiendo que si esta aplicación es borrada, mis fondos pueden recuperarse únicamente con la copia de seguridad."
 
 #: www/views/onboarding/disclaimer.html:18
@@ -1687,8 +1687,8 @@ msgid "Note"
 msgstr "Nota"
 
 #: www/views/modals/wallets.html:25
-msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
-msgstr "Aviso: solo billeteras 1-1 (única firma) pueden ser utilizadas para vender bitcoin"
+msgid "Notice: only 1-1 (single signature) wallets can be used for sell digibyte"
+msgstr "Aviso: solo billeteras 1-1 (única firma) pueden ser utilizadas para vender digibyte"
 
 #: www/views/preferencesNotifications.html:3
 #: www/views/tab-settings.html:46
@@ -1802,8 +1802,8 @@ msgid "Paste the backup plain text code"
 msgstr "Pegar copia de seguridad en texto plano"
 
 #: www/views/DigiByte FoundationCardIntro.html:28
-msgid "Pay 0% fees to turn bitcoin into dollars."
-msgstr "Paga 0% de comisión para transformar tus bitcoin en dólares."
+msgid "Pay 0% fees to turn digibyte into dollars."
+msgstr "Paga 0% de comisión para transformar tus digibyte en dólares."
 
 #: www/views/modals/paypro.html:18
 msgid "Pay To"
@@ -1907,8 +1907,8 @@ msgid "Please tap each word in the correct order."
 msgstr "Escoje las palabras en el orden correcto."
 
 #: src/js/services/bwcError.js:101
-msgid "Please upgrade Copay to perform this action"
-msgstr "Por favor actualiza Copay para realizar esta acción"
+msgid "Please upgrade DigiByteGo to perform this action"
+msgstr "Por favor actualiza DigiByteGo para realizar esta acción"
 
 #: src/js/controllers/import.js:222
 msgid "Please, select your backup file"
@@ -2174,7 +2174,7 @@ msgstr "Buscar transacciones"
 
 #: www/views/tab-send.html:13
 msgid "Search or enter digibyte address"
-msgstr "Buscar o introducir dirección bitcoin"
+msgstr "Buscar o introducir dirección digibyte"
 
 #: www/views/modals/search.html:16
 msgid "Search transactions"
@@ -2202,7 +2202,7 @@ msgid "Self-signed Certificate"
 msgstr "Certificado autofirmado"
 
 #: src/js/services/onGoingProcess.js:41
-msgid "Selling Bitcoin..."
+msgid "Selling DigiByte..."
 msgstr "Vendiendo Bitcoins..."
 
 #: www/views/feedback/send.html:13
@@ -2342,8 +2342,8 @@ msgid "Show advanced options"
 msgstr "Mostrar opciones avanzadas"
 
 #: www/views/tab-send.html:37
-msgid "Show bitcoin address"
-msgstr "Mostrar dirección bitcoin"
+msgid "Show digibyte address"
+msgstr "Mostrar dirección digibyte"
 
 #: www/views/tab-send.html:59
 msgid "Show more"
@@ -2393,12 +2393,12 @@ msgid "Spending Password needed"
 msgstr "Se necesita la contraseña para pagos"
 
 #: www/views/walletDetails.html:162
-msgid "Spending this balance will need significant Bitcoin network fees"
+msgid "Spending this balance will need significant DigiByte network fees"
 msgstr "Gastar este balance requiere de significativas comisiones de la red"
 
 #: www/views/tab-send.html:28
-msgid "Start sending bitcoin"
-msgstr "Empezar a enviar bitcoin"
+msgid "Start sending digibyte"
+msgstr "Empezar a enviar digibyte"
 
 #: src/js/routes.js:118
 msgid "Starting..."
@@ -2434,7 +2434,7 @@ msgstr "ESTA ACCIÓN NO SE PUEDE REVERTIR"
 
 #: www/views/onboarding/welcome.html:5
 msgid "Take control of your money,<br>get started with digibyte."
-msgstr "Toma control de tu dinero,<br>comienza a utilizar bitcoin."
+msgstr "Toma control de tu dinero,<br>comienza a utilizar digibyte."
 
 #: www/views/walletDetails.html:140
 #: www/views/walletDetails.html:60
@@ -2482,15 +2482,15 @@ msgid "The Ledger Chrome application is not installed"
 msgstr "La aplicación Ledger de Chrome no esta instalada"
 
 #: www/views/modals/wallet-balance.html:55
-msgid "The amount of bitcoin immediately spendable from this wallet."
+msgid "The amount of digibyte immediately spendable from this wallet."
 msgstr "Total de bitcoins disponibles en esta billetera para su uso inmediato."
 
 #: www/views/modals/wallet-balance.html:93
-msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
+msgid "The amount of digibyte stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
 msgstr "La cantidad de bitcoins almacenados en esta billetera que se utilizan como \"inputs\" en la transacción pendiente. Esa cantidad se determina en base a los \"unspent transaction outputs\" asociados con la billetera, estos pueden que sean mayor al monto enviado en la transacción en cuestión."
 
 #: www/views/modals/wallet-balance.html:74
-msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
+msgid "The amount of digibyte stored in this wallet with less than 1 blockchain confirmation."
 msgstr "La cantidad de bitcoins almacenados en esta billetera que poseen menos de 1 confirmación en \"Blockchain\"."
 
 #: www/views/tab-import-phrase.html:5
@@ -2545,7 +2545,7 @@ msgid "The spend proposal is not pending"
 msgstr "La propuesta de gasto no esta pendiente"
 
 #: www/views/modals/wallet-balance.html:36
-msgid "The total amount of bitcoin stored in this wallet."
+msgid "The total amount of digibyte stored in this wallet."
 msgstr "El total de bitcoins almacenados en esta billetera."
 
 #: www/views/preferencesHistory.html:27
@@ -2584,7 +2584,7 @@ msgid "This app stores your digibyte with cutting-edge security."
 msgstr "Esta aplicación almacena tus bitcoins con seguridad avanzada."
 
 #: src/js/controllers/confirm.js:464
-msgid "This bitcoin payment request has expired."
+msgid "This digibyte payment request has expired."
 msgstr "Esta solicitud de pago ha caducado."
 
 #: www/views/join.html:130
@@ -2598,8 +2598,8 @@ msgid "This recovery phrase was created with a password. To recover this wallet 
 msgstr "Esta frase de recuperación fue creada con una contraseña. Para recuperar esta billetera, la frase de recuperación y la contraseña son necesarios."
 
 #: www/views/tx-details.html:93
-msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
-msgstr "Este monto en la transacción es demasiado bajo comparado con las comisiones de la red Bitcoin. Para gastar estos fondos se requiere disponer de un monto superior a la comisión requerida por la red Bitcoin."
+msgid "This transaction amount is too small compared to current DigiByte network fees. Spending these funds will need a DigiByte network fee cost comparable to the funds itself."
+msgstr "Este monto en la transacción es demasiado bajo comparado con las comisiones de la red DigiByte. Para gastar estos fondos se requiere disponer de un monto superior a la comisión requerida por la red DigiByte."
 
 #: www/views/tx-details.html:89
 msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
@@ -2625,11 +2625,11 @@ msgid "To"
 msgstr "Para"
 
 #: www/views/tab-send.html:32
-msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
-msgstr "Para empezar, compra bitcoin o comparte tu dirección. Puedes recibir bitcoin desde cualquier billetera o servicio."
+msgid "To get started, buy digibyte or share your address. You can receive digibyte from any wallet or service."
+msgstr "Para empezar, compra digibyte o comparte tu dirección. Puedes recibir digibyte desde cualquier billetera o servicio."
 
 #: www/views/tab-send.html:33
-msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgid "To get started, you'll need to create a digibyte wallet and get some digibyte."
 msgstr "Para empezar, necesitarás crear una billetera y obtener bitcoins."
 
 #: src/js/services/DigiByte FoundationAccountService.js:73
@@ -2713,7 +2713,7 @@ msgid "Try again in {{expires}}"
 msgstr "Intenta de nuevo en {{expires}}"
 
 #: www/views/DigiByte FoundationCardIntro.html:18
-msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
+msgid "Turn digibyte into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
 msgstr "Convierta Bitcoins en Dólares, use Visa<sup>&reg;</sup>."
 
 #: www/views/tab-import-phrase.html:17
@@ -2919,8 +2919,8 @@ msgid "Wallet already exists"
 msgstr "La billetera ya existe"
 
 #: src/js/services/profileService.js:498
-msgid "Wallet already in Copay"
-msgstr "La billetera ya existe en Copay"
+msgid "Wallet already in DigiByteGo"
+msgstr "La billetera ya existe en DigiByteGo"
 
 #: www/views/includes/walletActivity.html:6
 msgid "Wallet created"
@@ -3070,8 +3070,8 @@ msgid "You can make contributions by signing up on our Crowdin community transla
 msgstr "Se pueden hacer contribuciones al registrarse en nuestro proyecto de traducciones en Crowdin. ¡Esperamos tener noticias tuyas!"
 
 #: www/views/tab-scan.html:16
-msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
-msgstr "Puedes escanear direcciones bitcoin, solicitudes de pago, billeteras de papel y más."
+msgid "You can scan digibyte addresses, payment requests, paper wallets, and more."
+msgstr "Puedes escanear direcciones digibyte, solicitudes de pago, billeteras de papel y más."
 
 #: src/js/controllers/preferencesAbout.js:14
 msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
@@ -3079,7 +3079,7 @@ msgstr "Puede ver las últimas novedades y contribuir a nuestra aplicación de c
 
 #: www/views/onboarding/tour.html:19
 msgid "You can spend digibyte at millions of websites and stores worldwide."
-msgstr "Puedes utilizar bitcoin en millones de páginas web y tiendas en todo el mundo."
+msgstr "Puedes utilizar digibyte en millones de páginas web y tiendas en todo el mundo."
 
 #: www/views/backup.html:12
 msgid "You can still export it from Advanced &gt; Export."
@@ -3107,11 +3107,11 @@ msgstr "Tu Tarjeta DigiByte Foundation ya esta lista. Agrega fondos para comenza
 
 #: www/views/includes/confirmBackupPopup.html:6
 msgid "Your digibyte wallet is backed up!"
-msgstr "¡Su billetera bitcoin está resguardada!"
+msgstr "¡Su billetera digibyte está resguardada!"
 
 #: www/views/tab-home.html:36
 msgid "Your digibyte wallet is ready!"
-msgstr "¡Su billetera bitcoin está lista!"
+msgstr "¡Su billetera digibyte está lista!"
 
 #: www/views/feedback/send.html:42
 msgid "Your ideas, feedback, or comments"
@@ -3186,8 +3186,8 @@ msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain inform
 msgstr "{{appName}} depende de Bitcore Wallet Service (BWS) para obtener información sobre blockchain y sincronización del Copayer. La configuración por defecto apunta a https://bws.DigiByte Foundation.com (instancia pública de DigiByte Foundation)."
 
 #: src/js/controllers/confirm.js:354
-msgid "{{fee}} will be deducted for bitcoin networking fees."
-msgstr "{{fee}} se descontará por comisión de la red bitcoin."
+msgid "{{fee}} will be deducted for digibyte networking fees."
+msgstr "{{fee}} se descontará por comisión de la red digibyte."
 
 #: www/views/confirm.html:87
 msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"

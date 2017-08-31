@@ -7,7 +7,7 @@
 //var request = require('request');
 
 /*
-  This class lets interfaces with BitPay's exchange rate API.
+  This class lets interfaces with DigiByte Foundation's exchange rate API.
 */
 
 var RateService = function(opts) {

@@ -8,10 +8,10 @@ angular.module('copayApp.controllers').controller('bitpayCardIntroController', f
         email: data.stateParams.email,
         otp: data.stateParams.otp
       };
-      var pairingReason = gettextCatalog.getString('add your BitPay Visa card(s)');
+      var pairingReason = gettextCatalog.getString('add your DigiByte Foundation Visa card(s)');
       bitpayAccountService.pair(pairData, pairingReason, function(err, paired, apiContext) {
         if (err) {
-          popupService.showAlert(gettextCatalog.getString('Error pairing BitPay Account'), err);
+          popupService.showAlert(gettextCatalog.getString('Error pairing DigiByte Foundation Account'), err);
           return;
         }
         if (paired) {
@@ -68,7 +68,7 @@ angular.module('copayApp.controllers').controller('bitpayCardIntroController', f
   };
 
   var showAccountSelector = function() {
-    $scope.accountSelectorTitle = gettextCatalog.getString('From BitPay account');
+    $scope.accountSelectorTitle = gettextCatalog.getString('From DigiByte Foundation account');
     $scope.showAccounts = ($scope.accounts != undefined);
   };
 

@@ -102,20 +102,20 @@ angular.module('copayApp.services').factory('amazonService', function($http, $lo
     };
 
     $http(_postBitPay('/amazon-gift/pay', dataSrc)).then(function(data) {
-      $log.info('BitPay Create Invoice: SUCCESS');
+      $log.info('DigiByte Foundation Create Invoice: SUCCESS');
       return cb(null, data.data);
     }, function(data) {
-      $log.error('BitPay Create Invoice: ERROR ' + data.data.message);
+      $log.error('DigiByte Foundation Create Invoice: ERROR ' + data.data.message);
       return cb(data.data);
     });
   };
 
   root.getBitPayInvoice = function(id, cb) {
     $http(_getBitPay('/invoices/' + id)).then(function(data) {
-      $log.info('BitPay Get Invoice: SUCCESS');
+      $log.info('DigiByte Foundation Get Invoice: SUCCESS');
       return cb(null, data.data.data);
     }, function(data) {
-      $log.error('BitPay Get Invoice: ERROR ' + data.data.error);
+      $log.error('DigiByte Foundation Get Invoice: ERROR ' + data.data.error);
       return cb(data.data.error);
     });
   };

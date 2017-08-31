@@ -21,7 +21,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       var value = match[0].replace(',', '.');
       var newUri = data.replace(regex, value);
 
-      // mobile devices, uris like copay://glidera
+      // mobile devices, uris like digibytego://glidera
       newUri.replace('://', ':');
 
       return newUri;
@@ -67,8 +67,8 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       }, 100);
     }
     // data extensions for Payment Protocol with non-backwards-compatible request
-    if ((/^bitcoin:\?r=[\w+]/).exec(data)) {
-      data = decodeURIComponent(data.replace('bitcoin:?r=', ''));
+    if ((/^digibyte:\?r=[\w+]/).exec(data)) {
+      data = decodeURIComponent(data.replace('digibyte:?r=', ''));
       $state.go('tabs.send', {}, {
         'reload': true,
         'notify': $state.current.name == 'tabs.send' ? false : true
@@ -166,7 +166,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       // BitPayCard Authentication
     } else if (data && data.indexOf(appConfigService.name + '://') === 0) {
 
-      // Disable BitPay Card
+      // Disable DigiByte Foundation Card
       if (!appConfigService._enabledExtensions.debitcard) return false;
 
       var secret = getParameterByName('secret', data);
@@ -181,7 +181,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         switch (reason) {
           default:
             case '0':
-            /* For BitPay card binding */
+            /* For DigiByte Foundation card binding */
             $state.transitionTo('tabs.bitpayCardIntro', {
               secret: secret,
               email: email,
@@ -193,7 +193,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       return true;
 
       // Join
-    } else if (data && data.match(/^copay:[0-9A-HJ-NP-Za-km-z]{70,80}$/)) {
+    } else if (data && data.match(/^digibytego:[0-9A-HJ-NP-Za-km-z]{70,80}$/)) {
       $state.go('tabs.home', {}, {
         'reload': true,
         'notify': $state.current.name == 'tabs.home' ? false : true

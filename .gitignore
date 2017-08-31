@@ -85,7 +85,7 @@ src/sass/*.css
 .sass-cache
 src/sass/app
 
-# copay www
+# digibytego www
 www/css/*
 www/lib/*
 www/js/*

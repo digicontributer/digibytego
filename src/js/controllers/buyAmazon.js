@@ -174,7 +174,7 @@ angular.module('copayApp.controllers').controller('buyAmazonController', functio
         amazonService.getBitPayInvoice(dataInvoice.invoiceId, function(err, invoice) {
           if (err) {
             ongoingProcess.set('buyingGiftCard', false, statusChangeHandler);
-            showError('Error getting BitPay invoice', err);
+            showError('Error getting DigiByte Foundation invoice', err);
             return;
           }
 
