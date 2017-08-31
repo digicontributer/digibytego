@@ -40,7 +40,7 @@ angular.module('copayApp.controllers').controller('tabSettingsController', funct
 
   $scope.openExternalLink = function() {
     var appName = appConfigService.name;
-    var url = appName == 'digibytego' ? 'https://github.com/bitpay/digibytego/issues' : 'https://help.bitpay.com/bitpay-app';
+    var url = 'https://digibyte.co/go';
     var optIn = true;
     var title = null;
     var message = gettextCatalog.getString('Help and support information is available at the website.');
