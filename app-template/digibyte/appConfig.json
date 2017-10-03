@@ -1,6 +1,6 @@
 {
   "packageName": "digibyte-go",
-  "packageDescription": "DigiByte Mobile Wallet",
+  "packageDescription": "DigiByte Go Wallet",
   "packageNameId": "co.digibyte.digibytegaming",
   "userVisibleName": "DigiByte Go",
   "purposeLine": "DigiByte Mobile Wallet",
@@ -14,7 +14,7 @@
   "gitHubRepoUrl": "git://github.com/digibyte/digibytego.git",
   "gitHubRepoBugs": "https://github.com/digibyte/digibytego/issues",
   "disclaimerUrl": "https://digibytego.io/disclaimer",
-  "url": "https://digibyte.co",
+  "url": "https://digibyte.io",
   "appDescription": "DigiByte Mobile Wallet",
   "winAppName": "DigiByteGo",
   "WindowsStoreIdentityName": "18C7659D.DigiByteGo-SecureBitcoinWallet",

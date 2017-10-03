@@ -1,13 +1,13 @@
-<img src="https://raw.githubusercontent.com/bitpay/digibytego/master/resources/digibytego/android/icon/drawable-xxxhdpi-icon.png" alt="DigiByteGo" width="79">
+<img src="https://raw.githubusercontent.com/DigiByte Foundation/digibytego/master/resources/digibytego/android/icon/drawable-xxxhdpi-icon.png" alt="DigiByteGo" width="79">
 
-[![Build Status](https://secure.travis-ci.org/bitpay/digibytego.svg)](http://travis-ci.org/bitpay/digibytego)
+[![Build Status](https://secure.travis-ci.org/DigiByte Foundation/digibytego.svg)](http://travis-ci.org/DigiByte Foundation/digibytego)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/digibytego/localized.png)](https://crowdin.com/project/digibytego)
 
-DigiByteGo is a secure digibyte wallet platform for both desktop and mobile devices. DigiByteGo uses [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service) (BWS) for peer synchronization and network interfacing.
+DigiByteGo is a secure digibyte wallet platform for both desktop and mobile devices. DigiByteGo uses [Bitcore Wallet Service](https://github.com/DigiByte Foundation/bitcore-wallet-service) (BWS) for peer synchronization and network interfacing.
 
-Binary versions of DigiByteGo are available for download at [DigiByteGo.io](https://digibytego.io/#download). DigiByteGo Binaries are signed with the key `digibytego@bitpay.com` – See the section [`How to Verify DigiByteGo Signatures`](https://github.com/bitpay/digibytego#how-to-verify-digibytego-signatures) for details.
+Binary versions of DigiByteGo are available for download at [DigiByte.io](https://digibyte.io/#download). DigiByteGo Binaries are signed with the key `digibytego@DigiByteFoundation.org` – See the section [`How to Verify DigiByteGo Signatures`](https://github.com/DigiByte Foundation/digibytego#how-to-verify-digibytego-signatures) for details.
 
-For a list of frequently asked questions please visit the [DigiByteGo FAQ](https://github.com/bitpay/digibytego/wiki/COPAY---FAQ).
+For a list of frequently asked questions please visit the [DigiByteGo FAQ](https://github.com/DigiByte Foundation/digibytego/wiki/DigiByte Go---FAQ).
 
 ## Main Features
 
@@ -27,16 +27,16 @@ For a list of frequently asked questions please visit the [DigiByteGo FAQ](https
 - Push notifications (only available for ios and android versions)
 - Customizable wallet naming and background colors
 - Multiple languages supported
-- Available for [iOS](https://itunes.apple.com/us/app/digibytego/id951330296), [Android](https://play.google.com/store/apps/details?id=com.bitpay.digibytego&hl=en), [Windows Phone](http://www.windowsphone.com/en-us/store/app/digibytego-wallet/4372479b-a064-4d18-8bd3-74a3bdb81c3a), [Chrome App](https://chrome.google.com/webstore/detail/digibytego/cnidaodnidkbaplmghlelgikaiejfhja?hl=en), [Linux](https://github.com/bitpay/digibytego/releases/latest), [Windows](https://github.com/bitpay/digibytego/releases/latest) and [OS X](https://github.com/bitpay/digibytego/releases/latest) devices
+- Available for [iOS](https://itunes.apple.com/us/app/digibytego/id951330296), [Android](https://play.google.com/store/apps/details?id=com.DigiByte Foundation.digibytego&hl=en), [Windows Phone](http://www.windowsphone.com/en-us/store/app/digibytego-wallet/4372479b-a064-4d18-8bd3-74a3bdb81c3a), [Chrome App](https://chrome.google.com/webstore/detail/digibytego/cnidaodnidkbaplmghlelgikaiejfhja?hl=en), [Linux](https://github.com/DigiByte Foundation/digibytego/releases/latest), [Windows](https://github.com/DigiByte Foundation/digibytego/releases/latest) and [OS X](https://github.com/DigiByte Foundation/digibytego/releases/latest) devices
 
 ## Testing in a Browser
 
-> **Note:** This method should only be used for development purposes. When running DigiByteGo in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys. For production use, see the latest official [releases](https://github.com/bitpay/digibytego/releases/).
+> **Note:** This method should only be used for development purposes. When running DigiByteGo in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys. For production use, see the latest official [releases](https://github.com/DigiByte Foundation/digibytego/releases/).
 
 Clone the repo and open the directory:
 
 ```sh
-git clone https://github.com/bitpay/digibytego.git
+git clone https://github.com/DigiByte Foundation/digibytego.git
 cd digibytego
 ```
 
@@ -143,12 +143,12 @@ On success, the Chrome extension will be located at: `browser-extensions/chrome/
 
 ### Enable External Services
 
-To enable external services, set the `COPAY_EXTERNAL_SERVICES_CONFIG_LOCATION` or `BITPAY_EXTERNAL_SERVICES_CONFIG_LOCATION` environment variable to the location of your configuration before running the `apply` task.
+To enable external services, set the `DigiByte Go_EXTERNAL_SERVICES_CONFIG_LOCATION` or `DigiByte Foundation_EXTERNAL_SERVICES_CONFIG_LOCATION` environment variable to the location of your configuration before running the `apply` task.
 
 ```sh
-COPAY_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.digibytego/externalServices.json" npm run apply:digibytego
+DigiByte Go_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.digibytego/externalServices.json" npm run apply:digibytego
 # or
-BITPAY_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.bitpay/externalServices.json" npm run apply:bitpay
+DigiByte Foundation_EXTERNAL_SERVICES_CONFIG_LOCATION="~/.DigiByte Foundation/externalServices.json" npm run apply:DigiByte Foundation
 ```
 
 ## About DigiByteGo
@@ -167,18 +167,18 @@ For more information regarding how addresses are generated using this procedure,
 
 Since v1.2 DigiByteGo uses BIP39 mnemonics for backing up wallets.  The BIP44 standard is used for wallet address derivation. Multisig wallets use P2SH addresses, while non-multisig wallets use P2PKH.
 
-Information about backup and recovery procedures is available at: https://github.com/bitpay/digibytego/blob/master/backupRecovery.md
+Information about backup and recovery procedures is available at: https://github.com/DigiByte Foundation/digibytego/blob/master/backupRecovery.md
 
 Previous versions of DigiByteGo used files as backups. See the following section.
 
-It is possible to recover funds from a DigiByteGo Wallet without using DigiByteGo or the Wallet Service, check the [DigiByteGo Recovery Tool](https://github.com/bitpay/digibytego-recovery).
+It is possible to recover funds from a DigiByteGo Wallet without using DigiByteGo or the Wallet Service, check the [DigiByteGo Recovery Tool](https://github.com/DigiByte Foundation/digibytego-recovery).
 
 
 ## Wallet Export Format
 
 DigiByteGo encrypts the backup with the [Stanford JS Crypto Library](http://bitwiseshiftleft.github.io/sjcl/).  To extract the private key of your wallet you can use https://bitwiseshiftleft.github.io/sjcl/demo/, copy the backup to 'ciphertext' and enter your password.  The resulting JSON will have a key named: `xPrivKey`, that is the extended private key of your wallet.  That information is enough to sign any transaction from your wallet, so be careful when handling it!
 
-The backup also contains the key `publicKeyRing` that holds the extended public keys of the Copayers.
+The backup also contains the key `publicKeyRing` that holds the extended public keys of the DigiByte Goers.
 Depending on the key `derivationStrategy`, addresses are derived using
 [BIP44](https://github.com/digibyte/bips/blob/master/bip-0044.mediawiki) or [BIP45](https://github.com/digibyte/bips/blob/master/bip-0045.mediawiki). Wallets created in DigiByteGo v1.2 and forward always use BIP44, all previous wallets use BIP45. Also note that since DigiByteGo version v1.2, non-multisig wallets use address types Pay-to-PublicKeyHash (P2PKH) while multisig wallets still use Pay-to-ScriptHash (P2SH) (key `addressType` at the backup):
 
@@ -193,12 +193,12 @@ Using a tool like [Bitcore PlayGround](http://bitcore.io/playground) all wallet 
 
 BIP45 note: All addresses generated at BWS with BIP45 use the 'shared cosigner index' (2147483647) so DigiByteGo address indexes look like: `m/45'/2147483647/0/x` for main addresses and `m/45'/2147483647/1/y` for change addresses.
 
-Since version 1.5, DigiByteGo uses the root `m/48'` for hardware multisignature wallets. This was coordinated with Ledger and Trezor teams. While the derivation path format is still similar to BIP44, the root was in order to indicate that these wallets are not discoverable by scanning addresses for funds. Address generation for multisignature wallets requires the other copayers extended public keys.
+Since version 1.5, DigiByteGo uses the root `m/48'` for hardware multisignature wallets. This was coordinated with Ledger and Trezor teams. While the derivation path format is still similar to BIP44, the root was in order to indicate that these wallets are not discoverable by scanning addresses for funds. Address generation for multisignature wallets requires the other DigiByte Goers extended public keys.
 
 
 ## Bitcore Wallet Service
 
-DigiByteGo depends on [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service) (BWS) for blockchain information, networking and Copayer synchronization.  A BWS instance can be setup and operational within minutes or you can use a public instance like `https://bws.bitpay.com`.  Switching between BWS instances is very simple and can be done with a click from within DigiByteGo.  BWS also allows DigiByteGo to interoperate with other wallets like [Bitcore Wallet CLI] (https://github.com/bitpay/bitcore-wallet).
+DigiByteGo depends on [Bitcore Wallet Service](https://github.com/DigiByte Foundation/bitcore-wallet-service) (BWS) for blockchain information, networking and DigiByte Goer synchronization.  A BWS instance can be setup and operational within minutes or you can use a public instance like `https://bws.DigiByte Foundation.com`.  Switching between BWS instances is very simple and can be done with a click from within DigiByteGo.  BWS also allows DigiByteGo to interoperate with other wallets like [Bitcore Wallet CLI] (https://github.com/DigiByte Foundation/bitcore-wallet).
 
 ## Hardware Wallet Support
 
@@ -225,7 +225,7 @@ When creating or joining a wallet, DigiByteGo will ask for two public keys for t
 
 Every time you need to sign a transaction, the device will be needed to perform the signature. Follow the on screen instructions after clicking the `send` or `accept` buttons.
 
-Finally, in case you lose the device and you have the 24 word seed for the device, you can recover access to your funds using DigiByteGo, see: https://github.com/bitpay/digibytego/blob/master/backupRecovery.md#hardware-wallets
+Finally, in case you lose the device and you have the 24 word seed for the device, you can recover access to your funds using DigiByteGo, see: https://github.com/DigiByte Foundation/digibytego/blob/master/backupRecovery.md#hardware-wallets
 
 
 ## Translations
@@ -265,7 +265,7 @@ We release bug fixes as soon as possible for all platforms.  Usually around a we
 
 ## How to Verify DigiByteGo Signatures
 
- 1. Download the `digibytego@bitpay.com` public key (`gpg --recv-keys 1112CFA1`)
+ 1. Download the `digibytego@DigiByte Foundation.com` public key (`gpg --recv-keys 1112CFA1`)
  2. Download DigiByteGo binary (`$FILENAME`) and signature file (`$FILENAME.sig`)
  3. Verify the signature by running:
 
@@ -275,7 +275,7 @@ $ gpg --verify \
  $FILENAME
 
 # It should return:
-Good signature from "DigiByteGo (visit digibytego.io) <digibytego@bitpay.com>"
+Good signature from "DigiByteGo (visit digibytego.io) <digibytego@DigiByte Foundation.com>"
 ```
 
 ### Public Key for DigiByteGo Binaries
@@ -332,4 +332,4 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 
 ## License
 
-DigiByteGo is released under the MIT License.  Please refer to the [LICENSE](https://github.com/bitpay/digibytego/blob/master/LICENSE) file that accompanies this project for more information including complete terms and conditions.
+DigiByteGo is released under the MIT License.  Please refer to the [LICENSE](https://github.com/DigiByte Foundation/digibytego/blob/master/LICENSE) file that accompanies this project for more information including complete terms and conditions.

@@ -19,10 +19,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     download: {
       bitpay: {
-        url: 'https://bitpay.com/wallet'
+        url: 'https://digibyte.io/digibyte-downloads'
       },
       digibytego: {
-        url: 'https://digibytego.io/#download'
+        url: 'https://digibyte.io/digibyte-downloads'
       }
     },
 
