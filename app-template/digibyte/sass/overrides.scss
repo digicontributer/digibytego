@@ -5,13 +5,13 @@
 /* Colors */
 $v-primary-color:                                    #002352;
 $v-secondary-color:                                  #31465b;
-$v-accent-color:                                     #1abb9b;
+$v-accent-color:                                     #0066cc;;
 
 $v-text-primary-color:                               #002352;
 $v-text-secondary-color:                             #c2c9d1;
-$v-text-accent-color:                                #1abb9b;
+$v-text-accent-color:                                #0066cc;;
 
-$v-success-color:                                    #1abb9b;
+$v-success-color:                                    #0066cc;;
 $v-warning-color:                                    #bb331a;
 
 /* Theme */ 
@@ -73,3 +73,10 @@ $v-tab-receive-selected-icon:                        url('../img/app/tab-icons/i
 $v-tab-settings-selected-icon:                       url('../img/app/tab-icons/ico-settings-selected.svg');
 $v-tab-scan-selected-icon:                           url('../img/app/tab-icons/ico-scan-selected.svg');
 $v-tab-send-selected-icon:                           url('../img/app/tab-icons/ico-send-selected.svg');
+
+.bg-home {
+  box-shadow: none !important;
+  width: 120px !important;
+  height: 120px !important;
+}
+
