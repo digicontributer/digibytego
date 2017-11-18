@@ -1,13 +1,4 @@
-<img src="https://raw.githubusercontent.com/DigiByte Foundation/digibytego/master/resources/digibytego/android/icon/drawable-xxxhdpi-icon.png" alt="DigiByteGo" width="79">
-
-[![Build Status](https://secure.travis-ci.org/DigiByte Foundation/digibytego.svg)](http://travis-ci.org/DigiByte Foundation/digibytego)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/digibytego/localized.png)](https://crowdin.com/project/digibytego)
-
-DigiByteGo is a secure digibyte wallet platform for both desktop and mobile devices. DigiByteGo uses [Bitcore Wallet Service](https://github.com/DigiByte Foundation/bitcore-wallet-service) (BWS) for peer synchronization and network interfacing.
-
-Binary versions of DigiByteGo are available for download at [DigiByte.io](https://digibyte.io/#download). DigiByteGo Binaries are signed with the key `digibytego@DigiByteFoundation.org` – See the section [`How to Verify DigiByteGo Signatures`](https://github.com/DigiByte Foundation/digibytego#how-to-verify-digibytego-signatures) for details.
-
-For a list of frequently asked questions please visit the [DigiByteGo FAQ](https://github.com/DigiByte Foundation/digibytego/wiki/DigiByte Go---FAQ).
+## DigiByteGo"
 
 ## Main Features
 
@@ -27,11 +18,10 @@ For a list of frequently asked questions please visit the [DigiByteGo FAQ](https
 - Push notifications (only available for ios and android versions)
 - Customizable wallet naming and background colors
 - Multiple languages supported
-- Available for [iOS](https://itunes.apple.com/us/app/digibytego/id951330296), [Android](https://play.google.com/store/apps/details?id=com.DigiByte Foundation.digibytego&hl=en), [Windows Phone](http://www.windowsphone.com/en-us/store/app/digibytego-wallet/4372479b-a064-4d18-8bd3-74a3bdb81c3a), [Chrome App](https://chrome.google.com/webstore/detail/digibytego/cnidaodnidkbaplmghlelgikaiejfhja?hl=en), [Linux](https://github.com/DigiByte Foundation/digibytego/releases/latest), [Windows](https://github.com/DigiByte Foundation/digibytego/releases/latest) and [OS X](https://github.com/DigiByte Foundation/digibytego/releases/latest) devices
 
 ## Testing in a Browser
 
-> **Note:** This method should only be used for development purposes. When running DigiByteGo in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys. For production use, see the latest official [releases](https://github.com/DigiByte Foundation/digibytego/releases/).
+> **Note:** This method should only be used for development purposes. When running DigiByteGo in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys. 
 
 Clone the repo and open the directory:
 
