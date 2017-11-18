@@ -1,47 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="247px" height="247px" viewBox="0 0 247 247" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-    <title>tour-control</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <linearGradient x1="50%" y1="0%" x2="50%" y2="89.4673583%" id="linearGradient-1">
-            <stop stop-color="#002352" offset="0%"></stop>
-            <stop stop-color="#002352" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="tour-control">
-            <g id="Onboarding">
-                <g id="0.2.3---Tour-3">
-                    <g id="bg-3">
-                        <path d="M123.5,247 C191.707167,247 247,191.707167 247,123.5 C247,55.2928334 191.707167,1.42108547e-14 123.5,1.42108547e-14 C55.2928334,1.42108547e-14 1.42108547e-14,55.2928334 1.42108547e-14,123.5 C1.42108547e-14,191.707167 55.2928334,247 123.5,247 Z" id="Oval-2" fill="url(#linearGradient-1)" fill-rule="nonzero" opacity="0.300000012"></path>
-                        <rect id="Combined-Shape" stroke="#707D89" stroke-width="2" fill-opacity="0.65" fill="#002352" fill-rule="nonzero" x="63" y="24" width="99.8310062" height="183.875349" rx="8"></rect>
-                        <path d="M63.5199532,180.634556 L162.311053,180.634556" id="Line" stroke="#707D89" stroke-width="2" stroke-linecap="square"></path>
-                        <path d="M104.076299,194.254952 L122.794613,194.254952" id="Line" stroke="#707D89" stroke-width="2" stroke-linecap="square"></path>
-                        <g id="Group-4" transform="translate(98.000000, 79.000000)" stroke="#FFFFFF">
-                            <g id="top-up">
-                                <g id="shopping-48px-outline_bitcoin" transform="translate(0.666667, 0.180606)">
-                                    <g id="Group" transform="translate(0.619048, 0.627502)">
-                                        <path d="M12.3809524,0 L12.3809524,7.5300202" id="Shape"></path>
-                                        <path d="M17.3333333,0 L17.3333333,7.5300202" id="Shape"></path>
-                                        <path d="M12.3809524,47.6901279 L12.3809524,55.2201481" id="Shape"></path>
-                                        <path d="M17.3333333,47.6901279 L17.3333333,55.2201481" id="Shape"></path>
-                                        <path d="M0,47.6901279 L7.42857143,47.6901279" id="Shape-Copy"></path>
-                                        <path d="M0,7.5300202 L7.42857143,7.5300202" id="Shape-Copy-2"></path>
-                                        <path d="M7.42857143,25.1000673 L7.42857143,7.5300202 L21.8042328,7.5300202 C26.9010582,7.5300202 30.952381,11.4205306 30.952381,16.3150438 C30.952381,21.2095569 26.9010582,25.1000673 21.8042328,25.1000673" id="Shape"></path>
-                                        <path d="M7.42857143,47.6901279 L7.42857143,25.1000673 L23.6785714,25.1000673 C29.0952381,25.1000673 33.4285714,30.1200808 33.4285714,36.3950976 C33.4285714,42.6701145 29.0952381,47.6901279 23.6785714,47.6901279 L7.42857143,47.6901279 Z" id="Shape"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                        <g id="Group-3" transform="translate(125.000000, 122.000000)" stroke="#12E5B6" stroke-width="2">
-                            <rect id="Rectangle-path" fill="#002352" fill-rule="nonzero" x="0.00547760651" y="37.6483369" width="74.7600358" height="65.7214967" rx="4"></rect>
-                            <path d="M18.6954866,37.6483369 L18.6954866,18.8707664 C18.6954866,8.54310266 27.1059906,0.0931959432 37.3854955,0.0931959432 L37.3854955,0.0931959432 C47.6650004,0.0931959432 56.0755044,8.54310266 56.0755044,18.8707664 L56.0755044,37.6483369" id="Shape"></path>
-                            <path d="M36.6300769,65.8146926 L36.6300769,75.2034779" id="Shape" fill="#F9F9F9" fill-rule="nonzero"></path>
-                        </g>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 247 247" style="enable-background:new 0 0 247 247;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#002352;}
+	.st1{fill:#0066CC;}
+	.st2{opacity:0.3;fill:url(#Shape_2_);enable-background:new    ;}
+	.st3{opacity:0.3;fill:url(#Shape_3_);enable-background:new    ;}
+	.st4{opacity:0.3;fill:url(#Shape_4_);enable-background:new    ;}
+	.st5{fill:#17BAE0;}
+	.st6{fill:#FFFFFF;}
+</style>
+<title>tour-control</title>
+<desc>Created with Sketch.</desc>
+<g>
+	<circle class="st0" cx="123.5" cy="123.5" r="107.3"/>
+	<g>
+		<path class="st1" d="M123.5,0C55.3,0,0,55.3,0,123.5S55.3,247,123.5,247S247,191.7,247,123.5S191.7,0,123.5,0z"/>
+		<circle class="st0" cx="123.5" cy="123.5" r="100.3"/>
+	</g>
+	
+		<linearGradient id="Shape_2_" gradientUnits="userSpaceOnUse" x1="-295.5607" y1="420.5756" x2="-295.5607" y2="419.6809" gradientTransform="matrix(247 0 0 -247 73127 103882.1563)">
+		<stop  offset="0" style="stop-color:#002352"/>
+		<stop  offset="1" style="stop-color:#002352"/>
+	</linearGradient>
+	<path id="Shape_8_" class="st2" d="M123.5,247c68.2,0,123.5-55.3,123.5-123.5S191.7,0,123.5,0S0,55.3,0,123.5S55.3,247,123.5,247z"
+		/>
+</g>
+<linearGradient id="Shape_3_" gradientUnits="userSpaceOnUse" x1="-295.5607" y1="420.5756" x2="-295.5607" y2="419.6809" gradientTransform="matrix(247 0 0 -247 73127 103882.1563)">
+	<stop  offset="0" style="stop-color:#002352"/>
+	<stop  offset="1" style="stop-color:#002352"/>
+</linearGradient>
+<path id="Shape_14_" class="st3" d="M123.5,247c68.2,0,123.5-55.3,123.5-123.5S191.7,0,123.5,0S0,55.3,0,123.5S55.3,247,123.5,247z"
+	/>
+<linearGradient id="Shape_4_" gradientUnits="userSpaceOnUse" x1="-295.5607" y1="420.5756" x2="-295.5607" y2="419.6809" gradientTransform="matrix(247 0 0 -247 73127 103882.1563)">
+	<stop  offset="0" style="stop-color:#002352"/>
+	<stop  offset="1" style="stop-color:#002352"/>
+</linearGradient>
+<path id="Shape_1_" class="st4" d="M123.5,247c68.2,0,123.5-55.3,123.5-123.5S191.7,0,123.5,0S0,55.3,0,123.5S55.3,247,123.5,247z"
+	/>
+<path class="st5" d="M147.7,202.3H76.9c-3.8,0-6.9-3.1-6.9-6.9V52.5c0-3.8,3.1-6.9,6.9-6.9h70.8c3.8,0,6.9,3.1,6.9,6.9v142.9
+	C154.6,199.2,151.5,202.3,147.7,202.3z"/>
+<path class="st0" d="M145.2,198H79.4c-2.7,0-4.9-2.2-4.9-4.9v-139c0-2.7,2.2-4.9,4.9-4.9h65.8c2.7,0,4.9,2.2,4.9,4.9v139
+	C150.1,195.8,147.9,198,145.2,198z"/>
+<rect x="112.6" y="130.2" class="st0" width="59.9" height="77.6"/>
+<g>
+	<g>
+		<path class="st1" d="M112.3,68.2c-14.9,0-27.1,12.1-27.1,27.1s12.1,27.1,27.1,27.1s27.1-12.1,27.1-27.1S127.3,68.2,112.3,68.2z"/>
+		<circle class="st0" cx="112.3" cy="95.3" r="22"/>
+	</g>
+	<path class="st6" d="M119.1,84.2l0.8-2c0.1-0.2-0.1-0.4-0.3-0.4h-2.9l-0.9,2.4h-1.3l0.7-2c0.1-0.2-0.1-0.4-0.3-0.4H112l-0.9,2.4
+		h-9.1c-0.4,0-0.8,0.2-1,0.6l-2.3,4h3.2h13.8c0.6,0,1.1,0.1,1.6,0.3c1,0.4,2.2,1.3,1.9,3.4c-0.5,3.5-4.1,9.7-11.8,9.8l4-10.5
+		c0.2-0.4-0.2-0.9-0.6-0.9h-5.4l-6.5,16c0,0,1.3,0.2,3.4,0.2l-0.6,1.7h3c0.2,0,0.4-0.1,0.5-0.4l0.6-1.4c0.4,0,0.9-0.1,1.3-0.1
+		l-0.7,1.9h3c0.2,0,0.4-0.1,0.5-0.4l0.8-2.2c4.9-1.1,10.1-3.5,13.2-8.6C130.1,87.3,123.6,84.7,119.1,84.2z"/>
+</g>
+<g>
+	<path class="st6" d="M181.6,213.2h-58.3c-1.4,0-2.5-1.1-2.5-2.5v-37.5c0-1.4,1.1-2.5,2.5-2.5h58.3c1.4,0,2.5,1.1,2.5,2.5v37.5
+		C184.2,212,183,213.2,181.6,213.2z"/>
+	<path class="st6" d="M152.5,138.5c-12.1,0-21.9,9.8-21.9,21.9v17c0,1.1,1.8,2.1,4.1,2.1c2.2,0,4.1-0.9,4.1-2.1v-17
+		c0-7.6,6.2-13.8,13.8-13.8s13.8,6.2,13.8,13.8v17c0,1.1,1.8,2.1,4.1,2.1c2.2,0,4.1-0.9,4.1-2.1v-17
+		C174.4,148.3,164.6,138.5,152.5,138.5z"/>
+</g>
+<g>
+	<circle class="st0" cx="151.7" cy="184.2" r="4.7"/>
+	<rect x="149.6" y="181.3" class="st0" width="4.3" height="20.8"/>
+</g>
 </svg>
