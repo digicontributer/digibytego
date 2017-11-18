@@ -39,14 +39,14 @@
   },
   "dom_storage_quota": 200,
   "id": "jid1-x7bV5evAaI1P9Q",
-  "homepage": "https://digibytego.io",
+  "homepage": "https://digibyte.io",
   "license": "MIT",
   "repository": {
-    "url": "git://github.com/bitpay/digibytego.git",
+    "url": "git://github.com/digibyte/digibytego.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/bitpay/digibytego/issues"
+    "url": "https://github.com/digibyte/digibytego/issues"
   },
   "engines": {
    "node": "6",
@@ -59,7 +59,7 @@
     "bezier-easing": "^2.0.3",
     "bhttp": "^1.2.1",
     "bitauth": "^0.2.1",
-    "bitcore-wallet-client": "git://github.com/esotericizm/bitcore-wallet-client.git#07bc0b007aaef55718b750cf4b2f8cd6d53b22d1",
+    "bitcore-wallet-client": "git://github.com/digibyte/bitcore-wallet-client.git#07bc0b007aaef55718b750cf4b2f8cd6d53b22d1",
     "bower": "^1.7.9",
     "cordova-android": "5.1.1",
     "cordova-custom-config": "^3.0.5",
@@ -111,7 +111,7 @@
     "run:android-release":            "cordova run android --device --release",
     "log:android":            "adb logcat | grep chromium",
     "sign:android":           "rm -f platforms/android/build/outputs/apk/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../digibytego.keystore -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk copay_play && ../android-sdk-macosx/build-tools/25.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/android-release-signed-aligned.apk",
-    "apply:digibytego":            "npm i fs-extra && cd app-template && node apply.js digibyte && npm i && cordova prepare",
+    "apply:digibyte":            "npm i fs-extra && cd app-template && node apply.js digibyte && npm i && cordova prepare",
     "test":                   "echo \"no package tests configured\"",
     "clean":                  "trash platforms && trash plugins && cordova prepare",
     "unstage-package":        "git reset package.json",

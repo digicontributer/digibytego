@@ -4,7 +4,7 @@
 #define MyAppName "DigiByte Go"
 #define MyAppVersion "3.6.3"
 #define MyAppPublisher "DigiByte Foundation"
-#define MyAppURL "https://digibytego.io"
+#define MyAppURL "https://digibyte.io"
 #define MyAppExeName "DigiByte Go.exe"
 #define AppId "804636ee-b017-4cad-8719-e58ac97ffa5c"
 
