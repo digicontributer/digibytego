@@ -1132,7 +1132,23 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             templateUrl: 'views/preferencesBitpayServices.html'
           }
         }
-      });
+      })
+
+      /*
+       *
+       * DigiID
+       *
+       */
+
+      .state('tabs.digiid.authenticating', {
+        url: '/digiid/:uri',
+        views: {
+          'tab-home@tabs': {
+            controller: 'digiidController',
+            templateUrl: 'views/authenticating.html'
+          }
+        }
+      })
   })
   .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ coinbaseService, glideraService, amazonService, bitpayCardService, applicationService) {
 

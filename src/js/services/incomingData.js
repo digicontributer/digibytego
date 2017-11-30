@@ -111,7 +111,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         goSend(addr, amount, message);
       }
       return true;
-      
+
     } else if (isValidDigiid(data)) {
         digiidService.signMessage(data, function(err, signature, address) {
           var parser = document.createElement('a');
@@ -120,7 +120,11 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           var url = protocol + data.substring(9, data.length);
           $http.post(url, { address: address, uri: data, signature: signature })
             .then(function(resp){
-              return true;
+              $state.go('tabs.home').then(function() {
+                $state.transitionTo('tabs.digiid.authenticating', {
+                  uri: data
+                });
+              });
             })
             .catch(function(err){ console.log(err) });
         });
