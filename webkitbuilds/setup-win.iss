@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DigiByte Go"
-#define MyAppVersion "3.6.3"
+#define MyAppVersion "3.6.4"
 #define MyAppPublisher "DigiByte Foundation"
 #define MyAppURL "https://digibyte.io"
 #define MyAppExeName "DigiByte Go.exe"
