@@ -113,21 +113,11 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       return true;
 
     } else if (isValidDigiid(data)) {
-        digiidService.signMessage(data, function(err, signature, address) {
-          var parser = document.createElement('a');
-          parser.href = data;
-          var protocol = data[data.length - 1] === '1' ? 'http://' : 'https://';
-          var url = protocol + data.substring(9, data.length);
-          $http.post(url, { address: address, uri: data, signature: signature })
-            .then(function(resp){
-              $state.go('tabs.home').then(function() {
-                $state.transitionTo('tabs.digiid.authenticating', {
-                  uri: data
-                });
-              });
-            })
-            .catch(function(err){ console.log(err) });
+      $state.go('tabs.home').then(function() {
+        $state.transitionTo('tabs.digiid.authenticating', {
+          uri: data
         });
+      });
 
       // Plain URL
     } else if (/^https?:\/\//.test(data)) {

