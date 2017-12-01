@@ -27,7 +27,7 @@ angular.module('copayApp.controllers').controller('digiidController', function($
       $http.post(url, { address: address, uri: $scope.uri, signature: signature })
         .then(function(resp) {
           $state.go('tabs.home').then(function() {
-            $state.transitionTo('tabs.digiid.success', {
+            $state.transitionTo('tabs.home.success', {
               uri: $scope.uri,
               host: $scope.host,
               address: address
@@ -36,7 +36,7 @@ angular.module('copayApp.controllers').controller('digiidController', function($
         })
         .catch(function(err) {
           $state.go('tabs.home').then(function() {
-            $state.transitionTo('tabs.digiid.failure', {
+            $state.transitionTo('tabs.home.failure', {
               uri: $scope.uri,
               host: $scope.host,
               address: address,

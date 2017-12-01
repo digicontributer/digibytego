@@ -1140,16 +1140,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        *
        */
 
-      .state('tabs.digiid', {
-        url: '/digiid',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'preferencesController',
-            templateUrl: 'views/preferences.html'
-          }
-        }
-      })
-      .state('tabs.digiid.authenticating', {
+      .state('tabs.home.authenticating', {
         url: '/digiid/:uri',
         views: {
           'tab-home@tabs': {
@@ -1158,7 +1149,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-      .state('tabs.digiid.success', {
+      .state('tabs.home.success', {
         url: '/digiid/:host/:address/:uri',
         views: {
           'tab-home@tabs': {
@@ -1167,7 +1158,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-      .state('tabs.digiid.failure', {
+      .state('tabs.home.failure', {
         url: '/digiid/:host/:address/:status/:uri',
         views: {
           'tab-home@tabs': {

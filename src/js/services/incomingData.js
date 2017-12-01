@@ -114,7 +114,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
     } else if (isValidDigiid(data)) {
       $state.go('tabs.home').then(function() {
-        $state.transitionTo('tabs.digiid.authenticating', {
+        $state.transitionTo('tabs.home.authenticating', {
           uri: data
         });
       });
