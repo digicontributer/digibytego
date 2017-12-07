@@ -4,9 +4,18 @@ angular.module('copayApp.controllers').controller('digiidController', function($
   $scope.uri = $stateParams.uri;
   $scope.address = $stateParams.address;
   var parser = getLocation($scope.uri);
-  $scope.host = parser.host;
+  if (parser) {
+    $scope.host = parser.host;
+  }
+
+  digiidService.getDigiIDAddress(function(err, addr) {
+    $scope.myAddress = addr;
+  });
 
   function getLocation(href) {
+    if (!href) {
+      return;
+    }
     var match = href.match(/^(digiid?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/);
     return match && {
         href: href,
@@ -22,7 +31,7 @@ angular.module('copayApp.controllers').controller('digiidController', function($
 
   $scope.init = function() {
     digiidService.signMessage($scope.uri, function(err, signature, address) {
-      var protocol = $scope.uri[$scope.uri.length - 1] === '1' ? 'http://' : 'https://';
+      var protocol = $scope.uri[$scope.uri.length - 4] === '&u=1' ? 'http://' : 'https://';
       var url = protocol + $scope.uri.substring(9, $scope.uri.length);
       $http.post(url, { address: address, uri: $scope.uri, signature: signature })
         .then(function(resp) {

@@ -32,7 +32,16 @@ angular.module('copayApp.services').factory('digiidService', function($statePara
     return signature.toCompact().toString('base64');
   };
 
-  root.getRootAddress = function getAddresses(cb) {
+  root.getDigiIDAddress = function getDigiIDAddress(cb) {
+    this.wallet = profileService.getWallet(Object.keys(profileService.wallet).map(function(key) {
+      return key
+    })[0]);    
+    walletService.getMainAddresses(this.wallet, {}, function(err, addresses) {
+      return cb(null, addresses[0].address);
+    });
+  }
+
+  root.getRootAddress = function getRootAddress(cb) {
     walletService.getMainAddresses(this.wallet, {}, function(err, addresses) {
       const address = addresses[0];
       return cb(null, address);
